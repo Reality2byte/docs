@@ -1,9 +1,11 @@
 ---
 title: About topics
 shortTitle: About topics
-intro: 'Use topics to make articles searchable.'
+intro: Use topics to make articles searchable.
 versions:
-  feature: 'contributing'
+  fpt: '*'
+  ghec: '*'
+  ghes: '*'
 ---
 
 An article can be defined as being relevant to one or more topics by having those topics listed in the article's frontmatter. For example:
@@ -18,7 +20,7 @@ topics:
 ---
 ```
 
-For more information on adding topics to an article see, "[AUTOTITLE](/contributing/writing-for-github-docs/using-yaml-frontmatter#topics)". For a list of all allowed topics, see [`allowed-topics`](https://github.com/github/docs/blob/main/data/allowed-topics.js).
+For more information on adding topics to an article see, [AUTOTITLE](/contributing/writing-for-github-docs/using-yaml-frontmatter#topics). For a list of all allowed topics, see [`allowed-topics`](https://github.com/github/docs/blob/main/data/allowed-topics.js).
 
 ## Topics for all content types
 

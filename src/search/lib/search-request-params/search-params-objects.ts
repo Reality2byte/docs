@@ -6,8 +6,7 @@
 import languages from '@/languages/lib/languages'
 import { allIndexVersionKeys, versionToIndexVersionMap } from '@/search/lib/elasticsearch-versions'
 import { SearchTypes } from '@/search/types'
-import { versionAliases } from '@/search/lib/helpers/old-version-logic'
-import { allVersions } from '@/versions/lib/all-versions'
+import { latest } from '@/versions/lib/enterprise-server-releases'
 
 import type { SearchRequestQueryParams } from '@/search/lib/search-request-params/types'
 
@@ -60,16 +59,6 @@ const SHARED_PARAMS_OBJ: SearchRequestQueryParams[] = [
 const GENERAL_SEARCH_PARAMS_OBJ: SearchRequestQueryParams[] = [
   ...SHARED_PARAMS_OBJ,
   { key: 'query' },
-  // TODO: Overwrite with old version logic for now
-  {
-    key: 'version',
-    default_: 'dotcom',
-    validate: (v) => {
-      if (versionAliases[v] || allVersions[v]) return true
-      const valid = [...Object.keys(versionAliases), ...Object.keys(allVersions)]
-      throw new ValidationError(`'${v}' not in ${valid}`)
-    },
-  },
   { key: 'language', default_: 'en', validate: (v) => v in languages },
   {
     key: 'size',
@@ -124,22 +113,37 @@ const GENERAL_SEARCH_PARAMS_OBJ: SearchRequestQueryParams[] = [
 ]
 
 const SHARED_AUTOCOMPLETE_PARAMS_OBJ: SearchRequestQueryParams[] = [
+  { key: 'query' },
   {
     key: 'size',
     default_: DEFAULT_AUTOCOMPLETE_SIZE,
     cast: (size: string) => parseInt(size, 10),
     validate: (size: number) => size >= 0 && size <= MAX_AUTOCOMPLETE_SIZE,
   },
+  // We only want to enable for latest versions of fpt, ghec, and ghes
+  {
+    key: 'version',
+    default_: 'free-pro-team',
+    validate: (version: string) => {
+      const mappedVersion = versionToIndexVersionMap[version]
+      if (
+        mappedVersion === 'fpt' ||
+        mappedVersion === 'ghec' ||
+        mappedVersion === `ghes-${latest}`
+      ) {
+        return true
+      }
+      return false
+    },
+  },
 ]
 
 const AI_SEARCH_AUTOCOMPLETE_PARAMS_OBJ: SearchRequestQueryParams[] = [
-  ...SHARED_PARAMS_OBJ,
   ...SHARED_AUTOCOMPLETE_PARAMS_OBJ,
   { key: 'language', default_: 'en', validate: (language: string) => language === 'en' },
 ]
 
 const AUTOCOMPLETE_PARAMS_OBJ: SearchRequestQueryParams[] = [
-  ...SHARED_PARAMS_OBJ,
   ...SHARED_AUTOCOMPLETE_PARAMS_OBJ,
   { key: 'language', default_: 'en', validate: (language: string) => language in languages },
 ]

@@ -8,8 +8,8 @@ topics:
   - Copilot
 children:
   - /extending-the-capabilities-of-github-copilot-in-your-organization
-  - /indexing-repositories-for-copilot-chat
-  - /adding-custom-instructions-for-github-copilot
+  - /adding-repository-custom-instructions-for-github-copilot
+  - /adding-personal-custom-instructions-for-github-copilot
   - /managing-copilot-knowledge-bases
   - /creating-a-custom-model-for-github-copilot
 redirect_from:

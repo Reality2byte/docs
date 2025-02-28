@@ -28,18 +28,16 @@ Organization owners can set policies to govern how {% data variables.product.pro
 
 * {% data variables.product.prodname_copilot_short %} in {% data variables.product.prodname_dotcom_the_website %}
 * {% data variables.product.prodname_copilot_chat_short %} in the IDE
+* Editor preview features
 * {% data variables.product.prodname_copilot_mobile_short %}
 * {% data variables.product.prodname_copilot_cli_short %} and {% data variables.product.prodname_windows_terminal %}
 * Suggestions matching public code
 * Access to alternative models for {% data variables.product.prodname_copilot_short %}
+  * Anthropic {% data variables.copilot.copilot_claude_sonnet %} in {% data variables.product.prodname_copilot_short %}
+  * Google {% data variables.copilot.copilot_gemini_flash %} in {% data variables.product.prodname_copilot_short %}
+  * OpenAI o1 and o3 models in {% data variables.product.prodname_copilot_short %}
 
 The policy settings selected by an organization owner determine the behavior of {% data variables.product.prodname_copilot %} for all organization members that have been granted access to {% data variables.product.prodname_copilot_short %} through the organization.
-
-{% ifversion ghec %}
-
-{% data variables.product.prodname_copilot_short %} policies are also managed at the enterprise level. If your organization is part of an enterprise, and explicit settings have been selected at the enterprise level, you cannot override those settings at the organization level. For more information on managing policies at the enterprise level, see "[AUTOTITLE](/copilot/managing-copilot/managing-copilot-for-your-enterprise/managing-policies-and-features-for-copilot-in-your-enterprise)."
-
-{% endif %}
 
 ### Policies for suggestion matching
 
@@ -50,6 +48,8 @@ Organization settings include an option to either allow or block code suggestion
 If an organization member is assigned a seat by multiple organizations with different suggestion matching policies under the same enterprise, {% data variables.product.prodname_copilot %} will use the most restrictive policy.{% endif %}
 
 ## Enabling {% data variables.product.prodname_copilot_short %} features in your organization
+
+>[!NOTE] {% data variables.product.prodname_copilot_short %} policies are also managed at the enterprise level. If your organization is part of an enterprise, and explicit settings have been selected at the enterprise level, you cannot override those settings at the organization level.  For more information on managing policies at the enterprise level, see [AUTOTITLE](/enterprise-cloud@latest/copilot/managing-copilot/managing-copilot-for-your-enterprise/managing-policies-and-features-for-copilot-in-your-enterprise).
 
 {% data reusables.profile.access_org %}
 {% data reusables.profile.org_settings %}
@@ -64,9 +64,7 @@ If an organization member is assigned a seat by multiple organizations with diff
 
 ## Setting a policy for {% data variables.product.prodname_copilot_extensions %} in your organization
 
-{% data reusables.copilot.copilot-extensions.public-preview-note %}
-
-{% data variables.product.prodname_copilot_extensions %} integrate external tools with {% data variables.product.prodname_copilot_chat %}. See "[AUTOTITLE](/copilot/using-github-copilot/using-extensions-to-integrate-external-tools-with-copilot-chat)."
+{% data variables.product.prodname_copilot_extensions %} integrate external tools with {% data variables.product.prodname_copilot_chat %}. See [AUTOTITLE](/copilot/using-github-copilot/using-extensions-to-integrate-external-tools-with-copilot-chat).
 
 Before you install {% data variables.product.prodname_copilot_extensions_short %} in your organization, you should set a usage policy for your organization. Setting a usage policy allows you to enable or disable {% data variables.product.prodname_copilot_extensions_short %} for all members of your organization, limiting your security risk.
 
@@ -95,5 +93,5 @@ After you have installed a {% data variables.product.prodname_copilot_extension_
 ## Further reading
 
 * [{% data variables.product.prodname_copilot %} Trust Center](https://resources.github.com/copilot-trust-center)
-* "[AUTOTITLE](/copilot/using-github-copilot/finding-public-code-that-matches-github-copilot-suggestions)"{% ifversion ghec %}
-* "[AUTOTITLE](/copilot/setting-up-github-copilot/setting-up-github-copilot-for-your-enterprise)"{% endif %}
+* [AUTOTITLE](/copilot/using-github-copilot/finding-public-code-that-matches-github-copilot-suggestions){% ifversion ghec %}
+* [AUTOTITLE](/copilot/setting-up-github-copilot/setting-up-github-copilot-for-your-enterprise){% endif %}

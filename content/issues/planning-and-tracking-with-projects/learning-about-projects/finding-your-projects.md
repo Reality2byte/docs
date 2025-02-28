@@ -3,7 +3,9 @@ title: 'Finding your {% data variables.projects.projects_v2 %}'
 intro: 'Learn how to locate projects in your account, organizations, repositories, and teams.'
 allowTitleToDifferFromFilename: true
 versions:
-  feature: projects-v2-global-nav
+  fpt: '*'
+  ghec: '*'
+  ghes: '*'
 type: overview
 topics:
   - Projects
@@ -36,7 +38,7 @@ You can view and filter projects that you have created under your personal accou
 
 ## Finding projects linked to a repository
 
-Repositories can be linked to organization-level and user-level projects.  You can browse and filter the projects that are linked to a specific repository. For more information on linking projects to a repository, see "[AUTOTITLE](/issues/planning-and-tracking-with-projects/managing-your-project/adding-your-project-to-a-repository)."
+Repositories can be linked to organization-level and user-level projects. You can browse and filter the projects that are linked to a specific repository. For more information on linking projects to a repository, see [AUTOTITLE](/issues/planning-and-tracking-with-projects/managing-your-project/adding-your-project-to-a-repository).
 
 1. On {% data variables.product.prodname_dotcom %}, navigate to the main page of your repository.
 1. Click **{% octicon "table" aria-hidden="true" %} Projects**.
@@ -47,7 +49,7 @@ Repositories can be linked to organization-level and user-level projects.  You c
 
 ## Finding projects linked to a team
 
-You can also link a project to specific teams in an organization and then browse and filter the projects that are associated with a particular team. For more information on linking projects, see "[AUTOTITLE](/issues/planning-and-tracking-with-projects/managing-your-project/adding-your-project-to-a-team)."
+You can also link a project to specific teams in an organization and then browse and filter the projects that are associated with a particular team. For more information on linking projects, see [AUTOTITLE](/issues/planning-and-tracking-with-projects/managing-your-project/adding-your-project-to-a-team).
 
 {% data reusables.profile.access_org %}
 {% data reusables.user-settings.access_org %}

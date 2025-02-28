@@ -10,11 +10,11 @@ topics:
   - Access management
 ---
 
-If you need to use multiple accounts on {% data variables.product.prodname_dotcom %}, you can sign in to your accounts and switch between them  without always being required to reauthenticate. You can use the account switcher if you have a personal account and service accounts (sometimes called machine users){% ifversion fpt or ghec %} or if you need to switch between your personal account and {% data variables.enterprise.prodname_managed_users %} in an enterprise that uses {% data variables.product.prodname_emus %}{% endif %}.
+If you need to use multiple accounts on {% data variables.product.prodname_dotcom %}, you can sign in to your accounts and switch between them without always being required to reauthenticate. You can use the account switcher if you have a personal account and service accounts (sometimes called machine users){% ifversion fpt or ghec %} or if you need to switch between your personal account and {% data variables.enterprise.prodname_managed_users %} in an enterprise that uses {% data variables.product.prodname_emus %}{% endif %}.
 
 When you are signed in to multiple accounts and using the account switcher, those sessions remain on your computer or browser. If you access {% data variables.product.prodname_dotcom %} on another computer or browser, the same accounts will not be available until you add them.
 
-If you are signed in to multiple accounts and follow a link to {% data variables.product.product_name %} from an external source, such as a request to install or approve a {% data variables.product.prodname_github_app %}, you will first be prompted to choose which account you want to use.
+If you are signed in to multiple accounts and follow a link to {% data variables.product.github %} from an external source, such as a request to install or approve a {% data variables.product.prodname_github_app %}, you will first be prompted to choose which account you want to use.
 
 Your SSO sessions will persist when you switch away from an account and return. This means you will not always need to authenticate with your identity provider (IdP) each time you want to use your SSO-linked account. {% ifversion fpt or ghec %}If you're a member of an enterprise that uses {% data variables.product.prodname_emus %} and add your {% data variables.enterprise.prodname_managed_user %} to the account switcher, the {% data variables.enterprise.prodname_managed_user %} will appear grayed out if your session has expired. Selecting the expired account will send you to reauthenticate with your IdP.{% endif %}
 
