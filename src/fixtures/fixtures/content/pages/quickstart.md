@@ -6,10 +6,8 @@ versions:
   fpt: '*'
   ghes: '*'
   ghec: '*'
-type: quick_start
-permissions: These are permissions details, for more pages info start at the beginning with this "[article intro link](#introduction)". Also here's [another link](/get-started/start-your-journey/hello-world).
-topics:
-  - Pages
+contentType: get-started
+permissions: These are permissions details, for more pages info start at the beginning with this [article intro link](#introduction). Also here's [another link](/get-started/start-your-journey/hello-world).
 shortTitle: Quickstart
 product: '{% data reusables.gated-features.pages %}'
 ---
@@ -20,7 +18,7 @@ This page has 6 links that should show preview popovers on hover.
 
 ## Regular internal link
 
-But learn more on "[AUTOTITLE](/get-started/start-your-journey)."
+But learn more on [AUTOTITLE](/get-started/start-your-journey).
 
 ## Internal links with formatted link text
 

@@ -10,10 +10,9 @@ redirect_from:
 versions:
   fpt: '*'
   ghec: '*'
-topics:
-  - Identity
-  - Access management
 shortTitle: SSH key fingerprints
+category:
+  - Connect with SSH
 ---
 These are {% data variables.product.prodname_dotcom %}'s public key fingerprints:
 
@@ -23,4 +22,4 @@ You can add the following ssh key entries to your `~/.ssh/known_hosts` file to a
 
 {% data reusables.ssh.known_hosts %}
 
-For more information, see "[AUTOTITLE](/rest/meta/meta#get-github-meta-information)."
+For more information, see [AUTOTITLE](/rest/meta/meta#get-github-meta-information).

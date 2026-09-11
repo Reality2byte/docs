@@ -262,7 +262,7 @@ In order to create an account, Customer must adhere to the following:
 
 #### 3.1.3 Account Security.
 
-Customer is responsible for: (i) all Content posted and activity that occurs under its Corporate Account; (ii) maintaining the security of its account login credentials; and (iii) promptly notifying GitHub via the contact form available at [GitHub Support](https://support.github.com/) upon becoming aware of any unauthorized use of, or access to, the Service through its account.  GitHub will not be liable for any loss or damage from Customer’s failure to comply with this Section 3.1.3.
+Customer is responsible for: (i) all Content posted and activity that occurs under its Corporate Account; (ii) maintaining the security of its account login credentials; and (iii) promptly notifying GitHub via the contact form available at [GitHub Support](https://support.github.com/) upon becoming aware of any unauthorized use of, or access to, the Service through its account. GitHub will not be liable for any loss or damage from Customer’s failure to comply with this Section 3.1.3.
 
 #### 3.1.4 Additional Terms.
 
@@ -284,7 +284,7 @@ Customer’s use of the Service must comply with [GitHub's Acceptable Use Polici
 
 #### 3.2.3 Privacy.
 
-[The GitHub Privacy Statement](/site-policy/privacy-policies/github-privacy-statement) and the [GitHub Data Protection Addendum](https://github.com/customer-terms) provide detailed notice of GitHub's privacy and data use practices as well as GitHub's processing and security obligations with respect to Customer Personal Data. Any person, entity, or service collecting data from the Service must comply with the [GitHub Privacy Statement](/site-policy/privacy-policies/github-privacy-statement), particularly in regards to the collection of Users' Personal Information (as defined in the GitHub Privacy Statement). If Customer collects any User Personal Information from GitHub, Customer will only use it for the purpose for which the External User has authorized it. Customer will reasonably secure any such Personal Information, and Customer will respond promptly to complaints, removal requests, and "do not contact" requests from GitHub or External Users.
+[The GitHub Privacy Statement](/site-policy/privacy-policies/github-general-privacy-statement) and the [GitHub Data Protection Addendum](https://github.com/customer-terms) provide detailed notice of GitHub's privacy and data use practices as well as GitHub's processing and security obligations with respect to Customer Personal Data. Any person, entity, or service collecting data from the Service must comply with the [GitHub Privacy Statement](/site-policy/privacy-policies/github-general-privacy-statement), particularly in regards to the collection of Users' Personal Information (as defined in the GitHub Privacy Statement). If Customer collects any User Personal Information from GitHub, Customer will only use it for the purpose for which the External User has authorized it. Customer will reasonably secure any such Personal Information, and Customer will respond promptly to complaints, removal requests, and "do not contact" requests from GitHub or External Users.
 
 ### 3.3 Content Responsibility; Ownership; License Rights.
 
@@ -328,13 +328,13 @@ GitHub considers Customer Content in Customer’s Private Repositories to be Cus
 
 #### 3.4.3 Access.
 
-GitHub personnel may only access Customer’s Private Repositories in the situations described in our [Privacy Statement](/site-policy/privacy-policies/github-privacy-statement#repository-contents).
+GitHub personnel may only access Customer’s Private Repositories in the situations described in our [Privacy Statement](/site-policy/privacy-policies/github-general-privacy-statement#private-repositories-github-access).
 
 Customer may choose to enable additional access to its Private Repositories. For example, Customer may enable various GitHub services or features that require additional rights to Customer Content in Private Repositories. These rights may vary depending on the service or feature, but GitHub will continue to treat Customer Content in Customer’s Private Repositories as Customer’s Confidential Information. If those services or features require rights in addition to those it needs to provide the Service, GitHub will provide an explanation of those rights.
 
-Additionally, we may be [compelled by law](/site-policy/privacy-policies/github-privacy-statement#for-legal-disclosure) to disclose the contents of your private repositories.
+Additionally, we may be [compelled by law](/site-policy/privacy-policies/github-general-privacy-statement#sharing-of-personal-data) to disclose the contents of your private repositories.
 
-GitHub will provide notice regarding our access to private repository content, unless [for legal disclosure](/site-policy/privacy-policies/github-privacy-statement#for-legal-disclosure), to comply with our legal obligations, or where otherwise bound by requirements under law, for automated scanning, or if in response to a security threat or other risk to security.
+GitHub will provide notice regarding our access to private repository content, unless [for legal disclosure](/site-policy/privacy-policies/github-general-privacy-statement#sharing-of-personal-data), to comply with our legal obligations, or where otherwise bound by requirements under law, for automated scanning, or if in response to a security threat or other risk to security.
 
 ### 3.5. Intellectual Property Notices.
 
@@ -441,7 +441,7 @@ Some Service features may be subject to additional terms as set forth in the [Gi
 
 **“Scraping”** means extracting data from the Service via an automated process, such as a bot or webcrawler, and does not include the collection of information through GitHub's API.
 
-**"Service"** means the hosted GitHub Enterprise Cloud service. The Service includes:  Organization account(s), SAML single sign-on, access provisioning, and any applicable Documentation. This list of features and services is non-exhaustive and may be updated from time to time.
+**"Service"** means the hosted GitHub Enterprise Cloud service. The Service includes: Organization account(s), SAML single sign-on, access provisioning, and any applicable Documentation. This list of features and services is non-exhaustive and may be updated from time to time.
 
 **"Service Credit"** means a dollar credit, calculated as set forth below, that GitHub may credit back to an eligible account.
 

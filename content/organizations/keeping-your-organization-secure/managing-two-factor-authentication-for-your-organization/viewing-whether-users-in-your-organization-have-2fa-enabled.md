@@ -9,14 +9,13 @@ versions:
   fpt: '*'
   ghes: '*'
   ghec: '*'
-topics:
-  - Organizations
-  - Teams
 shortTitle: View 2FA usage
+category:
+  - Manage authentication methods
 ---
 
 > [!NOTE]
-> You can require that all members{% ifversion fpt or ghec %}, including, owners, billing managers and{% else %} and{% endif %} outside collaborators in your organization have two-factor authentication enabled{% ifversion fpt or ghec %}, as well as enforcing that they have secure methods configured {% endif %}. For more information, see "[AUTOTITLE](/organizations/keeping-your-organization-secure/managing-two-factor-authentication-for-your-organization/requiring-two-factor-authentication-in-your-organization)."
+> You can require that all members{% ifversion fpt or ghec %}, including, owners, billing managers and{% else %} and{% endif %} outside collaborators in your organization have two-factor authentication enabled{% ifversion fpt or ghec %}, as well as enforcing that they have secure methods configured {% endif %}. For more information, see [AUTOTITLE](/organizations/keeping-your-organization-secure/managing-two-factor-authentication-for-your-organization/requiring-two-factor-authentication-in-your-organization).
 
 {% data reusables.profile.access_org %}
 {% data reusables.user-settings.access_org %}
@@ -33,15 +32,15 @@ shortTitle: View 2FA usage
 
 {% else %}
 
-1. To view organization members, including organization owners, who have enabled or disabled two-factor authentication, on the right, select **2FA**, then click **Enabled** or **Disabled**.
+1. To view organization members, including organization owners, who have enabled or disabled two-factor authentication, on the right, select **Two-factor authentication**, then click **Secure** or **Disabled**.
 
-![Screenshot of the list of organization members. A dropdown menu, labeled "2FA", is expanded and outlined in orange.](/assets/images/help/2fa/legacy-filter-org-members-by-2fa.png)
+   ![Screenshot of the list of organization members. A dropdown menu, labeled "Two-factor Authentication", is expanded and outlined in orange.](/assets/images/help/2fa/ghes-filter-org-members-by-2fa.png)
 
 1. To view outside collaborators in your organization, in the "Organization permissions" sidebar, click **Outside collaborators**.
-1. To view which outside collaborators have enabled or disabled two-factor authentication, above the list of outside collaborators, select the **2FA** dropdown menu, then click **Enabled** or **Disabled**.
+1. To view which outside collaborators have enabled or disabled two-factor authentication, above the list of outside collaborators, select **Two-factor authentication**, then click **Secure** or **Disabled**.
 
 {% endif %}
 
 ## Further reading
 
-* "[AUTOTITLE](/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-your-membership-in-organizations/viewing-peoples-roles-in-an-organization)"
+* [AUTOTITLE](/account-and-profile/how-tos/organization-membership/viewing-peoples-roles-in-an-organization)

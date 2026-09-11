@@ -4,8 +4,6 @@ intro: Create a codespace to get started with developing your project inside a d
 versions:
   fpt: '*'
   ghec: '*'
-topics:
-  - Codespaces
 children:
   - /developing-in-a-codespace
   - /creating-a-codespace-for-a-repository
@@ -23,14 +21,7 @@ children:
   - /connecting-to-a-private-network
   - /getting-started-with-github-codespaces-for-machine-learning
   - /using-github-codespaces-in-visual-studio-code
-  - /using-github-codespaces-in-your-jetbrains-ide
   - /using-github-codespaces-with-github-cli
 redirect_from:
   - /codespaces/developing-in-codespaces
 ---
-
-{% ifversion ghec %}
-
-{% data reusables.codespaces.data-residency-availability %}
-
-{% endif %}

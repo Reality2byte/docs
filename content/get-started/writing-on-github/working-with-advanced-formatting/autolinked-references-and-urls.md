@@ -11,20 +11,22 @@ versions:
   ghes: '*'
   ghec: '*'
 shortTitle: Auto linked references
+category:
+  - Write and format content
 ---
 ## URLs
 
-{% data variables.product.product_name %} automatically creates links from standard URLs.
+{% data variables.product.github %} automatically creates links from standard URLs.
 
 `Visit https://github.com`
 
-![Screenshot of rendered {% data variables.product.prodname_dotcom %} Markdown showing how a URL beginning with "http" becomes as a blue clickable link. The text reads, "Visit https://github.com."](/assets/images/help/writing/url-autolink-rendered.png)
+![Screenshot of rendered {% data variables.product.github %} Markdown showing how a URL is displayed as a blue clickable link, "Visit https://github.com."](/assets/images/help/writing/url-autolink-rendered.png)
 
-For more information on creating links, see "[AUTOTITLE](/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#links)."
+For more information on creating links, see [AUTOTITLE](/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#links).
 
 ## Issues and pull requests
 
-Within conversations on {% data variables.product.product_name %}, references to issues and pull requests are automatically converted to shortened links.
+Within conversations on {% data variables.product.github %}, references to issues and pull requests are automatically converted to shortened links.
 
 > [!NOTE]
 > Autolinked references are not created in wikis or files in a repository.
@@ -38,7 +40,7 @@ Within conversations on {% data variables.product.product_name %}, references to
 | `Organization_name/Repository#` and issue or pull request number | github-linguist/linguist#4039 | [github-linguist/linguist#4039](https://github.com/github-linguist/linguist/pull/4039)
 
 {% ifversion fpt or ghec %}
-If you reference an issue, pull request, or discussion in a list, the reference will unfurl to show the title and state instead. For more information about task lists, see "[AUTOTITLE](/get-started/writing-on-github/working-with-advanced-formatting/about-task-lists)."
+If you reference an issue, pull request, or discussion in a list, the reference will unfurl to show the title and state instead. For more information about task lists, see [AUTOTITLE](/get-started/writing-on-github/working-with-advanced-formatting/about-tasklists).
 {% endif %}
 
 ## Labels
@@ -56,7 +58,7 @@ https://github.com/github/docs/labels/enhancement
 
 ## Commit SHAs
 
-References to a commit's SHA hash are automatically converted into shortened links to the commit on {% data variables.product.product_name %}.
+References to a commit's SHA hash are automatically converted into shortened links to the commit on {% data variables.product.github %}.
 
 | Reference type | Raw reference | Short link |
 | --- | --- | --- |
@@ -73,6 +75,13 @@ When referencing a commit from a private repository inside of a commit message, 
 
 {% data reusables.repositories.autolink-references %}
 
+## Avoiding backlinks to linked references
+
+By default, references generate a backlink. For example, manually linking to an issue in a pull request will automatically generate another link from the issue _back_ to the pull request.
+To avoid this behavior, you can use `redirect.github.com` instead of `github.com` when constructing the URL in your reference. If you do use a `redirect.github.com` URL in your reference link, no pop-up window will appear when hovering over it.
+> [!NOTE]
+> This method is not supported in {% data variables.product.prodname_ghe_cloud %} with Data Residency (`ghe.com`).
+
 ## Further reading
 
-* "[AUTOTITLE](/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)"
+* [AUTOTITLE](/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)

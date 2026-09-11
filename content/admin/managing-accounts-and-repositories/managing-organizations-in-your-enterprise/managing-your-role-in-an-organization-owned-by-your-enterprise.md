@@ -5,27 +5,30 @@ permissions: Enterprise owners can manage their role in an organization owned by
 redirect_from:
   - /admin/user-management/managing-organizations-in-your-enterprise/managing-your-role-in-an-organization-owned-by-your-enterprise
 versions:
-  feature: enterprise-owner-join-org
-type: how_to
-topics:
-  - Administrator
-  - Enterprise
-  - Organizations
+  ghec: '*'
+  ghes: '*'
 shortTitle: Manage your organization roles
+contentType: how-tos
+category:
+  - Manage accounts and repositories
 ---
 
 ## About role management
 
-You can choose to join an organization owned by your enterprise as a member or as an organization owner, change your role within the organization, or leave the organization.
+You can choose to join an organization owned by your enterprise as a member or as an organization owner, change your role within the organization, or leave the organization. Your organization role determines your level of access to organization resources as follows:
+
+* **Unaffiliated or no official organization role:** you cannot access organization content or repositories, but you can manage enterprise settings and policies that impact your organization
+* **Organization member:** you can access organization resources and content, such as repositories, but you cannot access the organization's settings
+* **Organization owner:** you can configure organization settings and manage access to the organization's resources through teams, etc.
 
 {% ifversion ghec %}
 
 > [!WARNING]
-> If an organization uses SCIM to provision users, joining the organization this way could have unintended consequences. For more information, see "[AUTOTITLE](/organizations/managing-saml-single-sign-on-for-your-organization/about-scim-for-organizations)."
+> If an organization uses SCIM to provision users, joining the organization this way could have unintended consequences. For more information, see [AUTOTITLE](/organizations/managing-saml-single-sign-on-for-your-organization/about-scim-for-organizations).
 
 {% endif %}
 
-For information about managing other people's roles in an organization, see "[AUTOTITLE](/organizations/managing-membership-in-your-organization)" and "[AUTOTITLE](/organizations/managing-peoples-access-to-your-organization-with-roles)."
+For information about managing other people's roles in an organization, see [AUTOTITLE](/organizations/managing-membership-in-your-organization) and [AUTOTITLE](/organizations/managing-peoples-access-to-your-organization-with-roles).
 
 ## Managing your role with the enterprise settings
 
@@ -33,7 +36,7 @@ You can join an organization owned by your enterprise and manage your role withi
 
 {% ifversion ghec %}
 
-If an organization enforces SAML single sign-on (SSO), you cannot use the enterprise settings to join the organization. Instead, you must join the organization using that organization's identity provider (IdP). Then, you can manage your role in your enterprise settings. For more information, see "[Joining an organization that enforces SAML SSO](#joining-an-organization-that-enforces-saml-sso)."
+If an organization enforces SAML single sign-on (SSO), you cannot use the enterprise settings to join the organization. Instead, you must join the organization using that organization's identity provider (IdP). Then, you can manage your role in your enterprise settings. For more information, see [Joining an organization that enforces SAML SSO](#joining-an-organization-that-enforces-saml-sso).
 
 {% endif %}
 
@@ -56,6 +59,6 @@ If an organization enforces SAML SSO, you cannot use the enterprise settings to 
 
      `https://github.com/orgs/ORGANIZATION/sso`
 
-After you've joined the organization, you can use the enterprise settings to manage your role in the organization, such as becoming an organization owner. For more information, see "[Managing your role with the enterprise settings](#managing-your-role-with-the-enterprise-settings)."
+After you've joined the organization, you can use the enterprise settings to manage your role in the organization, such as becoming an organization owner. For more information, see [Managing your role with the enterprise settings](#managing-your-role-with-the-enterprise-settings).
 
 {% endif %}

@@ -1,18 +1,24 @@
 ---
-title: 'Using {% data variables.product.prodname_classroom %} with {% data variables.product.prodname_cli %}'
+title: Using {% data variables.product.prodname_classroom %} with {% data variables.product.prodname_cli %}
 shortTitle: '{% data variables.product.prodname_classroom %} CLI'
 allowTitleToDifferFromFilename: true
-intro: 'You can use `gh`, the {% data variables.product.product_name %} command line interface, to work with {% data variables.product.prodname_classroom %} directly from your command line.'
+intro: You can use `gh`, the {% data variables.product.github %} command line interface, to work with {% data variables.product.prodname_classroom %} directly from your command line.
 versions:
   fpt: '*'
-type: how_to
+contentType: how-tos
+category:
+  - Set up GitHub Classroom
 ---
+
+> [!WARNING]
+> **Closing down:** This `gh` extension is closing down. The {% data variables.product.prodname_classroom %} application will be retired on August 28, 2026.
+> For more information, see the [{% data variables.product.prodname_classroom %} closing down notice](https://gh.io/classroom-sunset).
 
 ## About {% data variables.product.prodname_classroom %} CLI <!-- omit in toc -->
 
-{% data reusables.cli.about-cli %} For more information, see "[AUTOTITLE](/github-cli/github-cli/about-github-cli)."
+{% data reusables.cli.about-cli %} For more information, see [AUTOTITLE](/github-cli/github-cli/about-github-cli).
 
-You can work with {% data variables.product.prodname_classroom %} in the  {% data variables.product.prodname_cli %} to:
+You can work with {% data variables.product.prodname_classroom %} in the {% data variables.product.prodname_cli %} to:
 
 * [List classrooms](#list-classrooms)
 * [View classroom information](#view-classroom-information)
@@ -104,4 +110,4 @@ gh classroom clone student-repos
 
 Clones student repositories from a given assignment. By default, the student repositories are cloned into the current directory a directory named after the assignment slug. To clone into a different directory, use the `--directory` flag. If the directory does not exists, it will be created.
 
-By default, all student repositories are cloned. To get a different number of repositories, use the `--per-page NUMBER` flag.
+By default, all student repositories are cloned. To get a different number of repositories, use the `--page NUMBER` and `--per-page NUMBER` flags.

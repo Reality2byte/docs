@@ -11,10 +11,9 @@ versions:
   fpt: '*'
   ghes: '*'
   ghec: '*'
-topics:
-  - Organizations
-  - Teams
 shortTitle: Reinstate collaborator
+category:
+  - Control repository access
 ---
 
 {% data reusables.enterprise-managed.repo-collaborators-note %}
@@ -24,18 +23,18 @@ When an outside collaborator's access to your organization's private repositorie
 {% data reusables.two_fa.send-invite-to-reinstate-user-before-2fa-is-enabled %}
 
 When you reinstate a former outside collaborator, you can restore:
+
 * The user's former access to organization repositories
 * Any private forks of repositories owned by the organization
-* Membership in the organization's teams
 * Previous access and permissions for the organization's repositories
 * Stars for organization repositories
 * Issue assignments in the organization
 * Repository subscriptions (notification settings for watching, not watching, or ignoring a repository's activity)
 
 > [!TIP]
-> * Only organization owners can reinstate outside collaborators' access to an organization.{% ifversion prevent-org-admin-add-outside-collaborator %} Enterprise owners may further restrict the ability to reinstate outside collaborators' access to enterprise owners only.{% endif %} For more information, see "[AUTOTITLE](/organizations/managing-peoples-access-to-your-organization-with-roles/roles-in-an-organization)."
-> * The reinstating a member flow on {% data variables.location.product_location %} may use the term "member" to describe reinstating an outside collaborator but if you reinstate this person and keep their previous privileges, they will only have their previous [outside collaborator permissions](/organizations/managing-peoples-access-to-your-organization-with-roles/roles-in-an-organization#outside-collaborators).{% ifversion fpt or ghec %}
-> * If your organization has a paid per-user subscription, an unused license must be available before you can invite a new member to join the organization or reinstate a former organization member. For more information, see "[AUTOTITLE](/billing/managing-the-plan-for-your-github-account/about-per-user-pricing)."{% endif %}
+> * Only organization owners can reinstate outside collaborators' access to an organization. Enterprise owners may further restrict the ability to reinstate outside collaborators' access to enterprise owners only. For more information, see [AUTOTITLE](/organizations/managing-peoples-access-to-your-organization-with-roles/roles-in-an-organization).
+> * The reinstating a member flow on {% data variables.location.product_location %} may use the term "member" to describe reinstating an outside collaborator but if you reinstate this person and keep their previous privileges, they will only have their previous [outside collaborator permissions](/organizations/managing-peoples-access-to-your-organization-with-roles/roles-in-an-organization).{% ifversion fpt or ghec %}
+> * If your organization has a paid per-user subscription, an unused license must be available before you can invite a new member to join the organization or reinstate a former organization member. For more information, see [AUTOTITLE](/billing/reference/github-license-users).{% endif %}
 
 {% data reusables.profile.access_org %}
 {% data reusables.user-settings.access_org %}
@@ -43,6 +42,7 @@ When you reinstate a former outside collaborator, you can restore:
 {% data reusables.organizations.invite_member_from_people_tab %}
 {% data reusables.organizations.reinstate-user-type-username %}
 {% ifversion fpt or ghec %}
+
 1. Select whether to restore the outside collaborator's previous privileges in the organization by clicking **Invite and reinstate** or choose to clear their previous privileges and set new access permissions by clicking **Invite and start fresh**.
 
    > [!WARNING]
@@ -66,4 +66,4 @@ When you reinstate a former outside collaborator, you can restore:
 
 ## Further reading
 
-* "[AUTOTITLE](/organizations/managing-user-access-to-your-organizations-repositories/managing-repository-roles/repository-roles-for-an-organization)"
+* [AUTOTITLE](/organizations/managing-user-access-to-your-organizations-repositories/managing-repository-roles/repository-roles-for-an-organization)

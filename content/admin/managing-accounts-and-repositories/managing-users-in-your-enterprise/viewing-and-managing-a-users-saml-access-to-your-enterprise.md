@@ -12,9 +12,9 @@ redirect_from:
 versions:
   ghec: '*'
   feature: scim-for-ghes-public-beta
-topics:
-  - Enterprise
 shortTitle: View & manage SAML access
+category:
+  - Manage accounts and repositories
 ---
 
 ## About SAML access to your enterprise account
@@ -23,7 +23,7 @@ When you enable SAML single sign-on for your enterprise account, each enterprise
 
 {% ifversion ghec %}
 
-If your enterprise is uses {% data variables.product.prodname_emus %}, your members will use accounts provisioned through your IdP. {% data variables.enterprise.prodname_managed_users_caps %} will not use their existing user account on {% data variables.product.product_name %}. For more information, see "[AUTOTITLE](/enterprise-cloud@latest/admin/identity-and-access-management/using-enterprise-managed-users-for-iam/about-enterprise-managed-users)."
+If your enterprise uses {% data variables.product.prodname_emus %}, your members will use accounts provisioned through your IdP. {% data variables.enterprise.prodname_managed_users_caps %} will not use their existing user account on {% data variables.product.github %}. For more information, see [AUTOTITLE](/enterprise-cloud@latest/admin/concepts/identity-and-access-management/enterprise-managed-users).
 
 {% endif %}
 
@@ -33,7 +33,7 @@ If your enterprise is uses {% data variables.product.prodname_emus %}, your memb
 
 {% data reusables.saml.about-linked-identities %}
 
-If your enterprise uses {% data variables.product.prodname_emus %}, you will not be able to deprovision or remove user accounts from the enterprise on {% data variables.product.product_name %}. Any changes you need to make to your enterprise's {% data variables.enterprise.prodname_managed_users %} should be made through your IdP.
+If your enterprise uses {% data variables.product.prodname_emus %}, you will not be able to deprovision or remove user accounts from the enterprise via {% data variables.product.github %}. Any changes you need to make to your enterprise's {% data variables.enterprise.prodname_managed_users %} should be made through your IdP.
 
 {% data reusables.identity-and-permissions.revoking-identity-team-sync %}
 
@@ -44,6 +44,20 @@ If your enterprise uses {% data variables.product.prodname_emus %}, you will not
 {% data reusables.saml.view-sso-identity %}
 {% data reusables.saml.revoke-sso-identity %}
 {% data reusables.saml.confirm-revoke-identity %}
+
+{% elsif scim-for-ghes-public-beta %}
+
+## Viewing a linked identity
+
+You can view the single sign-on identity that a member has linked to their account on GitHub.
+
+{% data reusables.enterprise-accounts.access-enterprise %}
+{% data reusables.enterprise-accounts.people-tab %}
+{% data reusables.saml.click-person-revoke-identity %}
+{% data reusables.saml.saml-identity-linked %}
+{% data reusables.saml.view-sso-identity %}
+
+The identity data on this page will include the SCIM data that was sent to {% data variables.product.github %} during user provisioning. This SCIM data is what {% data variables.product.github %} uses when matching a SAML SSO request to the provisioned user. Note that {% data variables.product.github %} does not use SAML mappings when SCIM is enabled. For more information on how {% data variables.product.github %} maps SAML and SCIM data for users, please see [AUTOTITLE](/rest/enterprise-admin/scim?apiVersion=2022-11-28#mapping-of-saml-and-scim-data).
 
 {% endif %}
 
@@ -62,6 +76,12 @@ If your enterprise uses {% data variables.product.prodname_emus %}, you will not
 
 {% data reusables.saml.about-authorized-credentials %}
 
+{% ifversion single_user_cred_revocation %}
+
+> [!TIP] To respond to security incidents, enterprise and organization owners can also revoke all SSO authorizations at once for individual users, all users, or a specific credential type such as {% data variables.product.pat_v1_plural %}. For enterprises with {% data variables.product.prodname_emus %}, you can delete credentials entirely. For more information, see [AUTOTITLE](/enterprise-cloud@latest/admin/managing-iam/respond-to-incidents/revoke-authorizations-or-tokens).
+
+{% endif %}
+
 {% data reusables.enterprise-accounts.access-enterprise %}
 {% data reusables.enterprise-accounts.people-tab %}
 {% data reusables.saml.click-person-revoke-credentials %}
@@ -72,6 +92,6 @@ If your enterprise uses {% data variables.product.prodname_emus %}, you will not
 
 ## Further reading
 
-* "[AUTOTITLE](/organizations/granting-access-to-your-organization-with-saml-single-sign-on/viewing-and-managing-a-members-saml-access-to-your-organization)"
+* [AUTOTITLE](/organizations/granting-access-to-your-organization-with-saml-single-sign-on/viewing-and-managing-a-members-saml-access-to-your-organization)
 
 {% endif %}

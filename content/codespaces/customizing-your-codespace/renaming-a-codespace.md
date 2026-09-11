@@ -1,15 +1,13 @@
 ---
 title: Renaming a codespace
-intro: 'You can change the codespace display name to one of your choice on {% data variables.product.github %} or using the {% data variables.product.prodname_cli %}.'
+intro: You can change the codespace display name to one of your choice on {% data variables.product.github %} or using the {% data variables.product.prodname_cli %}.
 versions:
   fpt: '*'
   ghec: '*'
-type: how_to
-topics:
-  - Codespaces
-  - Fundamentals
-  - Developer
 shortTitle: Rename a codespace
+contentType: how-tos
+category:
+  - Create and manage codespaces
 ---
 
 ## About renaming a codespace
@@ -18,7 +16,7 @@ When you create a codespace it's assigned an auto-generated display name. If you
 
 To find the display name of a codespace:
 
-* On {% data variables.product.product_name %}, view your list of codespaces at https://github.com/codespaces.
+* On {% data variables.product.github %}, view your list of codespaces at https://github.com/codespaces.
 
    ![Screenshot of a list of three codespaces on the https://github.com/codespaces page."](/assets/images/help/codespaces/your-codespaces-list.png)
 
@@ -53,7 +51,7 @@ In this example, replace `PERMANENT-CODESPACE-NAME` with the permanent name of t
 
 Display names can be up to 48 characters in length. The display name can contain any combination of characters, including spaces, provided you enclose it in single quotes.
 
-For more information, see "[AUTOTITLE](/codespaces/developing-in-a-codespace/using-github-codespaces-with-github-cli#rename-a-codespace)."
+For more information, see [AUTOTITLE](/codespaces/developing-in-a-codespace/using-github-codespaces-with-github-cli#rename-a-codespace).
 
 {% endcli %}
 
@@ -74,5 +72,5 @@ You can change the display name for your codespace on {% data variables.product.
 
 ## Further reading
 
-* "[AUTOTITLE](/codespaces/setting-your-user-preferences)"
-* "[AUTOTITLE](/codespaces/managing-your-codespaces)"
+* [AUTOTITLE](/codespaces/setting-your-user-preferences)
+* [AUTOTITLE](/codespaces/managing-your-codespaces)

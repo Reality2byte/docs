@@ -7,17 +7,16 @@ redirect_from:
 versions:
   fpt: '*'
   ghec: '*'
-topics:
-  - Organizations
-  - Teams
 shortTitle: Scheduled reminders
+category:
+  - Organize teams
 ---
 
 ## About scheduled reminders for teams
 
 {% data reusables.reminders.about-scheduled-reminders-teams-orgs %}
 
-Team maintainers and organization owners can set scheduled reminders for any pull requests that a team has been requested to review. Before you can create a scheduled reminder for your team, an organization owner must authorize your Slack workspace. For more information, see "[AUTOTITLE](/organizations/managing-organization-settings/managing-scheduled-reminders-for-your-organization)."
+Team maintainers and organization owners can set scheduled reminders for any pull requests that a team has been requested to review. Before you can create a scheduled reminder for your team, an organization owner must authorize your Slack workspace. For more information, see [AUTOTITLE](/organizations/managing-organization-settings/managing-scheduled-reminders-for-your-organization).
 
 {% data reusables.reminders.scheduled-reminders-limitations %}
 
@@ -70,5 +69,5 @@ Team maintainers and organization owners can set scheduled reminders for any pul
 ## Further reading
 
 * [Getting started](https://github.com/integrations/slack?tab=readme-ov-file#getting-started) in the Slack integrations documentation
-* "[AUTOTITLE](/organizations/managing-organization-settings/managing-scheduled-reminders-for-your-organization)"
-* "[AUTOTITLE](/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-your-membership-in-organizations/managing-your-scheduled-reminders)"
+* [AUTOTITLE](/organizations/managing-organization-settings/managing-scheduled-reminders-for-your-organization)
+* [AUTOTITLE](/subscriptions-and-notifications/how-tos/managing-your-scheduled-reminders)

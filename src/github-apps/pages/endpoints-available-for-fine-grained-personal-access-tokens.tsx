@@ -1,12 +1,14 @@
 import { GetServerSideProps } from 'next'
+import type { Response } from 'express'
+import type { ExtendedRequest } from '@/types'
 
 import {
   AutomatedPageContextT,
   getAutomatedPageContextFromRequest,
-} from 'src/automated-pipelines/components/AutomatedPageContext'
-import { MainContextT, getMainContext } from 'src/frame/components/context/MainContext'
+} from '@/automated-pipelines/components/AutomatedPageContext'
+import { MainContextT, getMainContext } from '@/frame/components/context/MainContext'
 
-import { EnabledList, EnabledListT } from 'src/github-apps/components/EnabledList'
+import { EnabledList, EnabledListT } from '@/github-apps/components/EnabledList'
 
 type Props = {
   mainContext: MainContextT
@@ -35,15 +37,18 @@ export default function FineGrainedTokenEndpoints({
 }
 
 export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
-  const { getAppsServerSideProps } = await import('src/github-apps/lib/index.js')
+  const { getAppsServerSideProps } = await import('@/github-apps/lib/index')
   const { currentVersion, appsItems, categoriesWithoutSubcategories } =
     await getAppsServerSideProps(context, 'fine-grained-pat', { useDisplayTitle: false })
 
   return {
     props: {
-      mainContext: await getMainContext(context.req, context.res),
+      mainContext: await getMainContext(
+        context.req as unknown as ExtendedRequest,
+        context.res as unknown as Response,
+      ),
       currentVersion,
-      appsItems,
+      appsItems: appsItems as EnabledListT,
       automatedPageContext: getAutomatedPageContextFromRequest(context.req),
       categoriesWithoutSubcategories,
     },

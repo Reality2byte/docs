@@ -1,4 +1,4 @@
-To facilitate communication between {% data variables.product.company_short %} networks and your VNET, a {% data variables.product.company_short %}-hosted runner's network interface card (NIC) deploys into your Azure VNET.
+To facilitate communication between {% data variables.product.company_short %} networks and your VNET, a {% data variables.product.company_short %}-hosted runner's network interface card (NIC) deploys into your Azure VNET. The runner is always deployed in the same Azure region as your subnet.
 
 Because the NIC lives within your VNET, {% data variables.product.company_short %} cannot block inbound connections. By default, Azure virtual machines will accept inbound connections from the same VNET. For more information, see [`AllowVNetInBound`](https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview#allowvnetinbound) on Microsoft Learn. It is recommended to explicitly block all inbound connections to the runners. {% data variables.product.company_short %} will never require inbound connections to these machines.
 
@@ -6,7 +6,7 @@ A NIC enables an Azure virtual machine (VM) to communicate with internet, Azure,
 
 >[!NOTE] {% data reusables.actions.azure-vnet-over-provisioning-resources %}
 
-![Diagram of the network communication architecture between GitHub networks and your private networks. The diagram describes each step in connecting GitHub-hosted runners to an Azure VNET. Each step is numbered and the numbers correspond to the numbered descriptions of the step listed below the diagram.](/assets/images/help/actions/actions-vnet-injected-larger-runners-architecture.png)
+![Diagram of network communication between GitHub and your private networks. Each step is numbered and corresponds to a step listed below the diagram.](/assets/images/help/actions/actions-vnet-injected-larger-runners-architecture.png)
 
 1. A {% data variables.product.prodname_actions %} workflow is triggered.
 1. The {% data variables.product.prodname_actions %} service creates a runner.

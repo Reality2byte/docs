@@ -13,6 +13,8 @@ versions:
   ghes: '*'
   ghec: '*'
 shortTitle: RubyGems registry
+category:
+  - Work with a package registry
 ---
 
 {% data reusables.package_registry.packages-ghes-release-stage %}
@@ -94,7 +96,7 @@ bundle config https://{% ifversion fpt or ghec %}rubygems.pkg.github.com{% else 
 
 ## Publishing a package
 
-{% ifversion packages-rubygems-v2 %}{% data reusables.package_registry.publishing-user-scoped-packages %}{% else %}By default, GitHub publishes the package to an existing repository with the same name as the package. For example, when you publish `GEM_NAME` to the `octo-org` organization, GitHub Packages publishes the gem to the `octo-org/GEM_NAME` repository.{% endif %} For more information on creating your gem, see "[Make your own gem](http://guides.rubygems.org/make-your-own-gem/)" in the RubyGems documentation.
+{% ifversion packages-rubygems-v2 %}{% data reusables.package_registry.publishing-user-scoped-packages %}{% else %}By default, GitHub publishes the package to an existing repository with the same name as the package. For example, when you publish `GEM_NAME` to the `octo-org` organization, GitHub Packages publishes the gem to the `octo-org/GEM_NAME` repository.{% endif %} For more information on creating your gem, see [Make your own gem](http://guides.rubygems.org/make-your-own-gem/) in the RubyGems documentation.
 
 {% data reusables.package_registry.auto-inherit-permissions-note %}
 
@@ -129,16 +131,16 @@ You can ensure gems will be linked to a repository as soon as they are published
 gem.metadata = { "github_repo" => "ssh://{% ifversion fpt or ghec %}github.com{% else %}HOSTNAME{% endif %}/OWNER/REPOSITORY" }
 ```
 
-For information on linking a published package with a repository, see "[AUTOTITLE](/packages/learn-github-packages/connecting-a-repository-to-a-package)."
+For information on linking a published package with a repository, see [AUTOTITLE](/packages/learn-github-packages/connecting-a-repository-to-a-package).
 
 {% else %}
 
 ## Publishing multiple packages to the same repository
 
-To publish multiple gems to the same repository, you can include the URL to the {% data variables.product.prodname_dotcom %} repository in the `github_repo` field in `gem.metadata`. If you include this field, {% data variables.product.prodname_dotcom %} matches the repository based on this value, instead of using the gem name.{% ifversion ghes %} Replace HOSTNAME with the host name of {% data variables.location.product_location %}.{% endif %}
+To publish multiple gems to the same repository, you can include the URL to the {% data variables.product.prodname_dotcom %} repository in the `github_repo` field in `gem.metadata`. If you include this field, {% data variables.product.prodname_dotcom %} matches the repository based on this value, instead of using the gem name. Replace HOSTNAME with the host name of {% data variables.location.product_location %}.
 
 ```ruby
-gem.metadata = { "github_repo" => "ssh://{% ifversion fpt or ghec %}github.com{% else %}HOSTNAME{% endif %}/OWNER/REPOSITORY" }
+gem.metadata = { "github_repo" => "ssh://HOSTNAME/OWNER/REPOSITORY" }
 ```
 
 {% endif %}
@@ -178,4 +180,4 @@ You can use gems from {% data variables.product.prodname_registry %} much like y
 
 ## Further reading
 
-* "[AUTOTITLE](/packages/learn-github-packages/deleting-and-restoring-a-package)"
+* [AUTOTITLE](/packages/learn-github-packages/deleting-and-restoring-a-package)

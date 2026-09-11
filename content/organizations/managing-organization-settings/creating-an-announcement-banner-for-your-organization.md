@@ -3,10 +3,11 @@ title: Creating an announcement banner for your organization
 shortTitle: Create an announcement banner
 intro: Organization owners can create announcement banners for the organization.
 versions:
-  feature: custom-banner-messages
-type: how_to
-topics:
-  - Maintenance
+  ghes: '*'
+  ghec: '*'
+contentType: how-tos
+category:
+  - Configure organization features
 ---
 
 {% ifversion ghec %}
@@ -20,11 +21,11 @@ You can create an announcement banner that will be displayed to all organization
 
 {% data reusables.enterprise.user-messages-markdown %}
 
-You can also set announcement banners at the enterprise level. For more information, see "[AUTOTITLE](/admin/user-management/managing-users-in-your-enterprise/customizing-user-messages-for-your-enterprise)."
+You can also set announcement banners at the enterprise level. For more information, see [AUTOTITLE](/admin/managing-accounts-and-repositories/communicating-information-to-users-in-your-enterprise/customizing-user-messages-for-your-enterprise).
 
 {% data reusables.profile.access_org %}
 {% data reusables.profile.org_settings %}
-1. In the "Messages" section of the sidebar, click **{% octicon "megaphone" aria-hidden="true" %} Announcement**.
+1. In the "Messages" section of the sidebar, click **{% octicon "megaphone" aria-hidden="true" aria-label="megaphone" %} Announcement**.
 1. Under "Announcement", in the text field, type the announcement you want displayed in a banner.
 1. Optionally, under "Expires on", select the calendar drop-down menu and click an expiration date.
 

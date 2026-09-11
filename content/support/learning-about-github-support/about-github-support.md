@@ -18,17 +18,18 @@ redirect_from:
   - /articles/github-business-cloud-support
   - /admin/enterprise-support/about-support-for-advanced-security
   - /enterprise-server/admin/enterprise-support/about-support-for-advanced-security
-topics:
-  - Support
+  - /enterprise-onboarding/support-for-your-enterprise/understanding-support 
+category:
+  - Understand your support options
 ---
 
 ## About {% data variables.contact.github_support %}
 
-The support options available to {% data variables.product.prodname_dotcom %} users depend on the products used by their personal accounts,  any organizations or enterprises they are members of, and any {% data variables.product.prodname_ghe_server %} instances they manage. Each product includes a default level of support and accounts that use {% data variables.product.prodname_enterprise %} can purchase {% data variables.contact.premium_support %}.
+The support options available to {% data variables.product.github %} users depend on the products used by their personal accounts, any organizations or enterprises they are members of, and any {% data variables.product.prodname_ghe_server %} instances they manage. Each product includes a default level of support and accounts that use {% data variables.product.prodname_enterprise %} can purchase {% data variables.contact.premium_support %}.
 
 {% rowheaders %}
 
-|  | {% data variables.product.prodname_gcf %} | Standard support | Enterprise support | Premium support |
+| {% data variables.product.github %} plan | {% data variables.product.prodname_gcf %} | Standard support | Enterprise support | Premium support |
 |---|---|---|---|---|
 | {% data variables.product.prodname_free_user %} | {% octicon "check" aria-label="Available" %} | {% octicon "x" aria-label="Not available" %} | {% octicon "x" aria-label="Not available" %} | {% octicon "x" aria-label="Not available" %} |
 | {% data variables.product.prodname_pro %} | {% octicon "check" aria-label="Available" %} | {% octicon "check" aria-label="Available" %} | {% octicon "x" aria-label="Not available" %} | {% octicon "x" aria-label="Not available" %} |
@@ -41,9 +42,9 @@ The support options available to {% data variables.product.prodname_dotcom %} us
 {% ifversion ghes %}
 
 You can contact {% data variables.contact.enterprise_support %} through the {% data variables.contact.contact_enterprise_portal %} for help with:
-* Installing and using {% data variables.product.product_name %}
+* Installing and using {% data variables.product.prodname_ghe_server %}
 * Identifying and verifying the causes of suspected errors
-* Installing and using {% data variables.product.prodname_advanced_security %}
+* Installing and using {% data variables.product.prodname_GHAS %} features
 
 {% endif %}
 
@@ -51,33 +52,33 @@ You can contact {% data variables.contact.enterprise_support %} through the {% d
 
 {% data reusables.support.premium-support-features %}
 
-For more information, see "[AUTOTITLE](/support/learning-about-github-support/about-github-premium-support)."
+For more information, see [AUTOTITLE](/support/learning-about-github-support/about-github-premium-support).
 
 {% endif %}
 
 {% ifversion fpt or ghec %}
 
-Before contacting {% data variables.contact.github_support %}, check if there are currently any incidents affecting services on {% data variables.product.product_name %} on [{% data variables.product.prodname_dotcom %} Status](https://githubstatus.com/). For more information, see "[About GitHub status](#about-github-status)."
+Before contacting {% data variables.contact.github_support %}, check [{% data variables.product.github %} Status](https://githubstatus.com/) for any active incidents affecting {% data variables.product.github %} services. For more information, see [About GitHub status](#about-github-status).
 
 {% endif %}
 
 {% ifversion fpt %}
 {% data reusables.support.free-and-paid-support %}
 
-To report account, security, and abuse issues, or to receive assisted support for a paid account, visit the {% data variables.contact.contact_landing_page_portal %}. For more information, see "[AUTOTITLE](/support/contacting-github-support/creating-a-support-ticket)."
+To report account, security, and abuse issues, or to receive assisted support for a paid account, visit the {% data variables.contact.contact_landing_page_portal %}. For more information, see [AUTOTITLE](/support/contacting-github-support/creating-a-support-ticket).
 {% endif %}
 
 {% ifversion fpt %}
 You can contact {% data variables.contact.github_support %} in English.
 {% else %}
-With {% data variables.product.product_name %}, you have access to support in English and Japanese.
+With {% data variables.product.prodname_enterprise %}, you have access to support in English and Japanese.
 {% endif %}
 
 {% data reusables.support.support-ticket-translation-option %}
 
 {% ifversion ghes or ghec %}
 
-To contact {% data variables.contact.github_support %}, visit the {% data variables.contact.contact_landing_page_portal %}. For more information, see "[AUTOTITLE](/support/contacting-github-support/creating-a-support-ticket)."
+To contact {% data variables.contact.github_support %}, visit the {% data variables.contact.contact_landing_page_portal %}. For more information, see [AUTOTITLE](/support/contacting-github-support/creating-a-support-ticket).
 
 {% endif %}
 
@@ -87,13 +88,15 @@ Email communication from GitHub Support will always be sent from either a `githu
 
 {% data reusables.support.scope-of-support %}
 
+For security-related matters, all communication is handled in writing through support tickets. This includes incident notifications, account compromise investigations, and credential exposure. Written communication ensures responses are reviewed, fully documented, and auditable. Callback and screen share requests cannot be accommodated for these tickets.
+
 {% ifversion ghec or fpt %}
 
 ## About GitHub status
 
-You can check for any incidents currently affecting {% data variables.product.product_name %} services and view information about past incidents on {% data variables.product.prodname_dotcom %}'s [Status page]({% ifversion fpt or ghec %}https://githubstatus.com{% endif %}).
+You can check for any incidents currently affecting {% data variables.product.github %} services, including {% data variables.product.prodname_copilot %} model availability, and view information about past incidents on {% data variables.product.github %}'s [Status page](https://githubstatus.com).
 
-You can also subscribe and get alerted via email, text message, and webhook whenever there's an incident affecting {% data variables.product.product_name %}.
+You can also subscribe and get alerted via email, text message, and webhook whenever there's an incident affecting {% data variables.product.github %}.
 
 You can also use the {% data variables.product.company_short %} Status API to check for incidents. For more information, see [{% data variables.product.company_short %} Status API](https://www.githubstatus.com/api/).
 
@@ -105,13 +108,13 @@ You can also use the {% data variables.product.company_short %} Status API to ch
 
 Enterprise owners and billing managers automatically have a support entitlement, which enables them to create, view, and comment on support tickets associated with their enterprise account.
 
-Enterprise owners can also add support entitlements to members of organizations owned by their enterprise account, allowing those members to create, view, and comment on support tickets. For more information, see "[AUTOTITLE](/enterprise-cloud@latest/admin/user-management/managing-users-in-your-enterprise/managing-support-entitlements-for-your-enterprise)."
+Enterprise owners can also add support entitlements to members of organizations owned by their enterprise account, allowing those members to create, view, and comment on support tickets. For more information, see [AUTOTITLE](/enterprise-cloud@latest/admin/managing-accounts-and-repositories/managing-users-in-your-enterprise/managing-support-entitlements-for-your-enterprise).
 
 {% endif %}
 
-## About {% data variables.product.prodname_copilot_in_support %}
+## About {% data variables.copilot.copilot_in_support %}
 
-You can receive answers to questions relating to {% data variables.product.prodname_dotcom %}'s products and features before submitting a support ticket by using {% data variables.product.prodname_copilot_in_support %}. {% data variables.product.prodname_copilot_in_support %} is an AI-powered tool that uses a large language model to find answers to a wide variety of support queries. If {% data variables.product.prodname_copilot_in_support %} cannot answer your question, You can proceed with submitting your ticket to {% data variables.contact.github_support %}. For more information, see "[AUTOTITLE](/support/learning-about-github-support/about-copilot-in-github-support)."
+You can receive answers to questions relating to {% data variables.product.github %}'s products and features before submitting a support ticket by using {% data variables.copilot.copilot_in_support %}. {% data variables.copilot.copilot_in_support %} is an AI-powered tool that uses a large language model to find answers to a wide variety of support queries. If {% data variables.copilot.copilot_in_support %} cannot answer your question, You can proceed with submitting your ticket to {% data variables.contact.github_support %}. For more information, see [AUTOTITLE](/support/learning-about-github-support/about-copilot-in-github-support).
 
 {% ifversion fpt or ghec %}
 
@@ -131,7 +134,7 @@ For pricing, licensing, renewals, quotes, payments, and other related questions,
 To learn more about training options, including customized trainings, see [{% data variables.product.company_short %}'s training site](https://services.github.com/).
 
 > [!NOTE]
-> Training is included in the {% data variables.product.premium_plus_support_plan %}. For more information, see "[AUTOTITLE](/support/learning-about-github-support/about-github-premium-support)."
+> Training is included in the {% data variables.product.premium_plus_support_plan %} / {% data variables.product.microsoft_premium_plus_support_plan %}. For more information, see [AUTOTITLE](/support/learning-about-github-support/about-github-premium-support).
 
 {% endif %}
 
@@ -141,7 +144,7 @@ To learn more about training options, including customized trainings, see [{% da
 
 ### Support in English
 
-For standard non-urgent issues, we offer support in English 24 hours per day, 5 days per week, excluding weekends and national U.S. holidays. The standard response time is 24 hours.
+For standard non-urgent issues, we offer support in English 24 hours per day, 5 days per week, excluding weekends and national U.S. holidays.
 
 {% ifversion ghes %}
 For urgent issues, we are available 24 hours per day, 7 days per week, even during national U.S. holidays.
@@ -155,7 +158,7 @@ For standard non-urgent issues, support in Japanese is available Monday through 
 For urgent issues, we offer support in English 24 hours per day, 7 days per week, even during national U.S. holidays.
 {% endif %}
 
-For a complete list of U.S. and Japanese national holidays observed by {% data variables.contact.enterprise_support %}, see "[Holiday schedules](#holiday-schedules)."
+For a complete list of U.S. and Japanese national holidays observed by {% data variables.contact.enterprise_support %}, see [Holiday schedules](#holiday-schedules).
 
 ## Holiday schedules
 
@@ -186,7 +189,7 @@ For urgent issues, we can help you in English 24 hours per day, 7 days per week,
 ## Further reading
 
 {%- ifversion ghes %}
-* Section 10 on Support in the "[{% data variables.product.prodname_ghe_server %} License Agreement](https://enterprise.github.com/license)"
+* Section 10 on Support in the [{% data variables.product.prodname_ghe_server %} License Agreement](https://enterprise.github.com/license)
 {%- endif %}
-* "[AUTOTITLE](/support/contacting-github-support/creating-a-support-ticket)"
-* "[AUTOTITLE](/support/contacting-github-support/viewing-and-updating-support-tickets)"
+* [AUTOTITLE](/support/contacting-github-support/creating-a-support-ticket)
+* [AUTOTITLE](/support/contacting-github-support/viewing-and-updating-support-tickets)

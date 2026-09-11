@@ -10,13 +10,15 @@ redirect_from:
   - /early-access/admin/preview-of-data-residency-for-github-enterprise/about-data-residency-in-the-european-union
   - /early-access/admin/private-ga-of-data-residency-for-github-enterprise-cloud/about-data-residency-in-the-european-union
   - /early-access/admin/data-residency-for-github-enterprise-cloud/about-data-residency-in-the-european-union
+category:
+  - Get started with GitHub Enterprise
 ---
 
 {% data reusables.data-residency.when-you-adopt-data-residency %}
 
 Although your code and user data are stored within your chosen region, {% data variables.product.company_short %} may store certain types of data outside your region, and may need to transfer some data outside your region.
 
-If you are in doubt about any aspect of {% data variables.enterprise.data_residency_short %}, contact your account manager in {% data variables.contact.contact_enterprise_sales %}.
+If you are in doubt about any aspect of {% data variables.enterprise.data_residency_short %}, contact your account manager.
 
 ## Data stored in your region
 
@@ -37,7 +39,8 @@ For the purposes outlined in our [Data Protection Agreement](https://github.com/
 | Telemetry or logs containing consistent identifiers tied to a person, that by themselves do not identify the person without additional information | <ul><li>User ID or GUID as integer value in a database</li><li>Unsalted hash of other data that could identify a person</li><ul><li>Email address</li><li>Username</li><li>First or last name</li><li>IP address</li></ul> |
 | Information that GitHub needs to administer a paid plan | <ul><li>Contact information</li><li>Billing, purchase, payment, or license information</li></ul> |
 | Support and feedback data | <ul><li>Support requests or case notes</li><li>Phone conversations</li><li>Online chat sessions</li><li>Remote assistance sessions</li></ul> |
-| {% data variables.product.prodname_copilot %} data | Data and logs for {% data variables.product.prodname_copilot %} |
+| {% data variables.product.prodname_copilot %} data | Data and logs for {% data variables.product.prodname_copilot %}, by default stored outside your region. If you enable the Restrict Copilot to data residency compliant models policy, inference, prompts, responses, logs, and telemetry remain in-region. See [AUTOTITLE](/admin/data-residency/github-copilot-with-data-residency).|
+| {% data variables.product.prodname_secret_scanning_caps %} data | Data for {% data variables.product.prodname_secret_scanning %} validity checks and extended metadata checks if you have chosen to enable these features |
 
 ## Data transfers
 

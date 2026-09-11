@@ -1,4 +1,6 @@
 import { GetServerSideProps } from 'next'
+import type { Response } from 'express'
+import type { ExtendedRequest } from '@/types'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 
@@ -7,15 +9,15 @@ import {
   getMainContext,
   MainContext,
   MainContextT,
-} from 'src/frame/components/context/MainContext'
+} from '@/frame/components/context/MainContext'
 import {
   getAutomatedPageContextFromRequest,
   AutomatedPageContext,
   AutomatedPageContextT,
-} from 'src/automated-pipelines/components/AutomatedPageContext'
-import { WebhookAction } from 'src/webhooks/components/types'
-import { Webhook } from 'src/webhooks/components/Webhook'
-import { AutomatedPage } from 'src/automated-pipelines/components/AutomatedPage'
+} from '@/automated-pipelines/components/AutomatedPageContext'
+import { WebhookAction } from '@/webhooks/components/types'
+import { Webhook } from '@/webhooks/components/Webhook'
+import { AutomatedPage } from '@/automated-pipelines/components/AutomatedPage'
 
 type Props = {
   mainContext: MainContextT
@@ -75,11 +77,11 @@ export default function WebhooksEventsAndPayloads({
 }
 
 export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
-  const { getInitialPageWebhooks } = await import('src/webhooks/lib')
-  const { getAutomatedPageMiniTocItems } = await import('src/frame/lib/get-mini-toc-items')
+  const { getInitialPageWebhooks } = await import('@/webhooks/lib')
+  const { getAutomatedPageMiniTocItems } = await import('@/frame/lib/get-mini-toc-items')
 
-  const req = context.req as object
-  const res = context.res as object
+  const req = context.req as unknown as ExtendedRequest
+  const res = context.res as unknown as Response
   const currentVersion = context.query.versionId as string
   const mainContext = await getMainContext(req, res)
   addUINamespaces(req, mainContext.data.ui, ['parameter_table', 'webhooks'])
@@ -87,7 +89,7 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context) => 
 
   // Get data for initial webhooks page (i.e. only 1 action type per webhook and
   // no nested parameters)
-  const webhooks = (await getInitialPageWebhooks(currentVersion)) as WebhookAction[]
+  const webhooks = (await getInitialPageWebhooks(currentVersion)) as unknown as WebhookAction[]
 
   // Build the minitocs for the webhooks page which is based on the webhook
   // categories in addition to the Markdown in the webhook-events-and-payloads.md
@@ -96,7 +98,9 @@ export const getServerSideProps: GetServerSideProps<Props> = async (context) => 
     webhooks.map((webhook) => webhook.data.category),
     context,
   )
-  webhooksMiniTocs && miniTocItems.push(...webhooksMiniTocs)
+  if (webhooksMiniTocs) {
+    miniTocItems.push(...webhooksMiniTocs)
+  }
 
   return {
     props: {

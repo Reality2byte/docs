@@ -2,18 +2,16 @@
 title: Setting up a Java project for GitHub Codespaces
 allowTitleToDifferFromFilename: true
 shortTitle: Setting up a Java project
-intro: 'Get started with a Java project in {% data variables.product.prodname_github_codespaces %} by creating a custom dev container configuration.'
+intro: Get started with a Java project in {% data variables.product.prodname_github_codespaces %} by creating a custom dev container configuration.
 redirect_from:
   - /codespaces/getting-started-with-codespaces/getting-started-with-your-java-project-in-codespaces
   - /codespaces/setting-up-your-project-for-codespaces/setting-up-your-java-project-for-codespaces
 versions:
   fpt: '*'
   ghec: '*'
-type: tutorial
-topics:
-  - Codespaces
-  - Developer
-  - Set up
+contentType: tutorials
+category:
+  - Set up dev containers for a project
 ---
 
 ## Introduction
@@ -186,7 +184,7 @@ With your dev container configuration added and a basic understanding of what ev
 1. Run the application by pressing `F5`.
 1. If a "toast" notification message is displayed at the bottom right corner of {% data variables.product.prodname_vscode_shortname %}, asking whether you want to switch to standard mode, click **Yes**.
 
-   ![Screenshot of a popup message: "Run/Debug feature requires Java language server to run in Standard mode. Do you want to switch it to Standard mode now?"](/assets/images/help/codespaces/switch-to-standard-mode.png)
+   ![Screenshot of the message: "Run/Debug feature requires Java language server to run in Standard mode. Do you want to switch it to Standard mode now?"](/assets/images/help/codespaces/switch-to-standard-mode.png)
 
 1. When the project files have been imported, click the **Debug Console** tab to see the program output.
 

@@ -1,6 +1,6 @@
 ---
 title: Cluster network configuration
-intro: 'A {% data variables.product.prodname_ghe_server %} cluster requires proper DNS name resolution, load balancing, and communication between nodes.'
+intro: A {% data variables.product.prodname_ghe_server %} cluster requires proper DNS name resolution, load balancing, and communication between nodes.
 product: '{% data reusables.gated-features.cluster %}'
 redirect_from:
   - /enterprise/admin/clustering/cluster-network-configuration
@@ -10,18 +10,15 @@ redirect_from:
   - /admin/monitoring-managing-and-updating-your-instance/configuring-clustering/cluster-network-configuration
 versions:
   ghes: '*'
-type: reference
-topics:
-  - Clustering
-  - Enterprise
-  - Infrastructure
-  - Networking
 shortTitle: Configure a cluster network
+contentType: reference
+category:
+  - Scale your instance
 ---
 
-## About networking for a {% data variables.product.product_name %} cluster
+## About networking for a {% data variables.product.prodname_ghe_server %} cluster
 
-Each node in your {% data variables.product.product_name %} cluster must be able to communicate with all of the other nodes in the cluster over the network. You can review the required ports and protocols for end users, administration, and communication between nodes. To distribute traffic among front-end nodes, {% data variables.product.company_short %} recommends that you configure an external load balancer.
+Each node in your {% data variables.product.prodname_ghe_server %} cluster must be able to communicate with all of the other nodes in the cluster over the network. You can review the required ports and protocols for end users, administration, and communication between nodes. To distribute traffic among front-end nodes, {% data variables.product.company_short %} recommends that you configure an external load balancer.
 
 ## Network considerations
 

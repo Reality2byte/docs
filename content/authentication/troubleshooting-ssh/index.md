@@ -1,6 +1,6 @@
 ---
 title: Troubleshooting SSH
-intro: 'When using SSH to connect and authenticate to {% data variables.product.product_name %}, you may need to troubleshoot unexpected issues that may arise.'
+intro: 'When using SSH to connect and authenticate to {% data variables.product.github %}, you may need to troubleshoot unexpected issues that may arise.'
 redirect_from:
   - /articles/troubleshooting-ssh
   - /github/authenticating-to-github/troubleshooting-ssh
@@ -8,8 +8,6 @@ versions:
   fpt: '*'
   ghes: '*'
   ghec: '*'
-topics:
-  - SSH
 children:
   - /using-ssh-over-the-https-port
   - /recovering-your-ssh-key-passphrase

@@ -6,11 +6,6 @@ import {
   ValidationError,
   getSearchRequestParamsObject,
 } from '@/search/lib/search-request-params/search-params-objects'
-import {
-  getGeneralSearchIndexVersion,
-  getGeneralSearchIndexPrefix,
-  isBeforeSearchIndexMigration,
-} from '@/search/lib/helpers/old-version-logic'
 
 import type {
   ComputedSearchQueryParams,
@@ -38,11 +33,11 @@ export function getSearchFromRequestParams<Type extends SearchTypes>(
 
   for (const { key, default_, cast, validate, multiple } of searchParamsObject) {
     if (key in forceParams) {
-      ;(searchParams[key] as any) = forceParams[key] as any
+      ;(searchParams[key] as unknown) = forceParams[key]
       continue
     }
 
-    let value = req.query[key]
+    let value: unknown = req.query[key]
     if (!value || (typeof value === 'string' && !value.trim())) {
       if (default_ === undefined) {
         validationErrors.push({ error: `No truthy value for key '${key}'`, key })
@@ -74,22 +69,13 @@ export function getSearchFromRequestParams<Type extends SearchTypes>(
       })
     }
 
-    ;(searchParams[key] as any) = value
+    ;(searchParams[key] as unknown) = value
   }
 
   let indexName = ''
   if (!validationErrors.length) {
-    // generalSearch is the only type of search that uses the old index prefix logic, rather than the `getElasticSearchIndex` function logic
-    if (type === 'generalSearch' && isBeforeSearchIndexMigration()) {
-      indexName = `${getGeneralSearchIndexPrefix()}github-docs-${getGeneralSearchIndexVersion(searchParams.version)}-${searchParams.language}`
-    } else {
-      const getIndexResults = getElasticSearchIndex(
-        type,
-        searchParams.version,
-        searchParams.language,
-      )
-      indexName = getIndexResults.indexName
-    }
+    const getIndexResults = getElasticSearchIndex(type, searchParams.version, searchParams.language)
+    indexName = getIndexResults.indexName
   }
 
   return { indexName, searchParams, validationErrors }

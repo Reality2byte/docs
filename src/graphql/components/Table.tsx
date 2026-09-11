@@ -1,7 +1,8 @@
-import { Link } from 'src/frame/components/Link'
+import { Link } from '@/frame/components/Link'
 import { Notice } from './Notice'
-import { useTranslation } from 'src/languages/components/useTranslation'
+import { useTranslation } from '@/languages/components/useTranslation'
 import { FieldT } from './types'
+import { RenderedHTML } from '@/frame/components/ui/RenderedHTML/RenderedHTML'
 
 type Props = {
   fields: FieldT[]
@@ -26,7 +27,7 @@ export function Table({ fields }: Props) {
             <td>
               <p>
                 <code>{field.name}</code> (
-                <code>
+                <code className="color-bg-transparent">
                   <Link
                     href={field.href}
                     makeAbsolute
@@ -39,15 +40,7 @@ export function Table({ fields }: Props) {
               </p>
             </td>
             <td>
-              {field.description ? (
-                <span
-                  dangerouslySetInnerHTML={{
-                    __html: field.description,
-                  }}
-                />
-              ) : (
-                'N/A'
-              )}
+              {field.description ? <RenderedHTML as="span" html={field.description} /> : 'N/A'}
               {field.defaultValue !== undefined && (
                 <p>
                   The default value is <code>{field.defaultValue.toString()}</code>.
@@ -58,14 +51,10 @@ export function Table({ fields }: Props) {
 
               {field.arguments && (
                 <div className="border rounded-1 mt-3 mb-3 p-3 color-bg-subtle f5">
-                  <p
+                  <RenderedHTML
+                    as="p"
                     className="pt-0 mt-0 h5"
-                    dangerouslySetInnerHTML={{
-                      __html: t('reference.arguments').replace(
-                        '{{ GraphQLItemTitle }}',
-                        field.name,
-                      ),
-                    }}
+                    html={t('reference.arguments').replace('{{ GraphQLItemTitle }}', field.name)}
                   />
                   {field.arguments.map((argument, index) => (
                     <ul
@@ -75,20 +64,14 @@ export function Table({ fields }: Props) {
                       <li className="border-top mt-2">
                         <p className="mt-2">
                           <code>{argument.name}</code> (
-                          <code>
+                          <code className="color-bg-transparent">
                             <Link href={argument.type.href} makeAbsolute>
                               {argument.type.name}
                             </Link>
                           </code>
                           )
                         </p>
-                        {
-                          <span
-                            dangerouslySetInnerHTML={{
-                              __html: argument.description,
-                            }}
-                          />
-                        }
+                        <RenderedHTML as="span" html={argument.description} />
                         {argument.defaultValue !== undefined && (
                           <p>
                             The default value is <code>{argument.defaultValue.toString()}</code>.

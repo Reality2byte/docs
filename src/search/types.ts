@@ -1,10 +1,11 @@
-import type { SearchTotalHits } from '@elastic/elasticsearch/lib/api/types'
+import type { estypes } from '@elastic/elasticsearch'
+
 import type {
   AdditionalIncludes,
   ComputedSearchQueryParamsMap,
 } from '@/search/lib/search-request-params/types'
 
-export type SearchTypes = 'generalSearch' | 'generalAutocomplete' | 'aiSearchAutocomplete'
+export type SearchTypes = 'generalSearch' | 'aiSearchAutocomplete'
 
 // Responses to API routes
 export interface GeneralSearchResponse {
@@ -18,6 +19,11 @@ export interface GeneralSearchResponse {
 export interface AutocompleteSearchResponse {
   meta: SearchResultsMeta
   hits: AutocompleteSearchHit[]
+}
+
+export interface CombinedSearchResponse {
+  aiAutocompleteSuggestions: AutocompleteSearchResponse
+  generalSearchResults: GeneralSearchResponse
 }
 
 // Response to middleware /search route
@@ -39,7 +45,6 @@ export interface GeneralSearchHitWithoutIncludes {
   url: string
   title: string
   breadcrumbs: string
-  topics?: string[]
   score?: number
   popularity?: number
   es_url?: string
@@ -52,7 +57,7 @@ export type GeneralSearchHit = GeneralSearchHitWithoutIncludes & {
   [key in AdditionalIncludes]?: string
 }
 
-interface AutocompleteSearchHit {
+export interface AutocompleteSearchHit {
   term?: string
   highlights: string[]
 }
@@ -67,7 +72,7 @@ export type SearchResultAggregations = {
 }
 
 type SearchResultsMeta = {
-  found: SearchTotalHits
+  found: estypes.SearchTotalHits
   took: {
     query_msec: number
     total_msec: number

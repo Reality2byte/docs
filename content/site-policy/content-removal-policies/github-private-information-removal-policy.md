@@ -6,12 +6,11 @@ redirect_from:
   - /github/site-policy/github-private-information-removal-policy
 versions:
   fpt: '*'
-topics:
-  - Policy
-  - Legal
+category:
+  - Request content removal
 ---
 
-We offer this private information removal process as an exceptional service only for high-risk content that violates [GitHub's Terms of Service](/site-policy/acceptable-use-policies/github-acceptable-use-policies#3-conduct-restrictions), such as when your security is at risk from exposed access credentials. This guide describes the information GitHub needs from you in order to process a request to remove private information from a repository.
+We offer this private information removal process as an exceptional service only for high-risk content that violates [GitHub's Terms of Service](/site-policy/acceptable-use-policies/github-acceptable-use-policies), such as when your security is at risk from exposed access credentials. This guide describes the information GitHub needs from you in order to process a request to remove private information from a repository.
 
 ## What is Private Information?
 
@@ -66,7 +65,7 @@ For the purposes of this document, “private information” refers to content t
 
 ### What About Forks? (or What's a Fork?)
 
-One of the best features of GitHub is the ability for users to "fork" one another's repositories. What does that mean? In essence, it means that users can make a copy of a project on GitHub into their own repositories. As the license or the law allows, users can then make changes to that fork to either push back to the main project or just keep as their own variation of a project. Each of these copies is a "[AUTOTITLE](/get-started/learning-about-github/github-glossary#fork)" of the original repository, which in turn may also be called the "parent" of the fork.
+One of the best features of GitHub is the ability for users to "fork" one another's repositories. What does that mean? In essence, it means that users can make a copy of a project on GitHub into their own repositories. As the license or the law allows, users can then make changes to that fork to either push back to the main project or just keep as their own variation of a project. Each of these copies is a [AUTOTITLE](/get-started/learning-about-github/github-glossary#fork) of the original repository, which in turn may also be called the "parent" of the fork.
 
 GitHub will not automatically disable forks when disabling a parent repository. This is because forks belong to different users and may have been altered in significant ways. GitHub does not conduct any independent investigation into forks. We expect those sending private information removal requests to conduct that investigation and, if they believe that the forks also contain private information, expressly include forks in their request.
 
@@ -88,7 +87,7 @@ These guidelines are designed to make the processing of requests to remove priva
 
 ## How to Submit Your Request
 
-You can submit your request to remove private information via our [contact form](https://support.github.com/contact?tags=docs-private-information). Please include a plain-text version of your request in the body of your message. Sending your request in an attachment may result in processing delays.
+You can submit your request to remove private information via our [contact form](https://support.github.com/contact/private-information). Please include a plain-text version of your request in the body of your message. Sending your request in an attachment may result in processing delays.
 
 ## Disputes
 

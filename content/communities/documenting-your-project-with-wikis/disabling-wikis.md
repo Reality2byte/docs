@@ -9,8 +9,8 @@ versions:
   fpt: '*'
   ghes: '*'
   ghec: '*'
-topics:
-  - Community
+category:
+  - Document your project with wikis
 ---
 
 When you turn off a wiki, the content is hidden, but not erased. If you choose to re-enable wikis later, your previous pages will be restored.
@@ -21,4 +21,4 @@ When you turn off a wiki, the content is hidden, but not erased. If you choose t
 
 ## Further reading
 
-* "[AUTOTITLE](/communities/documenting-your-project-with-wikis/changing-access-permissions-for-wikis)"
+* [AUTOTITLE](/communities/documenting-your-project-with-wikis/changing-access-permissions-for-wikis)

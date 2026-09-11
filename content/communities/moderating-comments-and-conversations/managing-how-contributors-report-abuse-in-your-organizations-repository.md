@@ -7,9 +7,9 @@ versions:
   ghec: '*'
 redirect_from:
   - /github/building-a-strong-community/managing-how-contributors-report-abuse-in-your-organizations-repository
-topics:
-  - Community
 shortTitle: Manage abuse in your org
+category:
+  - Moderate comments and conversations
 ---
 
 You can enable or disable reported content for public repositories owned by an organization.
@@ -23,6 +23,6 @@ You can enable or disable reported content for public repositories owned by an o
 
 ## Further reading
 
-* "[AUTOTITLE](/communities/moderating-comments-and-conversations/managing-reported-content-in-your-organizations-repository)"
-* "[AUTOTITLE](/communities/moderating-comments-and-conversations)"
-* "[AUTOTITLE](/communities/setting-up-your-project-for-healthy-contributions/about-community-management-and-moderation)"
+* [AUTOTITLE](/communities/moderating-comments-and-conversations/managing-reported-content-in-your-organizations-repository)
+* [AUTOTITLE](/communities/moderating-comments-and-conversations)
+* [AUTOTITLE](/communities/setting-up-your-project-for-healthy-contributions/about-community-management-and-moderation)

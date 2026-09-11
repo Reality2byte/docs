@@ -1,11 +1,15 @@
 ---
 title: About the content model
 shortTitle: About the content model
-intro: 'The content model describes the structure and types of content that we publish.'
+intro: The content model describes the structure and types of content that we publish.
 redirect_from:
   - /contributing/writing-for-github-docs/content-model
 versions:
-  feature: 'contributing'
+  fpt: '*'
+  ghec: '*'
+  ghes: '*'
+category:
+  - Follow the style guide and content model
 ---
 
 Our content model explains the purpose of each type of content we create within {% data variables.product.prodname_docs %}, and what to include when you write or update an article. We use a content model to ensure that our content consistently, clearly, and comprehensively communicates the information that people need to achieve their goals with {% data variables.product.prodname_dotcom %}.
@@ -41,13 +45,11 @@ If a new top-level doc set is created, it is added to the homepage.
 
 If a category serves as the starting point for using a {% data variables.product.prodname_dotcom %} product or feature, it can be added to the homepage.
 
-For example, under the "Security" grouping on the homepage, in addition to the "[Code security](/code-security)" top-level doc set, the "[Supply chain security](/code-security/supply-chain-security)," "[Security advisories](/code-security/security-advisories)," "[{% data variables.product.prodname_dependabot %}](/code-security/dependabot)," "[{% data variables.product.prodname_code_scanning_caps %}](/code-security/code-scanning)," and "[{% data variables.product.prodname_secret_scanning_caps %}](/code-security/secret-scanning)" categories are included because each of those categories are the entry point to {% data variables.product.prodname_dotcom %} products and features. "[Security overview](/code-security/security-overview)" is not included on the homepage because it provides additional information for using code security products and is not an introduction to a product or feature.
-
 ## Top-level doc set
 
 Top-level doc sets are organized around a {% data variables.product.prodname_dotcom %} product, feature, or core workflow. All top-level doc sets appear on the {% data variables.product.prodname_docs %} homepage. You should only create a top-level doc set when there is a large amount of content to be contained in the new doc set, multiple categories that are broken down into map topics, and the topic applies across products, features, or account types. If the content could fit in any existing top-level doc set, it probably belongs in that existing doc set.
 * Top-level doc sets are of roughly equal importance to one another (each is centered on a {% data variables.product.prodname_dotcom %} product or major feature).
-* Most top-level doc sets have a landing page layout, unless there is a significant exception. For example, the "[Site policy](/free-pro-team@latest/site-policy)" doc set does not have guides or procedural articles like other doc sets, so it does not use a landing page layout.
+* Most top-level doc sets have a landing page layout, unless there is a significant exception. For example, the [Site policy](/free-pro-team@latest/site-policy) doc set does not have guides or procedural articles like other doc sets, so it does not use a landing page layout.
 * Top-level doc sets can contain a mix of categories, map topics, or articles.
 
 ### Titles for top-level doc sets
@@ -74,8 +76,8 @@ Categories are organized around a feature or a discrete set of tasks within a to
 * General or high-level enough to scale with future product enhancements.
 * Category titles must be 67 characters or shorter and have a [`shortTitle`](https://github.com/github/docs/tree/main/content#shorttitle) less than 27 characters.
 * Examples
-  * [AUTOTITLE](/account-and-profile/setting-up-and-managing-your-personal-account-on-github)
-  * [AUTOTITLE](/pull-requests/committing-changes-to-your-project)
+  * [AUTOTITLE](/account-and-profile/how-tos)
+  * [AUTOTITLE](/pull-requests/how-tos/commit-changes)
 
 ### Intros for categories
 
@@ -96,8 +98,8 @@ In general, avoid having a map topic within a map topic unless it is the best wa
 * General or high-level enough to scale with future additions to the product.
 * Map topic titles must be 63 characters or shorter and have a [`shortTitle`](https://github.com/github/docs/tree/main/content#shorttitle) less than 30 characters.
 * Examples
-  * [AUTOTITLE](/code-security/supply-chain-security/understanding-your-software-supply-chain)
-  * [AUTOTITLE](/enterprise-cloud@latest/admin/user-management/managing-users-in-your-enterprise)
+  * [AUTOTITLE](/code-security/concepts/supply-chain-security)
+  * [AUTOTITLE](/enterprise-cloud@latest/admin/managing-accounts-and-repositories/managing-users-in-your-enterprise)
 
 ### Intros for map topics
 

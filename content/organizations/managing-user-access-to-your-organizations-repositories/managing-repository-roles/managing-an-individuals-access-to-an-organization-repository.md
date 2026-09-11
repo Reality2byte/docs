@@ -12,11 +12,10 @@ versions:
   fpt: '*'
   ghes: '*'
   ghec: '*'
-topics:
-  - Organizations
-  - Teams
 shortTitle: Manage individual access
 permissions: People with admin access to a repository can manage access to the repository.
+category:
+  - Control repository access
 ---
 
 ## About access to organization repositories
@@ -27,9 +26,9 @@ When you remove a collaborator from a repository in your organization, the colla
 
 ## Managing an individual's access to an organization repository
 
-You can give a person access to a repository or change a person's level of access to a repository in your repository settings. For more information, see "[AUTOTITLE](/repositories/managing-your-repositorys-settings-and-features/managing-repository-settings/managing-teams-and-people-with-access-to-your-repository)."
+You can give a person access to a repository or change a person's level of access to a repository in your repository settings. For more information, see [AUTOTITLE](/repositories/managing-your-repositorys-settings-and-features/managing-repository-settings/managing-teams-and-people-with-access-to-your-repository).
 
 ## Further reading
 
-{% ifversion fpt or ghec %}- "[AUTOTITLE](/communities/moderating-comments-and-conversations/limiting-interactions-in-your-repository)"{% endif %}
-* "[AUTOTITLE](/organizations/managing-user-access-to-your-organizations-repositories/managing-repository-roles/repository-roles-for-an-organization)"
+{% ifversion fpt or ghec %}- [AUTOTITLE](/communities/moderating-comments-and-conversations/limiting-interactions-in-your-repository){% endif %}
+* [AUTOTITLE](/organizations/managing-user-access-to-your-organizations-repositories/managing-repository-roles/repository-roles-for-an-organization)

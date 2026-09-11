@@ -4,21 +4,13 @@ intro: You can stop and start your codespace to save resources and to pause work
 versions:
   fpt: '*'
   ghec: '*'
-type: how_to
-topics:
-  - Codespaces
-  - Fundamentals
-  - Developer
 shortTitle: Stop a codespace
 redirect_from:
   - /codespaces/developing-in-codespaces/stopping-and-starting-a-codespace
+contentType: how-tos
+category:
+  - Create and manage codespaces
 ---
-
-{% jetbrains_beta %}
-
-{% data reusables.codespaces.codespaces-jetbrains-beta-note %}
-
-{% endjetbrains_beta %}
 
 ## About stopping and starting a codespace
 
@@ -58,12 +50,6 @@ gh codespace stop
 
 {% endvscode %}
 
-{% jetbrains_beta %}
-
-You can stop a codespace from the "Your codespaces" page (see [the web browser instructions](/codespaces/developing-in-a-codespace/stopping-and-starting-a-codespace?tool=webui#stopping-a-codespace)) or by using {% data variables.product.prodname_cli %} (see [the CLI instructions](/codespaces/developing-in-a-codespace/stopping-and-starting-a-codespace?tool=cli#stopping-a-codespace)).
-
-{% endjetbrains_beta %}
-
 ## Restarting a codespace
 
 {% webui %}
@@ -101,12 +87,6 @@ When you restart a codespace you can choose to open it in {% data variables.prod
 
 {% endvscode %}
 
-{% jetbrains_beta %}
-
-{% data reusables.codespaces.opening-codespace-in-jetbrains %}
-
-{% endjetbrains_beta %}
-
 ## Further reading
 
-* "[AUTOTITLE](/codespaces/getting-started/understanding-the-codespace-lifecycle)"
+* [AUTOTITLE](/codespaces/about-codespaces/understanding-the-codespace-lifecycle)

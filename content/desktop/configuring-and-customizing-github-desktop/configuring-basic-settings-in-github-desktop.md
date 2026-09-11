@@ -7,8 +7,12 @@ redirect_from:
   - /desktop/installing-and-configuring-github-desktop/configuring-and-customizing-github-desktop/configuring-basic-settings
   - /desktop/installing-and-configuring-github-desktop/configuring-and-customizing-github-desktop/configuring-basic-settings-in-github-desktop
 versions:
-  feature: desktop
+  fpt: '*'
+  ghec: '*'
+  ghes: '*'
 shortTitle: Configure basic settings
+category:
+  - Configure and customize GitHub Desktop
 ---
 {% mac %}
 
@@ -34,4 +38,4 @@ shortTitle: Configure basic settings
 
 ## Further reading
 
-* "[AUTOTITLE](/desktop/configuring-and-customizing-github-desktop/setting-a-theme-for-github-desktop)"
+* [AUTOTITLE](/desktop/configuring-and-customizing-github-desktop/setting-a-theme-for-github-desktop)

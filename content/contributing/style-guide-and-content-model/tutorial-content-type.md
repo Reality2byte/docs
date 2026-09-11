@@ -1,8 +1,12 @@
 ---
 title: Tutorial content type
-intro: 'Tutorials are useful when someone has a basic understanding of the product and is interested in extending their understanding to solve a specific problem'
+intro: Tutorials are useful when someone has a basic understanding of the product and is interested in extending their understanding to solve a specific problem
 versions:
-  feature: 'contributing'
+  fpt: '*'
+  ghec: '*'
+  ghes: '*'
+category:
+  - Follow the style guide and content model
 ---
 
 Tutorials help people learn about products and solve real world problems by guiding them through the entire workflow to complete a task. Tutorials are more conversational in tone than other content. A tutorial feels like a developer-to-developer conversation while remaining accessible to readers with varied technical knowledge. Products with tutorials must already have a quickstart. For bite-sized workflows, use the quickstart model instead.
@@ -13,7 +17,7 @@ We collectively refer to tutorials and quickstarts as "guides" across the site. 
 
 ## How to write a tutorial
 
-For the tutorial template, see "[AUTOTITLE](/contributing/writing-for-github-docs/templates#tutorial-article-template)."
+For the tutorial template, see [AUTOTITLE](/contributing/writing-for-github-docs/templates#tutorial-article-template).
 
 Contents of tutorials:
 * Introduction
@@ -25,7 +29,7 @@ Contents of tutorials:
 * Procedural sections
   * Based on the tutorial's audience, the steps can be less explicit and formal than those used in procedural content. You do not have to use existing reusables to form these steps if the audience doesn’t require that level of detail.
     * Use: "From your profile, click **Settings**, and then click **Developer settings**.”
-    * Avoid: In the upper-right corner of any page, click your profile photo, then click **Settings**. In the left sidebar, click **Developer settings**.
+    * Avoid: In the upper-right corner of any page, click your profile picture, then click **Settings**. In the left sidebar, click **Developer settings**.
   * Link out to other articles or resources rather than replicating them, to avoid interrupting the flow of information in the tutorial.
   * Give visual cues. Use code blocks and screenshots heavily to help reassure people that they are performing the correct actions.
   * Provide real examples.
@@ -49,10 +53,10 @@ Contents of tutorials:
 ## Examples of tutorials
 
 Tutorials:
-* [AUTOTITLE](/actions/managing-issues-and-pull-requests/adding-labels-to-issues)
-* [AUTOTITLE](/actions/deployment/deploying-xcode-applications/installing-an-apple-certificate-on-macos-runners-for-xcode-development)
+* [AUTOTITLE](/actions/tutorials/manage-your-work/add-labels-to-issues)
+* [AUTOTITLE](/actions/how-tos/deploy/deploy-to-third-party-platforms/sign-xcode-applications)
 
 Language and framework guides:
-* [AUTOTITLE](/actions/automating-builds-and-tests/building-and-testing-nodejs)
-* [AUTOTITLE](/actions/automating-builds-and-tests/building-and-testing-python)
-* [AUTOTITLE](/actions/publishing-packages/publishing-java-packages-with-maven)
+* [AUTOTITLE](/actions/tutorials/build-and-test-code/nodejs)
+* [AUTOTITLE](/actions/tutorials/build-and-test-code/python)
+* [AUTOTITLE](/actions/tutorials/publish-packages/publish-java-packages-with-maven)

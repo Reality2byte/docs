@@ -1,1 +1,1 @@
-1. Under "{% octicon "law" aria-hidden="true" %} Policies", click **Member privileges**.
+1. Under "{% octicon "law" aria-hidden="true" aria-label="law" %} Policies", click **Member privileges**.

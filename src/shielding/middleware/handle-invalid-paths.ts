@@ -1,12 +1,13 @@
 import type { Response, NextFunction } from 'express'
 
-import { defaultCacheControl } from '@/frame/middleware/cache-control.js'
+import { defaultCacheControl } from '@/frame/middleware/cache-control'
 import { ExtendedRequest } from '@/types'
 
 // We'll check if the current request path is one of these, or ends with
 // one of these.
 // These are clearly intentional "guesses" made by some sort of
 // pen-testing bot.
+const JUNK_STARTS = ['///', '/\\', '/\\.']
 const JUNK_ENDS = [
   '/package.json',
   '/package-lock.json',
@@ -36,6 +37,12 @@ const JUNK_BASENAMES = new Set([
 
 function isJunkPath(path: string) {
   if (JUNK_PATHS.has(path)) return true
+
+  for (const junkPath of JUNK_STARTS) {
+    if (path.startsWith(junkPath)) {
+      return true
+    }
+  }
 
   for (const junkPath of JUNK_ENDS) {
     if (path.endsWith(junkPath)) {
@@ -72,19 +79,14 @@ export default function handleInvalidPaths(
     // We can all the CDN to cache these responses because they're
     // they're not going to suddenly work in the next deployment.
     defaultCacheControl(res)
-    res.setHeader('content-type', 'text/plain')
-    return res.status(404).send('Not found')
+    res.status(404).type('text').send('Not found')
+    return
   }
 
-  if (req.path.endsWith('/index.md') || req.path.endsWith('.md')) {
+  if (req.path.endsWith('/index.md')) {
     defaultCacheControl(res)
-    // The originalUrl is the full URL including query string.
-    // E.g. `/en/foo.md?bar=baz`
-    const newUrl = req.originalUrl.replace(
-      req.path,
-      req.path.replace(/\/index\.md$/, '').replace(/\.md$/, ''),
-    )
-    return res.redirect(newUrl)
+    const newUrl = req.originalUrl.replace(req.path, req.path.replace(/\/index\.md$/, ''))
+    return res.safeRedirect(newUrl)
   }
 
   return next()

@@ -11,9 +11,9 @@ versions:
   fpt: '*'
   ghes: '*'
   ghec: '*'
-topics:
-  - Pages
 shortTitle: Test site locally with Jekyll
+category:
+  - Set up a GitHub Pages site
 ---
 
 Anyone with read permissions for a repository can test a {% data variables.product.prodname_pages %} site locally.
@@ -22,7 +22,7 @@ Anyone with read permissions for a repository can test a {% data variables.produ
 
 Before you can use Jekyll to test a site, you must:
 * Install [Jekyll](https://jekyllrb.com/docs/installation/).
-* Create a Jekyll site. For more information, see "[AUTOTITLE](/pages/setting-up-a-github-pages-site-with-jekyll/creating-a-github-pages-site-with-jekyll)."
+* Create a Jekyll site. For more information, see [AUTOTITLE](/pages/setting-up-a-github-pages-site-with-jekyll/creating-a-github-pages-site-with-jekyll).
 
 {% data reusables.pages.recommend-bundler %}
 
@@ -54,6 +54,8 @@ Before you can use Jekyll to test a site, you must:
    >
    >   To fix the error, try running `bundle add webrick`, then re-running `bundle exec jekyll serve`.
    >
+   >   If you've installed Ruby 3.2 or later, you may see other errors related to missing gems and methods, due to compatibility issues with the `github-pages` gem. In this event, you should install Ruby 3.1.x or earlier instead.
+   >
    > * If your `_config.yml` file's `baseurl` field contains your GitHub repository's link, you can use the following command when building locally to ignore that value and serve the site on `localhost:4000/`:
    >
    >   ```shell
@@ -64,7 +66,9 @@ Before you can use Jekyll to test a site, you must:
 
 ## Updating the {% data variables.product.prodname_pages %} gem
 
-Jekyll is an active open source project that is updated frequently. If the `github-pages` gem on your computer is out of date with the `github-pages` gem on the {% data variables.product.prodname_pages %} server, your site may look different when built locally than when published on {% data variables.product.product_name %}. To avoid this, regularly update the `github-pages` gem on your computer.
+{% data reusables.pages.actions-is-preferred %}
+
+Jekyll is an active open source project that is updated frequently. If the `github-pages` gem on your computer is out of date with the `github-pages` gem on the {% data variables.product.prodname_pages %} server, your site may look different when built locally than when published on {% data variables.product.github %}. To avoid this, regularly update the `github-pages` gem on your computer.
 
 {% data reusables.command_line.open_the_multi_os_terminal %}
 1. Update the `github-pages` gem.

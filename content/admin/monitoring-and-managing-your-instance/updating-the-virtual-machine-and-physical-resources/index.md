@@ -1,6 +1,6 @@
 ---
 title: Updating the virtual machine and physical resources
-intro: 'Learn how to increase specific resources for the virtual machine that runs your {% data variables.product.product_name %} instance.'
+intro: 'Learn how to increase specific resources for the virtual machine that runs your {% data variables.product.prodname_ghe_server %} instance.'
 redirect_from:
   - /enterprise/admin/guides/installation/upgrading-the-vm
   - /enterprise/admin/guides/installation/upgrading-physical-resources
@@ -10,11 +10,10 @@ redirect_from:
   - /admin/monitoring-managing-and-updating-your-instance/updating-the-virtual-machine-and-physical-resources
 versions:
   ghes: '*'
-topics:
-  - Enterprise
 children:
   - /increasing-storage-capacity
   - /increasing-cpu-or-memory-resources
   - /using-generation-2-virtual-machines
+  - /changing-your-platform
 shortTitle: Update VM & resources
 ---

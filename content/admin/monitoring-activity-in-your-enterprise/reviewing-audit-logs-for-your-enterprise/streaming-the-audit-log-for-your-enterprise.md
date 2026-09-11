@@ -1,28 +1,24 @@
 ---
 title: Streaming the audit log for your enterprise
-intro: 'Learn how to stream audit and Git events data from {% data variables.product.prodname_dotcom %} to an external data management system.'
+intro: Learn how to stream audit and Git events data from {% data variables.product.prodname_dotcom %} to an external data management system.
 versions:
-  feature: audit-log-streaming
+  ghes: '*'
   ghec: '*'
-type: tutorial
-topics:
-  - Auditing
-  - Enterprise
-  - Logging
-  - Organizations
 shortTitle: Stream audit logs
 redirect_from:
   - /github/setting-up-and-managing-your-enterprise/managing-organizations-in-your-enterprise-account/streaming-the-audit-logs-for-organizations-in-your-enterprise-account
   - /admin/user-management/managing-organizations-in-your-enterprise/streaming-the-audit-logs-for-organizations-in-your-enterprise-account
 permissions: Enterprise owners
+contentType: tutorials
+category:
+  - Monitor and audit your enterprise
 ---
-
 
 >[!NOTE] {% ifversion ghes %}{% data reusables.webhooks.webhooks-as-audit-log-alternative %}{% else %}{% data reusables.webhooks.webhooks-as-audit-log-alternative %}{% endif %}
 
 ## About audit log streaming
 
-You can help protect intellectual property and maintain compliance for your company by using streaming to keep copies of your audit log data. The audit log details events such as changes to settings and access, user membership, app permissions, and more. See "[AUTOTITLE](/admin/monitoring-activity-in-your-enterprise/reviewing-audit-logs-for-your-enterprise/audit-log-events-for-your-enterprise)", "[AUTOTITLE](/organizations/keeping-your-organization-secure/managing-security-settings-for-your-organization/audit-log-events-for-your-organization)", and "[AUTOTITLE](/authentication/keeping-your-account-and-data-secure/security-log-events)."
+You can help protect intellectual property and maintain compliance for your company by using streaming to keep copies of your audit log data. The audit log details events such as changes to settings and access, user membership, app permissions, and more. See [AUTOTITLE](/admin/monitoring-activity-in-your-enterprise/reviewing-audit-logs-for-your-enterprise/audit-log-events-for-your-enterprise), [AUTOTITLE](/organizations/keeping-your-organization-secure/managing-security-settings-for-your-organization/audit-log-events-for-your-organization), and [AUTOTITLE](/authentication/keeping-your-account-and-data-secure/security-log-events).
 
 Streaming audit log data has these benefits:
 
@@ -30,15 +26,17 @@ Streaming audit log data has these benefits:
 * **Data continuity**. If you pause a stream, it retains a buffer for seven days, so there is no data loss for the first week. If the stream remains paused for more than seven days, it will resume from a point one week prior to the current time. If paused for three weeks or more, the stream won't retain any data and will start anew from the current timestamp.{% endif %}
 * **Data retention**. Keep your exported audit logs and Git events data as long as you need to.
 
+You can also stream agent session activity from {% data variables.product.prodname_copilot %} to the same destination you use for other enterprise audit events. This is currently in {% data variables.release-phases.public_preview %}. See [AUTOTITLE](/enterprise-cloud@latest/copilot/how-tos/administer-copilot/manage-for-enterprise/manage-agents/monitor-agentic-activity#tracking-agentic-activity-in-your-enterprise-through-the-audit-log) in the {% data variables.product.prodname_ghe_cloud %} documentation.
+
 You can set up{% ifversion pause-audit-log-stream %}, pause,{% endif %} or delete a stream at any time. The stream exports audit and Git events data for all of the organizations in your enterprise, for activity from the time the stream is enabled onwards.
 
-All streamed audit logs are sent as compressed JSON files. The filename format is in`YYYY/MM/HH/MM/<uuid>.json.gz`.
+All streamed audit logs are sent as compressed JSON files. The filename format is `YYYY/MM/DD/HH/MM/<uuid>.json.log.gz`.
 
 >[!NOTE] {% data variables.product.prodname_dotcom %} uses an at-least-once delivery method. Due to certain network or system issues, some events may be duplicated.
 
 {% ifversion ghes %}
 
-Enabling audit log streaming can cause a minor impact on the performance of {% data variables.location.product_location %}. To learn about increasing resources to mitigate this performance impact, see "[AUTOTITLE](/admin/monitoring-and-managing-your-instance/updating-the-virtual-machine-and-physical-resources/increasing-cpu-or-memory-resources)."
+Enabling audit log streaming can cause a minor impact on the performance of {% data variables.location.product_location %}. To learn about increasing resources to mitigate this performance impact, see [AUTOTITLE](/admin/monitoring-and-managing-your-instance/updating-the-virtual-machine-and-physical-resources/increasing-cpu-or-memory-resources).
 
 {% endif %}
 
@@ -48,7 +46,7 @@ Enabling audit log streaming can cause a minor impact on the performance of {% d
 
 Every 24 hours, a health check runs for each stream. If a stream is set up incorrectly, an email will be sent to the enterprise owners. To avoid audit log events being dropped from the stream, a misconfigured stream must be fixed within six days.
 
-To fix your streaming configuration, follow the steps in "[Setting up audit log streaming](#setting-up-audit-log-streaming)."
+To fix your streaming configuration, follow the steps in [Setting up audit log streaming](#setting-up-audit-log-streaming).
 
 {% endif %}
 
@@ -58,14 +56,25 @@ To set up the audit log stream, follow the instructions for your provider:
 
 * [Amazon S3](#setting-up-streaming-to-amazon-s3)
 * [Azure Blob Storage](#setting-up-streaming-to-azure-blob-storage)
-* [Azure Event Hubs](#setting-up-streaming-to-azure-event-hubs){% ifversion streaming-datadog %}
-* [Datadog](#setting-up-streaming-to-datadog){% endif %}
-* [Google Cloud Storage](#setting-up-streaming-to-google-cloud-storage)
+* [Azure Event Hubs](#setting-up-streaming-to-azure-event-hubs)
+* [Datadog](#setting-up-streaming-to-datadog)
+* [Google Cloud Storage](#setting-up-streaming-to-google-cloud-storage){% ifversion ghec %}
+* [Microsoft Purview](#setting-up-streaming-to-microsoft-purview) (Copilot agent session events only){% endif %}
 * [Splunk](#setting-up-streaming-to-splunk)
 
 {% ifversion ghec %}
 
->[!NOTE] To get a list of IP address ranges that {% data variables.product.prodname_dotcom %} uses for connections to the streaming endpoint, use the REST API. The `meta` endpoint for {% data variables.product.product_name %} includes a `hooks` key with a list of the IP addresses. See "[AUTOTITLE](/rest/meta/meta#get-github-enterprise-cloud-meta-information)."
+>[!NOTE] To get a list of IP address ranges that {% data variables.product.prodname_dotcom %} uses for connections to the streaming endpoint, use the REST API. The `meta` endpoint for {% data variables.product.prodname_dotcom_the_website %} includes a `hooks` key with a list of the IP addresses. See [AUTOTITLE](/rest/meta/meta#get-github-enterprise-cloud-meta-information).
+
+{% endif %}
+
+{% ifversion ghec %}
+
+### Streaming to multiple endpoints
+
+>[!NOTE] This feature is currently in {% data variables.release-phases.public_preview %} and subject to change.
+
+You can stream audit logs to multiple endpoints. For example, you can stream your audit log to two endpoints of the same type, or you can stream to two different providers. To set up multiple streams, follow the instructions for each provider.
 
 {% endif %}
 
@@ -73,12 +82,16 @@ To set up the audit log stream, follow the instructions for your provider:
 
 {% ifversion ghes %}
 
->[!NOTE] The Amazon region `us-east-1` must be reachable from your appliance for streaming to S3 to work.
+> [!NOTE]
+> For streaming to S3, the AWS region that must be reachable depends on the option you select for the bucket's region.
+>
+> * If you select **Auto Detect**, `us-east-1` must be reachable from your appliance because the AWS SDK uses that region to detect the destination bucket's region.
+> * If you select a specific region, the selected region must be reachable from your appliance. `us-east-1` does not need to be reachable unless it is the selected region.
 
 {% endif %}
 
 {% ifversion streaming-oidc-s3 %}
-You can set up streaming to S3 with access keys or, to avoid storing long-lived secrets in {% data variables.product.product_name %}, with OpenID Connect (OIDC).
+You can set up streaming to S3 with access keys or, to avoid storing long-lived secrets on {% data variables.product.github %}, with OpenID Connect (OIDC).
 
 * [Setting up streaming to S3 with access keys](#setting-up-streaming-to-s3-with-access-keys)
 * [Setting up streaming to S3 with OpenID Connect](#setting-up-streaming-to-s3-with-openid-connect)
@@ -107,17 +120,19 @@ From {% data variables.product.prodname_dotcom %}:
 1. Under "Authentication", click **Access keys**.{% endif %}
 1. Configure the stream settings.
 
-{% ifversion ghec %}
-    - Under "Region", select the bucket's region. For example, `us-east-1`.{% endif %}
-    - Under "Bucket", type the name of the bucket you want to stream to. For example, `auditlog-streaming-test`.
-    - Under "Access Key ID", type your access key ID. For example, `ABCAIOSFODNN7EXAMPLE1`.
-    - Under "Secret Key", type your secret key. For example, `aBcJalrXUtnWXYZ/A1MDENG/zPxRfiCYEXAMPLEKEY`.
+    * Under "Region", select **Auto Detect** or select the bucket's region. For example, `us-east-1`.
+    * Under "Bucket", type the name of the bucket you want to stream to. For example, `auditlog-streaming-test`.
+    * Under "Access Key ID", type your access key ID. For example, `ABCAIOSFODNN7EXAMPLE1`.
+    * Under "Secret Key", type your secret key. For example, `aBcJalrXUtnWXYZ/A1MDENG/zPxRfiCYEXAMPLEKEY`.
 {% data reusables.audit_log.streaming-check-s3-endpoint %}
 {% data reusables.enterprise.verify-audit-log-streaming-endpoint %}
 
 {% ifversion streaming-oidc-s3 %}
 
 #### Setting up streaming to S3 with OpenID Connect
+
+> [!NOTE]
+> Audit log streaming to S3 with OpenID Connect for {% data variables.enterprise.data_residency %} is currently unavailable. See [AUTOTITLE](/admin/data-residency/feature-overview-for-github-enterprise-cloud-with-data-residency#currently-unavailable-features).
 
 From AWS:
 
@@ -131,6 +146,8 @@ From AWS:
 
    * Add the permissions policy you created earlier to allow writes to the bucket.
    * Edit the trust relationship to add the `sub` field to the validation conditions, replacing `ENTERPRISE` with the name of your enterprise.
+
+        >[!NOTE] The `ENTERPRISE` value is case-sensitive. If the name of your enterprise contains uppercase letters, use the same case in the trust policy.
 
      ```json
      "Condition": {
@@ -160,7 +177,7 @@ From {% data variables.product.prodname_dotcom %}:
 
 To disable streaming to S3 with OIDC, delete the {% data variables.product.prodname_dotcom %} OIDC provider you created in AWS when you set up streaming. See [Creating OpenID Connect (OIDC) identity providers](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_providers_create_oidc.html) in the AWS documentation.
 
-If you disable streaming due to a security vulnerability in OIDC, after you delete the provider, set up streaming with access keys until the vulnerability is resolved. See "[Setting up streaming to S3 with access keys](#setting-up-streaming-to-s3-with-access-keys)."
+If you disable streaming due to a security vulnerability in OIDC, after you delete the provider, set up streaming with access keys until the vulnerability is resolved. See [Setting up streaming to S3 with access keys](#setting-up-streaming-to-s3-with-access-keys).
 
 {% endif %}
 
@@ -196,7 +213,9 @@ From {% data variables.product.prodname_dotcom %}:
 
 ### Setting up streaming to Azure Event Hubs
 
-> [!NOTE] Event Hubs instances in Azure Government are not supported.
+> [!NOTE]
+> - Event Hubs instances in Azure Government are not supported.
+> - With **{% data variables.enterprise.data_residency %},** audit log streaming to Azure Event Hubs is not supported with IP Firewall rules enabled.
 
 Before setting up a stream in {% data variables.product.prodname_dotcom %}, you need:
 
@@ -220,11 +239,9 @@ From {% data variables.product.prodname_dotcom %}:
 1. Click **Check endpoint** to verify that {% data variables.product.prodname_dotcom %} can connect and write to the Azure Events Hub endpoint.
 {% data reusables.enterprise.verify-audit-log-streaming-endpoint %}
 
-{% ifversion streaming-datadog %}
-
 ### Setting up streaming to Datadog
 
-To set up streaming to Datadog, create a client token or an API key in Datadog, then configure audit log streaming in {% data variables.product.product_name %} using the token for authentication. You do not need to create a bucket or other storage container in Datadog.
+To set up streaming to Datadog, create a client token or an API key in Datadog, then configure audit log streaming in {% data variables.product.github %} using the token for authentication. You do not need to create a bucket or other storage container in Datadog.
 
 After you set up streaming to Datadog, you can see your audit log data by filtering by "github.audit.streaming." See [Log Management](https://docs.datadoghq.com/logs/).
 
@@ -237,11 +254,10 @@ After you set up streaming to Datadog, you can see your audit log data by filter
 1. To verify that {% data variables.product.prodname_dotcom %} can connect and write to the Datadog endpoint, click **Check endpoint**.
 {% data reusables.enterprise.verify-audit-log-streaming-endpoint %}
 1. After a few minutes, confirm that audit log data appears on the **Logs** tab in Datadog. If it doesn't appear, confirm that your token and site are correct in {% data variables.product.prodname_dotcom %}.
-{% endif %}
 
 ### Setting up streaming to Google Cloud Storage
 
-To set up streaming to Google Cloud Storage, create a service account in Google Cloud with the appropriate credentials and permissions, then configure audit log streaming in {% data variables.product.product_name %} using the service account's credentials for authentication.
+To set up streaming to Google Cloud Storage, create a service account in Google Cloud with the appropriate credentials and permissions, then configure audit log streaming in {% data variables.product.github %} using the service account's credentials for authentication.
 
 1. Create a service account for Google Cloud. You do not need to set access controls or IAM roles for this account. See [Creating and managing service accounts](https://cloud.google.com/iam/docs/creating-managing-service-accounts#creating) in the Google Cloud documentation.
 1. Create a JSON key for the service account, and store the key securely. See [Creating and managing service account keys](https://cloud.google.com/iam/docs/creating-managing-service-account-keys#creating) in the Google Cloud documentation.
@@ -253,6 +269,24 @@ To set up streaming to Google Cloud Storage, create a service account in Google 
 1. Under "JSON Credentials", paste the entire contents of your service account's JSON key file.
 1. To verify that {% data variables.product.prodname_dotcom %} can connect and write to the Google Cloud Storage bucket, click **Check endpoint**.
 {% data reusables.enterprise.verify-audit-log-streaming-endpoint %}
+
+{% ifversion ghec %}
+
+### Setting up streaming to Microsoft Purview
+
+{% data reusables.copilot.agent-session-streaming-availability-note %}
+
+Microsoft Purview only supports streaming {% data variables.product.prodname_copilot_short %} agent session events. For more information on Microsoft Purview, see [Learn about the Microsoft Purview portal](https://learn.microsoft.com/en-us/purview/purview-portal) in the Microsoft documentation.
+
+To set up streaming to Microsoft Purview, configure streaming in {% data variables.product.github %}, then authorize access through Microsoft Entra.
+
+1. Configure streaming in {% data variables.product.github %}. See [Enabling audit log streaming of {% data variables.product.prodname_copilot_short %} agent session events](#enabling-audit-log-streaming-of-copilot-agent-session-events) below.
+{% data reusables.enterprise.navigate-to-log-streaming-tab %}
+1. Select the **Configure stream** dropdown and click **Microsoft Purview**.
+1. Click **Authorize with Entra**.
+1. When you're redirected to Microsoft Entra, add the {% data variables.product.github %} app and authorize it for your tenant.
+
+{% endif %}
 
 ### Setting up streaming to Splunk
 
@@ -288,9 +322,7 @@ To stream audit logs to Splunk's HTTP Event Collector (HEC) endpoint, make sure 
 
 Pause the stream to perform maintenance on the receiving application without losing audit data. Audit logs are stored for up to seven days on {% data variables.product.github %} and are then exported when you unpause the stream.
 
-{% ifversion streaming-datadog %}
 Datadog only accepts logs from up to 18 hours in the past. If you pause a stream to a Datadog endpoint for more than 18 hours, you risk losing logs that Datadog won't accept after you resume streaming.
-{% endif %}
 
 {% data reusables.enterprise.navigate-to-log-streaming-tab %}
 1. To the right of your configured stream, click **Pause stream**.
@@ -309,7 +341,7 @@ To restart streaming, click **Resume stream**.
 
 ## Enabling audit log streaming of API requests
 
->[!NOTE] This feature is currently in {% data variables.release-phases.public_preview %} and subject to change.
+>[!NOTE] Not all API requests are included in the audit log stream after this feature is enabled. The streaming of API requests is limited to security relevant endpoints.
 
 {% data reusables.enterprise-accounts.access-enterprise %}
 {% data reusables.enterprise-accounts.settings-tab %}
@@ -317,5 +349,22 @@ To restart streaming, click **Resume stream**.
 1. Under "Audit log", click **Settings**.
 1. Under "API Requests", select **Enable API Request Events**.
 1. Click **Save**.
+
+{% endif %}
+
+{% ifversion ghec %}
+
+## Enabling audit log streaming of {% data variables.product.prodname_copilot_short %} agent session events
+
+{% data reusables.copilot.agent-session-streaming-availability-note %}
+
+{% data reusables.enterprise-accounts.access-enterprise %}
+1. At the top of the page, click AI Controls
+1. Under "Copilot", select **Enabled everywhere** for "Copilot Usage Records Streaming"
+1. Configure a streaming destination. See [Setting up audit log streaming](#setting-up-audit-log-streaming).
+
+You can also retrieve {% data variables.product.prodname_copilot_short %} usage data through the REST API by selecting **Enabled everywhere** for "Copilot Usage Records API". See [AUTOTITLE](/rest/copilot/copilot-usage-metrics#get-copilot-usage-records-for-an-enterprise).
+
+For help interpreting the audit log events for agentic activity, see [AUTOTITLE](/copilot/reference/enterprise-administrators/agentic-audit-log-events#streaming-audit-log-events).
 
 {% endif %}

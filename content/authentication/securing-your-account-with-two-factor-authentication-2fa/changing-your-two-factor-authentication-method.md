@@ -1,6 +1,6 @@
 ---
 title: Changing your two-factor authentication method
-intro: You can change two-factor authentication (2FA) method without disabling 2FA entirely.
+intro: You can change your two-factor authentication (2FA) method without disabling 2FA entirely.
 redirect_from:
   - /articles/changing-two-factor-authentication-delivery-methods
   - /articles/changing-two-factor-authentication-delivery-methods-for-your-mobile-device
@@ -12,9 +12,9 @@ versions:
   fpt: '*'
   ghes: '*'
   ghec: '*'
-topics:
-  - 2FA
 shortTitle: Change 2FA method
+category:
+  - Set up two-factor authentication
 ---
 
 You can reconfigure your two-factor authentication (2FA) settings or add new 2FA methods without disabling 2FA entirely, allowing you to keep both your recovery codes and your membership in organizations that require 2FA.
@@ -59,7 +59,7 @@ You can change the phone number you use to receive authentication codes via SMS.
 
 We recommend adding more than one 2FA method to your account. This ensures that you can still sign in to your account, even if you lose one of your methods.
 
-In addition to adding multiple 2FA methods, we strongly recommend setting up multiple recovery methods to avoid losing access to your account. For more information, see "[AUTOTITLE](/authentication/securing-your-account-with-two-factor-authentication-2fa/configuring-two-factor-authentication-recovery-methods)."
+In addition to adding multiple 2FA methods, we strongly recommend setting up multiple recovery methods to avoid losing access to your account. For more information, see [AUTOTITLE](/authentication/securing-your-account-with-two-factor-authentication-2fa/configuring-two-factor-authentication-recovery-methods).
 
 {% ifversion fpt or ghec %}
 
@@ -99,5 +99,5 @@ If you have multiple 2FA methods, you can choose a preferred method that will be
 
 ## Further reading
 
-* "[AUTOTITLE](/authentication/securing-your-account-with-two-factor-authentication-2fa/configuring-two-factor-authentication)"
-* "[AUTOTITLE](/authentication/securing-your-account-with-two-factor-authentication-2fa/configuring-two-factor-authentication-recovery-methods)"
+* [AUTOTITLE](/authentication/securing-your-account-with-two-factor-authentication-2fa/configuring-two-factor-authentication)
+* [AUTOTITLE](/authentication/securing-your-account-with-two-factor-authentication-2fa/configuring-two-factor-authentication-recovery-methods)

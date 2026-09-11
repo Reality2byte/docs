@@ -12,6 +12,8 @@ redirect_from:
   - /migrations/using-github-enterprise-importer/preparing-to-migrate-with-github-enterprise-importer/managing-access-for-github-enterprise-importer
   - /early-access/enterprise-importer/preparing-to-migrate-with-github-enterprise-importer/granting-the-migrator-role-for-github-enterprise-importer
   - /migrations/using-github-enterprise-importer/preparing-to-migrate-with-github-enterprise-importer/granting-the-migrator-role-for-github-enterprise-importer
+category:
+  - Run an enterprise migration
 ---
 
 ## About required access for {% data variables.product.prodname_importer_proper_name %}
@@ -84,7 +86,7 @@ For other tasks, such as downloading a migration log, you only need one {% data 
 The scopes that are required for your {% data variables.product.prodname_dotcom %} {% data variables.product.pat_v1 %} depend on your role and the task you want to complete.
 
 > [!NOTE]
-> {% data reusables.user-settings.generic-classic-pat-only %} This means that you cannot use {% data variables.product.prodname_importer_proper_name %} if your organization uses the "Restrict {% data variables.product.pat_v1_plural %} from accessing your organizations" policy. For more information, see "[AUTOTITLE](/enterprise-cloud@latest/admin/policies/enforcing-policies-for-your-enterprise/enforcing-policies-for-personal-access-tokens-in-your-enterprise#restricting-access-by-personal-access-tokens)."
+> {% data reusables.user-settings.generic-classic-pat-only %} This means that you cannot use {% data variables.product.prodname_importer_proper_name %} if your organization uses the "Restrict {% data variables.product.pat_v1_plural %} from accessing your organizations" policy. For more information, see [AUTOTITLE](/enterprise-cloud@latest/admin/enforcing-policies/enforcing-policies-for-your-enterprise/enforcing-policies-for-personal-access-tokens-in-your-enterprise#restricting-access-by-personal-access-tokens).
 
 Task | Enterprise owner | Organization owner | Migrator
 ---- | ------------------ | -------- | ----- |
@@ -97,18 +99,18 @@ Running an organization migration (destination enterprise) | `read:enterprise`, 
 
 ## Granting the migrator role
 
-To allow someone other than an organization owner to run a repository migration or download migration logs, you can grant the migrator role to a user or team. For more information, see "[About the migrator role](#about-the-migrator-role)."
+To allow someone other than an organization owner to run a repository migration or download migration logs, you can grant the migrator role to a user or team. For more information, see [About the migrator role](#about-the-migrator-role).
 
 You can grant the migrator role using either the {% data variables.product.prodname_gei_cli %} or the GraphQL API.
 
-* "[Granting the migrator role with the {% data variables.product.prodname_gei_cli_short %}](#granting-the-migrator-role-with-the-gei-extension)"
-* "[Granting the migrator role with the GraphQL API](#granting-the-migrator-role-with-the-graphql-api)"
+* [Granting the migrator role with the {% data variables.product.prodname_gei_cli_short %}](#granting-the-migrator-role-with-the-gei-extension)
+* [Granting the migrator role with the GraphQL API](#granting-the-migrator-role-with-the-graphql-api)
 
 ### Granting the migrator role with the {% data variables.product.prodname_gei_cli_short %}
 
-To grant the migrator role using the CLI, you must have installed the {% data variables.product.prodname_gei_cli %}. For more information, see "[AUTOTITLE](/migrations/using-github-enterprise-importer/migrating-between-github-products/migrating-repositories-from-githubcom-to-github-enterprise-cloud#step-1-install-the-gei-extension-of-the-github-cli)."
+To grant the migrator role using the CLI, you must have installed the {% data variables.product.prodname_gei_cli %}. For more information, see [AUTOTITLE](/migrations/using-github-enterprise-importer/migrating-between-github-products/migrating-repositories-from-githubcom-to-github-enterprise-cloud#step-1-install-the-gei-extension-of-the-github-cli).
 
-1. On {% data variables.product.prodname_dotcom_the_website %}, create and record a {% data variables.product.pat_generic %} that meets all the requirements for granting the migrator role. For more information, see "[Creating a {% data variables.product.pat_generic %} for {% data variables.product.prodname_importer_proper_name %}](#creating-a-personal-access-token-for-github-enterprise-importer)."
+1. On {% data variables.product.prodname_dotcom_the_website %}, create and record a {% data variables.product.pat_generic %} that meets all the requirements for granting the migrator role. For more information, see [Creating a {% data variables.product.pat_generic %} for {% data variables.product.prodname_importer_proper_name %}](#creating-a-personal-access-token-for-github-enterprise-importer).
 {% data reusables.enterprise-migration-tool.grant-migrator-role-pat %}
 1. Use the `gh gei grant-migrator-role` command, replacing ORGANIZATION with the organization you want to grant the migrator role for, ACTOR with the user or team name, and TYPE with `USER` or `TEAM`.
 
@@ -124,6 +126,7 @@ To grant the migrator role using the CLI, you must have installed the {% data va
 
 ## Creating a {% data variables.product.pat_generic %} for {% data variables.product.prodname_importer_proper_name %}
 
+1. Verify that you have a sufficient role for the task you want to complete. For more information, see [Required roles](#required-roles).
 {% data reusables.enterprise-migration-tool.creating-a-pat-steps %}
 
 ## Configuring IP allow lists for migrations
@@ -136,9 +139,15 @@ If the source of your migration is {% data variables.product.prodname_ghe_server
 
 {% data reusables.enterprise-migration-tool.identifying-githubs-ip-ranges %}
 
+### Virtual network firewall rules for Azure Blob Storage for {% data variables.product.prodname_dotcom_the_website %}
+
+{% data reusables.enterprise-migration-tool.identify-gei-vnet-firewall-rules %}
+
 ### IP ranges for {% data variables.enterprise.data_residency_site %}
 
-{% data reusables.enterprise-migration-tool.ip-ranges-ghecom %}
+You can get an up-to-date list of IP ranges used by {% data variables.product.prodname_importer_proper_name %} at any time with the "Get {% data variables.product.github %} meta information" endpoint of the REST API.
+
+The `github_enterprise_importer` key in the response contains a list of IP ranges used for migrations.
 
 In addition, if you are migrating from {% data variables.product.prodname_ghe_server %} and using a blob storage account with firewall rules:
 
@@ -146,4 +155,4 @@ In addition, if you are migrating from {% data variables.product.prodname_ghe_se
 
 ## Further reading
 
-* "[AUTOTITLE](/organizations/managing-peoples-access-to-your-organization-with-roles/roles-in-an-organization)"
+* [AUTOTITLE](/organizations/managing-peoples-access-to-your-organization-with-roles/roles-in-an-organization)

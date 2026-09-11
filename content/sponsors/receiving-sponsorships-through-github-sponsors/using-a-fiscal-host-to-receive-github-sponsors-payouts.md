@@ -1,14 +1,13 @@
 ---
 title: Using a fiscal host to receive GitHub Sponsors payouts
-intro: 'You can become a sponsored developer by joining {% data variables.product.prodname_sponsors %} and choosing a fiscal host for your payouts to come through.'
+intro: You can become a sponsored developer by joining {% data variables.product.prodname_sponsors %} and choosing a fiscal host for your payouts to come through.
 versions:
   fpt: '*'
   ghec: '*'
-type: how_to
-topics:
-  - User account
-  - Sponsors profile
 shortTitle: Using a fiscal host
+contentType: how-tos
+category:
+  - Set up to receive sponsorships
 ---
 
 ## About using a fiscal host to receive {% data variables.product.prodname_sponsors %} payouts
@@ -24,12 +23,12 @@ When you sign up for a {% data variables.product.prodname_sponsors %} profile so
 * [Open Collective Europe](https://opencollective.com/europe)
 * [Open Source Collective](https://opencollective.com/opensource)
 * [Python Software Foundation](https://www.python.org/psf-landing/)
+* [Radiant Earth](https://radiant.earth/)
 * [Software in the Public Interest](https://www.spi-inc.org/)
-* [Software Underground](https://softwareunderground.org/)
 
 ## Choosing to use a fiscal host
 
-Once you navigate to the "Join the waitlist" profile setup page for the account you want sponsored, you will see the "How you receive payouts" or "Organization bank account" section, depending on which type of account you are setting up. For more information on how to sign up for a {% data variables.product.prodname_sponsors %} profile, see "[AUTOTITLE](/sponsors/receiving-sponsorships-through-github-sponsors/setting-up-github-sponsors-for-your-personal-account)" or "[AUTOTITLE](/sponsors/receiving-sponsorships-through-github-sponsors/setting-up-github-sponsors-for-your-organization)."
+Once you navigate to the "Join the waitlist" profile setup page for the account you want sponsored, you will see the "How you receive payouts" or "Organization bank account" section, depending on which type of account you are setting up. For more information on how to sign up for a {% data variables.product.prodname_sponsors %} profile, see [AUTOTITLE](/sponsors/receiving-sponsorships-through-github-sponsors/setting-up-github-sponsors-for-your-personal-account) or [AUTOTITLE](/sponsors/receiving-sponsorships-through-github-sponsors/setting-up-github-sponsors-for-your-organization).
 
 1. Under "How you receive payouts" or "Organization bank account", select the **Use a fiscal host** or **This organization is using a fiscal host** option.
 1. Use the **Select a fiscal host** dropdown to choose the fiscal host you want to use.

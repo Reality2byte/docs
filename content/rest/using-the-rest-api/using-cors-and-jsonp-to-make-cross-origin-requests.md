@@ -6,8 +6,8 @@ versions:
   fpt: '*'
   ghes: '*'
   ghec: '*'
-topics:
-  - API
+category:
+  - Learn about the REST API
 ---
 
 ## About cross-origin requests
@@ -16,7 +16,7 @@ A cross-origin request is a request made to a different domain than the one orig
 
 ## Cross-origin resource sharing (CORS)
 
-The REST API supports cross-origin resource sharing (CORS) for AJAX requests from any origin. For more information, see the "[CORS W3C Recommendation](http://www.w3.org/TR/cors/)" and the [HTML 5 Security Guide](https://code.google.com/archive/p/html5security/wikis/CrossOriginRequestSecurity.wiki)
+The REST API supports cross-origin resource sharing (CORS) for AJAX requests from any origin. For more information, see the [CORS W3C Recommendation](http://www.w3.org/TR/cors/) and the [HTML 5 Security Guide](https://code.google.com/archive/p/html5security/wikis/CrossOriginRequestSecurity.wiki)
 
 Here's a sample request sent from a browser hitting
 `http://example.com`:
@@ -43,7 +43,7 @@ Access-Control-Max-Age: 86400
 ## JSON-P callbacks
 
 You can send a `?callback` parameter to any GET call to have the results
-wrapped in a JSON function. This is typically used when browsers want to embed {% data variables.product.product_name %} content in web pages and avoid cross-domain problems. The response includes the same data output as the regular API, plus the relevant HTTP Header information.
+wrapped in a JSON function. This is typically used when browsers want to embed {% data variables.product.github %} content in web pages and avoid cross-domain problems. The response includes the same data output as the regular API, plus the relevant HTTP Header information.
 
 ```shell
 $ curl {% data variables.product.rest_url %}?callback=foo
@@ -54,7 +54,7 @@ $ curl {% data variables.product.rest_url %}?callback=foo
 >     "x-ratelimit-limit": "5000",
 >     "x-ratelimit-remaining": "4966",
 >     "x-ratelimit-reset": "1372700873",
->     "Link": [ // pagination headers and other links
+>     "link": [ // pagination headers and other links
 >       ["{% data variables.product.rest_url %}?page=2", {"rel": "next"}]
 >     ]
 >   },
@@ -90,19 +90,19 @@ document.getElementsByTagName('head')[0].appendChild(script);
 </html>
 ```
 
-All of the headers have the same string value as the HTTP Headers, except `Link`. `Link` headers are pre-parsed for you and come through as an array of `[url, options]` tuples.
+All of the headers have the same string value as the HTTP headers, except `link`. The `link` header is pre-parsed for you and comes through as an array of `[url, options]` tuples.
 
 For example, a link that looks like this:
 
 ```shell
-Link: <url1>; rel="next", <url2>; rel="foo"; bar="baz"
+link: <url1>; rel="next", <url2>; rel="foo"; bar="baz"
 ```
 
 will look like this in the Callback output:
 
 ```json
 {
-  "Link": [
+  "link": [
     [
       "url1",
       {

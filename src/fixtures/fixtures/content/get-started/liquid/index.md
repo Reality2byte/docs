@@ -2,14 +2,10 @@
 title: Liquid tags
 intro: Testing various fancy Liquid rendering functionality
 versions:
-  fpt: '*'
-  ghes: '*'
-  ghec: '*'
+  fpt: "*"
+  ghes: "*"
+  ghec: "*"
 children:
-  - /warnings
-  - /danger
-  - /tips
-  - /notes
   - /raw
   - /platform-specific
   - /whitespace
@@ -18,5 +14,7 @@ children:
   - /links-with-liquid
   - /tool-specific
   - /tool-platform-switcher
+  - /tool-picker-issue
   - /data
+  - /code-tabs-test
 ---

@@ -1,9 +1,11 @@
-import { languageKeys } from '#src/languages/lib/languages.js'
-import { allVersionKeys } from '#src/versions/lib/all-versions.js'
-import { productIds } from '#src/products/lib/all-products.js'
-import { allTools } from 'src/tools/lib/all-tools.js'
+import { languageKeys } from '@/languages/lib/languages-server'
+import { allVersionKeys } from '@/versions/lib/all-versions'
+import { productIds } from '@/products/lib/all-products'
+import { allTools } from '@/tools/lib/all-tools'
+import { codeLanguages } from '@/content-render/lib/code-languages'
+import { contentTypesEnum } from '@/frame/lib/frontmatter'
 
-const versionPattern = '^\\d+(\\.\\d+)?(\\.\\d+)?$' // eslint-disable-line
+const versionPattern = '^\\d+(\\.\\d+)?(\\.\\d+)?$'
 
 const context = {
   type: 'object',
@@ -43,6 +45,10 @@ const context = {
       type: 'string',
       description: 'The browser value of `document.referrer`.',
       format: 'uri-reference',
+    },
+    title: {
+      type: 'string',
+      description: 'The browser value of `document.title`.',
     },
     href: {
       type: 'string',
@@ -89,12 +95,22 @@ const context = {
     page_document_type: {
       type: 'string',
       description: 'The generic page document type based on URL path.',
-      enum: ['homepage', 'early-access', 'product', 'category', 'mapTopic', 'article'], // get-document-type.js
+      enum: ['homepage', 'early-access', 'product', 'category', 'subcategory', 'article'], // get-document-type.ts
     },
     page_type: {
       type: 'string',
       description: 'Optional page type from the content frontmatter.',
-      enum: ['overview', 'quick_start', 'tutorial', 'how_to', 'reference', 'rai'], // frontmatter.js
+      enum: ['overview', 'quick_start', 'tutorial', 'how_to', 'reference', 'rai'], // frontmatter.ts
+    },
+    content_type: {
+      type: 'string',
+      description: 'Optional content type from the content frontmatter (EDI content models).',
+      enum: contentTypesEnum,
+    },
+    docs_team_metrics: {
+      type: 'string',
+      description:
+        'Optional comma-separated list of docsTeamMetrics frontmatter values for internal analytics filtering.',
     },
     status: {
       type: 'number',
@@ -105,6 +121,19 @@ const context = {
     is_logged_in: {
       type: 'boolean',
       description: 'Anonymous -- whether the user has github.com cookies set.',
+    },
+    dotcom_user: {
+      type: 'string',
+      description: 'The cookie value of dotcom_user',
+    },
+    is_staff: {
+      type: 'boolean',
+      description: 'The cookie value of staffonly',
+    },
+    octo_client_id: {
+      type: 'string',
+      description:
+        'The _octo cookie client ID for cross-subdomain tracking with github.com analytics.',
     },
 
     // Device information
@@ -128,15 +157,41 @@ const context = {
       type: 'string',
       description: 'The version of the browser the user is browsing with.',
     },
+    is_headless: {
+      type: 'boolean',
+    },
     viewport_width: {
       type: 'number',
       description: 'The viewport width, not the overall device size.',
-      minimum: 1,
+      minimum: 0,
     },
     viewport_height: {
       type: 'number',
       description: 'The viewport height, not the overall device height.',
-      minimum: 1,
+      minimum: 0,
+    },
+    screen_width: {
+      type: 'number',
+      description: 'The screen width of the device.',
+      minimum: 0,
+    },
+    screen_height: {
+      type: 'number',
+      description: 'The screen height of the device.',
+      minimum: 0,
+    },
+    pixel_ratio: {
+      type: 'number',
+      description: 'The device pixel ratio.',
+      minimum: 0,
+    },
+    ip: {
+      type: 'string',
+      description: 'The IP address of the user.',
+    },
+    user_agent: {
+      type: 'string',
+      description: 'The raw user agent string from the browser.',
     },
 
     // Location information
@@ -168,6 +223,23 @@ const context = {
       enum: ['beside', 'inline'],
       description: 'How the user prefers to view code examples.',
     },
+
+    // Experiments
+    experiment_variation: {
+      type: 'string',
+      description: 'The variation this user we bucketed in is in, such as control or treatment.',
+    },
+
+    // Event Grouping. The comination of key + id should be unique
+    event_group_key: {
+      type: 'string',
+      description: 'A enum indentifier (e.g. "ask-ai") used to put events into a specific group.',
+    },
+    event_group_id: {
+      type: 'string',
+      description:
+        'A unique id (uuid) that can be used to identify a group of events made by a user during the same session.',
+    },
   },
 }
 
@@ -197,29 +269,29 @@ const exit = {
     exit_render_duration: {
       type: 'number',
       description: 'How long the server took to render the page content, in seconds.',
-      minimum: 0.001,
+      minimum: 0,
     },
     exit_first_paint: {
       type: 'number',
-      minimum: 0.001,
+      minimum: 0,
       description:
         'The duration until `first-contentful-paint`, in seconds. Informs CSS performance.',
     },
     exit_dom_interactive: {
       type: 'number',
-      minimum: 0.001,
+      minimum: 0,
       description:
         'The duration until `PerformanceNavigationTiming.domInteractive`, in seconds. Informs JavaScript loading performance.',
     },
     exit_dom_complete: {
       type: 'number',
-      minimum: 0.001,
+      minimum: 0,
       description:
         'The duration until `PerformanceNavigationTiming.domComplete`, in seconds. Informs JavaScript execution performance.',
     },
     exit_visit_duration: {
       type: 'number',
-      minimum: 0.001,
+      minimum: 0,
       description:
         'The duration of exit.timestamp - page.timestamp, in seconds. Informs bounce rate.',
     },
@@ -233,6 +305,27 @@ const exit = {
       type: 'number',
       minimum: 0,
       description: 'The number of times the scroll direction changes.',
+    },
+  },
+}
+
+const keyboard = {
+  type: 'object',
+  additionalProperties: false,
+  required: ['pressed_key', 'pressed_on'],
+  properties: {
+    context,
+    type: {
+      type: 'string',
+      pattern: '^keyboard$',
+    },
+    pressed_key: {
+      type: 'string',
+      description: 'The key the user pressed.',
+    },
+    pressed_on: {
+      type: 'string',
+      description: 'The element/identifier the user pressed the key on.',
     },
   },
 }
@@ -271,9 +364,11 @@ const link = {
         'lead',
         'notifications',
         'article',
+        'alert',
         'toc',
         'footer',
         'static',
+        'markdown-source-menu',
       ],
       description: 'The part of the page where the user clicked the link.',
     },
@@ -321,6 +416,10 @@ const search = {
       type: 'string',
       description: 'Any additional search context, such as component searched.',
     },
+    search_client: {
+      type: 'string',
+      description: 'The client name identifier when the request is not from docs.github.com.',
+    },
   },
 }
 
@@ -366,6 +465,42 @@ const searchResult = {
   },
 }
 
+const aiSearchResult = {
+  type: 'object',
+  additionalProperties: false,
+  required: [
+    'type',
+    'context',
+    'ai_search_result_links_json',
+    'ai_search_result_provided_answer',
+    'ai_search_result_response_status',
+  ],
+  properties: {
+    context,
+    type: {
+      type: 'string',
+      pattern: '^aiSearchResult$',
+    },
+    ai_search_result_links_json: {
+      type: 'string',
+      description:
+        'Dynamic JSON string of an array of "link" objects in the form: [{ "type": "reference" | "inline", "url": "https://..", "product": "issues" | "pages" | ... }, ...]',
+    },
+    ai_search_result_provided_answer: {
+      type: 'boolean',
+      description: 'Whether the GPT was able to answer the query.',
+    },
+    ai_search_result_response_status: {
+      type: 'number',
+      description: 'The status code of the GPT response.',
+    },
+    ai_search_result_connected_event_id: {
+      type: 'string',
+      description: 'The id of the corresponding CSE copilot conversation event.',
+    },
+  },
+}
+
 const survey = {
   type: 'object',
   additionalProperties: false,
@@ -399,6 +534,10 @@ const survey = {
       description:
         'The guessed language of the survey comment. The guessed language is very inaccurate when the string contains fewer than 3 or 4 words.',
     },
+    survey_connected_event_id: {
+      type: 'string',
+      description: 'The id of the corresponding CSE copilot conversation event.',
+    },
   },
 }
 
@@ -418,7 +557,7 @@ const experiment = {
     },
     experiment_variation: {
       type: 'string',
-      description: 'The variation this user we bucketed in, such as control or treatment.',
+      description: 'The variation this user we bucketed in is in, such as control or treatment.',
     },
     experiment_success: {
       type: 'boolean',
@@ -441,7 +580,7 @@ const clipboard = {
     clipboard_operation: {
       type: 'string',
       description: 'Which clipboard operation the user is performing.',
-      enum: ['copy', 'paste', 'cut'],
+      enum: ['copy', 'paste', 'cut', 'share'],
     },
     clipboard_target: {
       type: 'string',
@@ -475,29 +614,67 @@ const preference = {
     },
     preference_name: {
       type: 'string',
-      enum: ['application', 'color_mode', 'os', 'code_display'],
-      description: 'The preference name, such as os, application, or color_mode',
+      enum: ['application', 'color_mode', 'os', 'code_display', 'code_language'],
+      description: 'The preference name, such as os, application, color_mode, or code_language',
     },
     preference_value: {
       type: 'string',
       enum: [
-        // application
-        ...Object.keys(allTools),
-        // color_mode
-        'dark',
-        'light',
-        'auto',
-        'auto:dark',
-        'auto:light',
-        // os
-        'linux',
-        'mac',
-        'windows',
-        // code_display
-        'beside',
-        'inline',
+        ...new Set([
+          // application
+          ...Object.keys(allTools),
+          // color_mode
+          'dark',
+          'light',
+          'auto',
+          'auto:dark',
+          'auto:light',
+          // os
+          'linux',
+          'mac',
+          'windows',
+          // code_display
+          'beside',
+          'inline',
+          // code_language (may overlap with allTools, e.g. 'javascript')
+          ...Object.keys(codeLanguages),
+        ]),
       ],
-      description: 'The application, color_mode, os, or code_display selected by the user.',
+      description:
+        'The application, color_mode, os, code_display, or code_language selected by the user.',
+    },
+  },
+}
+
+const tableInteraction = {
+  type: 'object',
+  additionalProperties: false,
+  required: ['type', 'context', 'table_interaction_name', 'table_interaction_type'],
+  properties: {
+    context,
+    type: {
+      type: 'string',
+      pattern: '^tableInteraction$',
+    },
+    table_interaction_name: {
+      type: 'string',
+      description:
+        'Identifier for the table being interacted with (e.g. "secret-scanning-patterns").',
+    },
+    table_interaction_type: {
+      type: 'string',
+      enum: ['search', 'filter', 'sort', 'paginate', 'reset'],
+      description: 'The kind of interaction the user performed with the table.',
+    },
+    table_interaction_field_name: {
+      type: 'string',
+      description:
+        'The field/column the interaction targeted (e.g. "pushProtection"). Omitted for whole-table actions.',
+    },
+    table_interaction_field_value: {
+      type: 'string',
+      description:
+        'The value applied to the field (e.g. the filter value, search query, sort direction, or page number).',
     },
   },
 }
@@ -527,30 +704,36 @@ const validation = {
 export const schemas = {
   page,
   exit,
+  keyboard,
   link,
   hover,
   search,
   searchResult,
+  aiSearchResult,
   survey,
   experiment,
   clipboard,
   print,
   preference,
+  tableInteraction,
   validation,
 }
 
 export const hydroNames = {
   page: 'docs.v0.PageEvent',
   exit: 'docs.v0.ExitEvent',
+  keyboard: 'docs.v0.KeyboardEvent',
   link: 'docs.v0.LinkEvent',
   hover: 'docs.v0.HoverEvent',
   search: 'docs.v0.SearchEvent',
   searchResult: 'docs.v0.SearchResultEvent',
+  aiSearchResult: 'docs.v0.AISearchResultEvent',
   survey: 'docs.v0.SurveyEvent',
   experiment: 'docs.v0.ExperimentEvent',
   clipboard: 'docs.v0.ClipboardEvent',
   print: 'docs.v0.PrintEvent',
   preference: 'docs.v0.PreferenceEvent',
+  tableInteraction: 'docs.v0.TableInteractionEvent',
   validation: 'docs.v0.ValidationEvent',
 } as Record<keyof typeof schemas, string>
 

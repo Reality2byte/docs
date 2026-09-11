@@ -10,11 +10,13 @@ versions:
   fpt: '*'
   ghes: '*'
   ghec: '*'
-topics:
-  - Identity
-  - Access management
+category:
+  - Sign your commits
 ---
 {% data reusables.gpg.desktop-support-for-commit-signing %}
+
+> [!TIP]
+> To configure your Git client to sign tags by default for a local repository, in Git versions 2.23.0 and above, run `git config tag.gpgsign true`. To sign all tags by default in any local repository on your computer, run `git config --global tag.gpgsign true`.
 
 1. To sign a tag, add `-s` to your `git tag` command.
 
@@ -32,7 +34,7 @@ topics:
 
 ## Further reading
 
-* "[AUTOTITLE](/repositories/releasing-projects-on-github/viewing-your-repositorys-releases-and-tags)"
-* "[AUTOTITLE](/authentication/managing-commit-signature-verification/telling-git-about-your-signing-key)"
-* "[AUTOTITLE](/authentication/managing-commit-signature-verification/associating-an-email-with-your-gpg-key)"
-* "[AUTOTITLE](/authentication/managing-commit-signature-verification/signing-commits)"
+* [AUTOTITLE](/repositories/releasing-projects-on-github/viewing-your-repositorys-releases-and-tags)
+* [AUTOTITLE](/authentication/managing-commit-signature-verification/telling-git-about-your-signing-key)
+* [AUTOTITLE](/authentication/managing-commit-signature-verification/associating-an-email-with-your-gpg-key)
+* [AUTOTITLE](/authentication/managing-commit-signature-verification/signing-commits)

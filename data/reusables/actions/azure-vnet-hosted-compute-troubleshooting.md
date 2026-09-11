@@ -68,6 +68,20 @@ VNetInjectionSubnetIsFull
 
 To fix this, either increase the size of the subnet you are using or reduce the pool's maximum runner count to match your subnet size.
 
+### Cannot delete subnet
+
+In some cases, a subnet cannot be deleted because it has a Service Association Link (SAL) applied to it. For more information, see [AUTOTITLE](/organizations/managing-organization-settings/configuring-private-networking-for-github-hosted-runners-in-your-organization#deleting-a-subnet).
+
+If you need to identify the network settings resource associated with the subnet, you can run the following `curl` command.
+To obtain an Azure Entra token, please refer to the [Azure documentation](https://learn.microsoft.com/en-us/cli/azure/authenticate-azure-cli). Use the same `api-version` you used to create the resource.
+
+```shell
+curl --request GET \
+  --url "https://management.azure.com/subscriptions/{subscriptionId}/providers/GitHub.Network/NetworkSettings?api-version={api-version}&subnetId={subnetId}" \
+  --header 'Content-Type: application/json' \
+  --header "Authorization: Bearer {entra_token}"
+```
+
 ### Incorrect NSG or firewall rules
 
 The "Configuring your Azure resources" procedures list the required openings. However, you may have complex production networks with multiple downstream proxies or firewalls.
@@ -87,3 +101,35 @@ While running the command to configure Azure resources, ensure you are using the
 ```
 
 If you experience this error, you can see more information by running the command using the `---debug` flag.
+
+### Network settings configured at the wrong level
+
+If network settings were configured using an organization's `databaseId` instead of an enterprise `databaseId`, an error will occur. The error message will indicate that a private network cannot be established with the provided resource ID because it is already associated with a different enterprise or organization. To resolve this, delete the existing network settings and recreate them using the enterprise `databaseId`.
+
+### Failover network not switching traffic
+
+> [!NOTE]
+> VNET failover is in {% data variables.release-phases.public_preview %} and subject to change.
+> [!IMPORTANT]
+> Switching between the primary and failover networks is a gradual process. During the transition, runners may be running on both networks simultaneously. Based on testing, the full transition takes approximately 15 minutes. Ensure both subnets remain accessible during this period.
+
+If enabling the failover network does not appear to reroute runner traffic, check the following:
+
+* Ensure the failover subnet's Azure resources (VNET/subnet, NSG/firewall, network settings) are correctly configured. Follow the same "Configuring your Azure resources" procedures used for your primary subnet.
+* Confirm the failover network was added to the correct network configuration and that the configuration is associated with the appropriate runner group.
+
+### Failover subnet not reachable
+
+If runners cannot connect after enabling the failover network, the issue is likely with the Azure resources configured for the failover subnet.
+
+* Ensure the failover subnet has the correct NSG or firewall rules applied, matching the requirements listed in the [AUTOTITLE](/enterprise-cloud@latest/admin/configuring-settings/configuring-private-networking-for-hosted-compute-products/configuring-private-networking-for-github-hosted-runners-in-your-enterprise) procedures.
+* Verify that the failover subnet has sufficient IP address space for the expected runner concurrency.
+
+### Cannot switch back to primary after GitHub-initiated failover
+
+
+1. Navigate to your network configuration in the **Hosted compute networking** settings.
+1. Click the edit icon next to the network configuration. Then click **Edit configuration**.
+1. Click **Disable failover VNET** to return runner traffic to the primary subnet.
+
+If you are unable to disable the failover, ensure the primary subnet's Azure resources are healthy and accessible. Verify there are no ongoing outages in the primary subnet's Azure region.

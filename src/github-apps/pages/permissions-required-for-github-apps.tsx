@@ -1,10 +1,12 @@
 import { GetServerSideProps } from 'next'
+import type { Response } from 'express'
+import type { ExtendedRequest } from '@/types'
 import {
   AutomatedPageContextT,
   getAutomatedPageContextFromRequest,
-} from 'src/automated-pipelines/components/AutomatedPageContext'
-import { MainContext, MainContextT, getMainContext } from 'src/frame/components/context/MainContext'
-import { PermissionsList, PermissionListT } from 'src/github-apps/components/PermissionsList'
+} from '@/automated-pipelines/components/AutomatedPageContext'
+import { MainContext, MainContextT, getMainContext } from '@/frame/components/context/MainContext'
+import { PermissionsList, PermissionListT } from '@/github-apps/components/PermissionsList'
 
 type Props = {
   mainContext: MainContextT
@@ -36,15 +38,18 @@ export default function GitHubAppPermissions({
 }
 
 export const getServerSideProps: GetServerSideProps<Props> = async (context) => {
-  const { getAppsServerSideProps } = await import('src/github-apps/lib/index.js')
+  const { getAppsServerSideProps } = await import('@/github-apps/lib/index')
   const { currentVersion, appsItems, categoriesWithoutSubcategories } =
     await getAppsServerSideProps(context, 'server-to-server-permissions', { useDisplayTitle: true })
 
   return {
     props: {
-      mainContext: await getMainContext(context.req, context.res),
+      mainContext: await getMainContext(
+        context.req as unknown as ExtendedRequest,
+        context.res as unknown as Response,
+      ),
       currentVersion,
-      appsItems,
+      appsItems: appsItems as PermissionListT,
       automatedPageContext: getAutomatedPageContextFromRequest(context.req),
       categoriesWithoutSubcategories,
     },

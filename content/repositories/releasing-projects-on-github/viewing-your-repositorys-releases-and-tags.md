@@ -11,13 +11,13 @@ versions:
   fpt: '*'
   ghes: '*'
   ghec: '*'
-topics:
-  - Repositories
 shortTitle: View releases & tags
+category:
+  - Release software
 ---
 
 > [!TIP]
-> You can also view a release using the {% data variables.product.prodname_cli %}. For more information, see "[`gh release view`](https://cli.github.com/manual/gh_release_view)" in the {% data variables.product.prodname_cli %} documentation.
+> You can also view a release using the {% data variables.product.prodname_cli %}. For more information, see [`gh release view`](https://cli.github.com/manual/gh_release_view) in the {% data variables.product.prodname_cli %} documentation.
 
 ## Viewing releases
 
@@ -33,4 +33,4 @@ shortTitle: View releases & tags
 
 ## Further reading
 
-* "[AUTOTITLE](/authentication/managing-commit-signature-verification/signing-tags)"
+* [AUTOTITLE](/authentication/managing-commit-signature-verification/signing-tags)

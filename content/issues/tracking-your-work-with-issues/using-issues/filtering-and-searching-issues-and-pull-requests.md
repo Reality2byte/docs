@@ -1,6 +1,6 @@
 ---
 title: Filtering and searching issues and pull requests
-intro: 'To find detailed information about a repository on {% data variables.product.product_name %}, you can filter, sort, and search issues and pull requests that are relevant to the repository.'
+intro: To find detailed information about a repository on {% data variables.product.github %}, you can filter, sort, and search issues and pull requests that are relevant to the repository.
 redirect_from:
   - /github/managing-your-work-on-github/finding-information-in-a-repository/filtering-issues-and-pull-requests-by-assignees
   - /articles/filtering-issues-and-pull-requests-by-assignees
@@ -33,16 +33,15 @@ redirect_from:
   - /github/administering-a-repository/finding-information-in-a-repository/sorting-issues-and-pull-requests
   - /github/administering-a-repository/finding-information-in-a-repository/using-search-to-filter-issues-and-pull-requests
   - /github/administering-a-repository/finding-information-in-a-repository/sharing-filters
-  -  /issues/tracking-your-work-with-issues/filtering-and-searching-issues-and-pull-requests
+  - /issues/tracking-your-work-with-issues/filtering-and-searching-issues-and-pull-requests
 versions:
   fpt: '*'
   ghes: '*'
   ghec: '*'
-topics:
-  - Issues
-  - Pull requests
 shortTitle: Filter and search
-type: how_to
+contentType: how-tos
+category:
+  - Create and work with issues
 ---
 
 {% data reusables.cli.filter-issues-and-pull-requests-tip %}
@@ -50,8 +49,6 @@ type: how_to
 ## Filtering issues and pull requests
 
 Issues and pull requests come with a set of default filters you can apply to organize your listings.
-
-{% data reusables.search.requested_reviews_search %}
 
 You can filter issues and pull requests to find:
 * All open issues and pull requests
@@ -73,18 +70,16 @@ You can filter issues and pull requests to find:
 
 ## Building advanced filters for issues
 
-{% data reusables.issues.release-stage %}
-
-You can build advanced filters using boolean and nested queries on your repository's issues page. As you type your filter, {% data variables.product.github %} will show available qualifiers, suggest values, and warn when there is a problem with your filter.
+You can build advanced filters using boolean and nested queries on your repository's issues page{% ifversion issues-dashboard %} and the issues dashboard{% endif %}. As you type your filter, {% data variables.product.github %} will show available qualifiers, suggest values, and warn when there is a problem with your filter.
 
 ### Using boolean operators
 
 You can use `AND` and `OR` operators to refine your filters.
 
-Use `AND` when you need results where both statements are true. In the example filter below, the results will be comprised of issues with the "Bug fix" label that are assigned to the @octocat user.
+Use `AND` when you need results where both statements are true. In the example filter below, the results will be comprised of issues with the "question" label that are assigned to the @octocat user.
 
 ```text
-label:"Bug fix" AND assignee:octocat
+label:"question" AND assignee:octocat
 ```
 
 To return results where either statement is true, use `OR`. In the example below, the results will contain issues assigned to either @octocat or @hubot.
@@ -93,17 +88,17 @@ To return results where either statement is true, use `OR`. In the example below
 assignee:octocat OR assignee:hubot
 ```
 
-If you choose not to use `AND` and `OR` operators, {% data variables.product.github %} will treat a space between statements as an `AND` operator unless you are using an `org`, `repo`, or `user` field to filter by ownership where any spaces will be treated as an `OR` operator.
+If you choose not to use `AND` and `OR` operators, {% data variables.product.github %} will treat a space between statements as an `AND` operator{% ifversion ghes < 3.18 %} unless you are using an `org`, `repo`, or `user` field to filter by ownership, in which case any spaces will be treated as an `OR` operator{% endif %}.
 
 ### Using parentheses for more complicated filters
 
-You can also use parentheses to nest filters and group qualifiers. In the example below, the results will contain issues that are either assigned to @octocat with the "bug" issue type or assigned to @hubot with the "Enhancement" issue type.
+You can also use parentheses to nest filters and group qualifiers. In the example below, the results will contain issues that are either assigned to @octocat with the "bug" issue type or assigned to @hubot with the "Feature" issue type.
 
 ```text
-(type:"Bug" AND assignee:octocat) OR (type:"Enhancement" AND assignee:hubot)
+(type:"Bug" AND assignee:octocat) OR (type:"Feature" AND assignee:hubot)
 ```
 
-You can nest filters using parentheses up to five levels deep. It's not currently possible to include the `repo`, `org`, or `user` qualifiers within parentheses.
+You can nest filters using parentheses up to five levels deep.{% ifversion ghes < 3.18 %} It's not currently possible to include the `repo`, `org`, or `user` qualifiers within parentheses.{% endif %}
 
 {% endwebui %}
 
@@ -111,7 +106,7 @@ You can nest filters using parentheses up to five levels deep. It's not currentl
 
 ## Filtering issues and pull requests by assignees
 
-Once you've [assigned an issue or pull request to someone](/issues/tracking-your-work-with-issues/assigning-issues-and-pull-requests-to-other-github-users), you can find items based on who's working on them.
+Once you've [assigned an issue or pull request to someone](/issues/tracking-your-work-with-issues/using-issues/assigning-issues-and-pull-requests-to-other-github-users), you can find items based on who's working on them.
 
 {% data reusables.repositories.navigate-to-repo %}
 {% data reusables.repositories.sidebar-issue-pr %}
@@ -120,11 +115,8 @@ Once you've [assigned an issue or pull request to someone](/issues/tracking-your
    ![Screenshot of a list of issues. In the header above the list, a dropdown menu, labeled "Assignees", is outlined in dark orange.](/assets/images/help/issues/issues-assignee-dropdown.png)
 1. The Assignee drop-down menu lists everyone who has write access to your repository. Click the name of the person whose assigned items you want to see, or click **Assigned to nobody** to see which issues are unassigned.
 
-{% tip %}
-
-To clear your filter selection, click **Clear current search query, filters, and sorts**.
-
-{% endtip %}
+> [!TIP]
+> To clear your filter selection, click **Clear current search query, filters, and sorts**.
 
 ## Filtering issues and pull requests by labels
 
@@ -142,17 +134,31 @@ Once you've [applied labels to an issue or pull request](/issues/using-labels-an
 
 ## Filtering by issue type
 
-{% data reusables.issues.release-stage %}
-
 If your organization uses issue types, you can filter issues for a particular type. You can also type the `type:` qualifier directly into your filter.
 
 {% data reusables.repositories.navigate-to-repo %}
 {% data reusables.repositories.sidebar-issues %}
 1. Above the list of issues, select the **Types** dropdown menu.
 
-   ![Screenshot of a list of issues. In the header above the list, a dropdown menu, labeled "Types", is outlined in dark orange and the Issue Types menu is open.](/assets/images/help/issues/issue-type-dropdown.png)
+   ![Screenshot of a list of issues. In the list header, the "Types" filter is outlined in orange and expanded.](/assets/images/help/issues/issue-type-dropdown.png)
 
 1. In the list of type, click an issue type.
+
+{% endif %}
+
+{% ifversion issue-fields %}
+
+## Filtering by issue fields
+
+If your organization uses issue fields, you can filter issues by field values. Type `field.` followed by the field name and value in your filter. Field names with spaces should be enclosed in quotes.
+
+Examples:
+* `field.priority:high` -- find issues with priority set to "high"
+* `field."target date":>=2026-03-01` -- find issues with a target date on or after March 1, 2026
+* `field.story-points:>5` -- find issues with a number field value greater than 5
+* `field.priority:high,medium` -- find issues with priority set to "high" or "medium"
+
+For more information about managing issue fields, see [AUTOTITLE](/issues/tracking-your-work-with-issues/using-issues/managing-issue-fields-in-your-organization).
 
 {% endif %}
 
@@ -161,13 +167,13 @@ If your organization uses issue types, you can filter issues for a particular ty
 You can use filters to list pull requests by review status and to find pull requests that you've reviewed or other people have asked you to review.
 
 You can filter a repository's list of pull requests to find:
-* Pull requests that haven't been [reviewed](/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/about-pull-request-reviews) yet
+* Pull requests that haven't been [reviewed](/pull-requests/reference/pull-request-reviews) yet
 * Pull requests that [require a review](/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches#require-pull-request-reviews-before-merging) before they can be merged
 * Pull requests that a reviewer has approved
 * Pull requests in which a reviewer has asked for changes
 * Pull requests that you have reviewed
 * Pull requests that someone has asked you directly to review
-* Pull requests that [someone has asked you, or a team you're a member of, to review](/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/requesting-a-pull-request-review)
+* Pull requests that [someone has asked you, or a team you're a member of, to review](/pull-requests/how-tos/create-pull-requests/requesting-a-pull-request-review)
 
 {% data reusables.repositories.navigate-to-repo %}
 {% data reusables.repositories.sidebar-pr %}
@@ -185,9 +191,9 @@ You can use filters to search for issues and pull requests that meet specific cr
 
 {% webui %}
 
-The issues and pull requests search bar allows you to define your own custom filters and sort by a wide variety of criteria. You can find the search bar on each repository's **Issues** and **Pull requests** tabs and on your [Issues and Pull requests dashboards](/issues/tracking-your-work-with-issues/viewing-all-of-your-issues-and-pull-requests).
+The issues and pull requests search bar allows you to define your own custom filters and sort by a wide variety of criteria. You can find the search bar on each repository's **Issues** and **Pull requests** tabs and on your [Issues and Pull requests dashboards](/issues/tracking-your-work-with-issues/using-issues/viewing-all-of-your-issues-and-pull-requests).
 
-![Screenshot of the list of issues for a repository. Above the list, a search field, containing the query "is:issue is:open", is outlined in dark orange.](/assets/images/help/issues/issues-search-bar.png)
+![Screenshot of the list of issues for a repository. Above the list, a search field, containing the query "is:issue is:open", is outlined in orange.](/assets/images/help/issues/issues-search-bar.png)
 
 > [!TIP]
 > {% data reusables.search.search_issues_and_pull_requests_shortcut %}
@@ -218,36 +224,44 @@ gh pr list --search "team:octo-org/octo-team"
 
 With issue and pull request search terms, you can:
 
-* Filter issues and pull requests by author: `state:open type:issue author:octocat`
-* Filter issues and pull requests that involve, but don't necessarily [**@mention**](/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#mentioning-people-and-teams), certain people: `state:open type:issue involves:octocat`
-* Filter issues and pull requests by assignee: `state:open type:issue assignee:octocat`
-* Filter issues and pull requests by label: `state:open type:issue label:"bug"`
-* Filter out search terms by using `-` before the term: `state:open type:issue -author:octocat`
+* Filter issues and pull requests by author: `state:open is:issue author:octocat`
+* Filter issues and pull requests that involve, but don't necessarily [**@mention**](/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax#mentioning-people-and-teams), certain people: `state:open is:issue involves:octocat`
+* Filter issues and pull requests by assignee: `state:open is:issue assignee:octocat`
+* Filter issues and pull requests by label: `state:open is:issue label:"bug"`
+* Filter out search terms by using `-` before the term: `state:open is:issue -author:octocat`
 
 > [!TIP]
-> You can filter issues and pull requests by label using logical OR or using logical AND.
-> * To filter issues using logical OR, use the comma syntax: `label:"bug","wip"`.
-> * To filter issues using logical AND, use separate label filters: `label:"bug" label:"wip"`.
+> * You can filter issues by label using logical OR or using logical AND.
+>   * To filter issues using logical OR, use the comma syntax: `label:"bug","wip"`.
+>   * To filter issues using logical AND, use separate label filters: `label:"bug" label:"wip"`.
+> * You can use `@copilot` with qualifiers like `assignee:` and `author:` to search for issues and pull requests assigned to or authored by {% data variables.product.prodname_copilot_short %}. For example, `assignee:@copilot` or `author:@copilot`.
 
 For issues, you can also use search to:
 
-* Filter for issues that are linked to a pull request by a closing reference: `linked:pr`{% ifversion issue-close-reasons %}
-* Filter issues by the reason they were closed: `is:closed reason:completed` or `is:closed reason:"not planned"`{% endif %}
-{% ifversion issue-types %}* Filter for issues with a particular type: `is:open type:"Bug"`{% endif %}
+* Filter for issues that are linked to a pull request by a closing reference: `linked:pr`
+* Filter issues by the reason they were closed: `is:closed reason:completed` or `is:closed reason:"not planned"`
+{% ifversion issue-types %}* Filter for issues with a particular type: `is:open type:"Bug"`{% endif %}{% ifversion issue-fields %}
+* Filter for issues by field value: `is:open field.priority:high`{% endif %}{% ifversion issues-advanced-search %}
+* Filter for issues that have metadata: `has:label`
+* Filter for issues that are missing metadata: `no:project`
+* Filter for issues from repositories [**owned**](/search-github/searching-on-github/searching-issues-and-pull-requests#search-within-a-users-or-organizations-repositories) by a certain user or organization, limited to up to 16 `user` and `org` qualifiers with no limit on `repo` qualifiers: `state:open is:issue org:github OR user:octocat`{% endif %}
 
 For pull requests, you can also use search to:
 
-* Filter [draft](/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/about-pull-requests#draft-pull-requests) pull requests: `is:draft`
-* Filter pull requests that haven't been [reviewed](/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/about-pull-request-reviews) yet: `state:open type:pr review:none`
-* Filter pull requests that [require a review](/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches#require-pull-request-reviews-before-merging) before they can be merged: `state:open type:pr review:required`
-* Filter pull requests that a reviewer has approved: `state:open type:pr review:approved`
-* Filter pull requests in which a reviewer has asked for changes: `state:open type:pr review:changes_requested`
-* Filter pull requests by [reviewer](/pull-requests/collaborating-with-pull-requests/reviewing-changes-in-pull-requests/about-pull-request-reviews): `state:open type:pr reviewed-by:octocat`
-* Filter pull requests by the specific user [requested for review](/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/requesting-a-pull-request-review): `state:open type:pr review-requested:octocat`
-* Filter pull requests that someone has asked you directly to review: `state:open type:pr user-review-requested:@me`
-* Filter pull requests by the team requested for review: `state:open type:pr team-review-requested:github/docs`
+* Filter [draft](/pull-requests/reference/pull-requests#draft-pull-requests) pull requests: `is:draft`
+* Filter pull requests that haven't been [reviewed](/pull-requests/reference/pull-request-reviews) yet: `state:open is:pr review:none`
+* Filter pull requests that [require a review](/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches#require-pull-request-reviews-before-merging) before they can be merged: `state:open is:pr review:required`
+* Filter pull requests that a reviewer has approved: `state:open is:pr review:approved`
+* Filter pull requests in which a reviewer has asked for changes: `state:open is:pr review:changes_requested`
+* Filter pull requests by [reviewer](/pull-requests/reference/pull-request-reviews): `state:open is:pr reviewed-by:octocat`
+* Filter pull requests by the specific user [requested for review](/pull-requests/how-tos/create-pull-requests/requesting-a-pull-request-review): `state:open is:pr review-requested:octocat`
+* Filter pull requests that someone has asked you directly to review: `state:open is:pr user-review-requested:@me`
+* Filter pull requests by the team requested for review: `state:open is:pr team-review-requested:github/docs`
 * Filter for pull requests that are linked to an issue that the pull request may close: `linked:issue`
-* Filter pull requests by state of [merging](/pull-requests/collaborating-with-pull-requests/incorporating-changes-from-a-pull-request/about-pull-request-merges): `is:merged` or `is:unmerged`
+* Filter pull requests where all statuses are successful: `status:success`
+* Filter pull requests with at least one error or failure status: `status:failure`
+* Filter pull requests with no statuses or at least one status in the pending state: `status:pending`
+* Filter pull requests by state of [merging](/pull-requests/reference/pull-request-merges): `is:merged` or `is:unmerged`
 
 ## Sorting issues and pull requests
 
@@ -280,9 +294,9 @@ You can send the URL that issues generates to any user, and they'll be able to s
 For example, if you filter on issues assigned to Hubot, and sort on the oldest open issues, your URL would update to something like the following:
 
 ```text
-/issues?q=state:open+type:issue+assignee:hubot+sort:created-asc
+/issues?q=state:open+is:issue+assignee:hubot+sort:created-asc
 ```
 
 ## Further reading
 
-* "[AUTOTITLE](/search-github/searching-on-github/searching-issues-and-pull-requests)"
+* [AUTOTITLE](/search-github/searching-on-github/searching-issues-and-pull-requests)

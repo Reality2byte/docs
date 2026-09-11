@@ -1,23 +1,24 @@
-import http from 'http'
-
-import { get } from 'lodash-es'
 import type { Response } from 'express'
+
 import type { Failbot } from '@github/failbot'
+import { get } from 'lodash-es'
+import { createLogger } from '@/observability/logger'
 
+import { buildMiniTocFromCollected, type CollectedHeading } from '@/frame/lib/get-mini-toc-items'
+import patterns from '@/frame/lib/patterns'
+import FailBot from '@/observability/lib/failbot'
+import statsd, { adaptForTimer } from '@/observability/lib/statsd'
 import type { ExtendedRequest } from '@/types'
-import FailBot from '@/observability/lib/failbot.js'
-import patterns from '@/frame/lib/patterns.js'
-import getMiniTocItems from '@/frame/lib/get-mini-toc-items.js'
-import { pathLanguagePrefixed } from '@/languages/lib/languages.js'
-import statsd from '@/observability/lib/statsd.js'
-import { allVersions } from '@/versions/lib/all-versions.js'
-import { isConnectionDropped } from './halt-on-dropped-connection'
-import { nextHandleRequest } from './next.js'
-import { defaultCacheControl } from './cache-control.js'
-import { minimumNotFoundHtml } from '../lib/constants.js'
+import { allVersions } from '@/versions/lib/all-versions'
+import { transformerRegistry } from '@/article-api/transformers'
+import { normalizeRenderedMarkdown } from '@/article-api/lib/normalize-markdown'
+import { renderContentToHast } from '@/content-render/index'
+import { minimumNotFoundHtml } from '../lib/constants'
+import { contentTypeCacheControl, defaultCacheControl } from './cache-control'
+import { nextHandleRequest } from './next'
 
+const logger = createLogger(import.meta.url)
 const STATSD_KEY_RENDER = 'middleware.render_page'
-const STATSD_KEY_404 = 'middleware.render_404'
 
 async function buildRenderedPage(req: ExtendedRequest): Promise<string> {
   const { context } = req
@@ -26,12 +27,55 @@ async function buildRenderedPage(req: ExtendedRequest): Promise<string> {
   if (!page) throw new Error('page not set in context')
   const path = req.pagePath || req.path
 
-  const pageRenderTimed = statsd.asyncTimer(page.render, STATSD_KEY_RENDER, [`path:${path}`])
+  // Set up collection array for the collect-mini-toc rehype plugin only when
+  // the page actually needs a mini-TOC, avoiding unnecessary work.
+  if (page.showMiniToc) {
+    const collectMiniToc: CollectedHeading[] = []
+    context.collectMiniToc = collectMiniToc
+  }
+
+  const pageRenderTimed = statsd.asyncTimer(adaptForTimer(page.render), STATSD_KEY_RENDER, [
+    `path:${path}`,
+  ])
 
   return (await pageRenderTimed(context)) as string
 }
 
-async function buildMiniTocItems(req: ExtendedRequest): Promise<string | undefined> {
+/**
+ * Spike for #6619 (remove dangerouslySetInnerHTML): produce the article body as
+ * a serializable hast (HTML AST) tree alongside the legacy HTML string.
+ *
+ * Must run AFTER buildRenderedPage, which calls page.render and populates the
+ * context fields the pipeline reads (englishHeadings, alertTitles). We render
+ * the same raw `page.markdown`, but with a context clone that omits
+ * `collectMiniToc` so the mini-TOC isn't collected a second time.
+ *
+ * Wrapped so a hast failure can never break the page: the React layer falls
+ * back to the string path when this is undefined. NOTE: this currently renders
+ * the body pipeline twice; the production design (see #6619 plan) should produce
+ * hast once and derive the string from it.
+ */
+async function buildRenderedPageHast(req: ExtendedRequest) {
+  const { context } = req
+  if (!context) throw new Error('request not contextualized')
+  const { page } = context
+  if (!page || !page.markdown) return undefined
+
+  try {
+    const hastContext = { ...context, collectMiniToc: undefined }
+    const { hast } = await renderContentToHast(page.markdown, hastContext)
+    return hast || undefined
+  } catch (error) {
+    logger.error(
+      'buildRenderedPageHast failed; falling back to string path',
+      error instanceof Error ? error : new Error(String(error)),
+      { path: req.pagePath || req.path },
+    )
+    return undefined
+  }
+}
+
+function buildMiniTocItems(req: ExtendedRequest) {
   const { context } = req
   if (!context) throw new Error('request not contextualized')
   const { page } = context
@@ -41,7 +85,11 @@ async function buildMiniTocItems(req: ExtendedRequest): Promise<string | undefin
     return
   }
 
-  return getMiniTocItems(context.renderedPage, 0)
+  // Use headings collected during rendering via the collect-mini-toc rehype plugin.
+  const collected = context.collectMiniToc as CollectedHeading[] | undefined
+  if (collected) {
+    return buildMiniTocFromCollected(collected, 2)
+  }
 }
 
 export default async function renderPage(req: ExtendedRequest, res: Response) {
@@ -60,63 +108,15 @@ export default async function renderPage(req: ExtendedRequest, res: Response) {
   // render a 404 page
   if (!page) {
     if (process.env.NODE_ENV !== 'test' && context.redirectNotFound) {
-      console.error(
-        `\nTried to redirect to ${context.redirectNotFound}, but that page was not found.\n`,
-      )
+      logger.error('Tried to redirect to a page that was not found', {
+        redirectNotFound: context.redirectNotFound,
+      })
     }
 
-    if (!pathLanguagePrefixed(req.path)) {
-      defaultCacheControl(res)
-      return res.status(404).type('html').send(minimumNotFoundHtml)
-    }
-
-    // The rest is "unhandled" requests where we don't have the page
-    // but the URL looks like a real page.
-
-    statsd.increment(STATSD_KEY_404, 1, [
-      `url:${req.url}`,
-      `ip:${req.ip}`,
-      `path:${req.path}`,
-      `referer:${req.headers.referer || ''}`,
-    ])
-
-    // This means, we allow the CDN to cache it, but to be purged at the
-    // next deploy. The length isn't very important as long as it gets
-    // a new chance after the next deploy + purge.
-    // This way, we only have to respond with this 404 once per deploy
-    // and the CDN can cache it.
+    // send minimal 404 at this point since we ran into hydration issues trying to pass
+    // these along to AppRouter 404 handling
     defaultCacheControl(res)
-
-    // The reason we're *NOT* using `nextApp.render404` is because, in
-    // Next v13, is for two reasons:
-    //
-    //  1. You cannot control the `cache-control` header. It always
-    //     gets set to `private, no-cache, no-store, max-age=0, must-revalidate`.
-    //     which is causing problems with Fastly because then we can't
-    //     let Fastly cache it till the next purge, even if we do set a
-    //     `Surrogate-Control` header.
-    //  2. In local development, it will always hang and never respond.
-    //     Eventually you get a timeout error (503) after 10 seconds.
-    //
-    // The solution is to render a custom page (which is the
-    // src/pages/404.tsx) but control the status code (and the Cache-Control).
-    //
-    // Create a new request for a real one.
-    const tempReq = new http.IncomingMessage(req as any) as ExtendedRequest
-    tempReq.method = 'GET'
-    // There is a `src/pages/_notfound.txt`. That's why this will render
-    // a working and valid React component.
-    // It's important to not use `src/pages/404.txt` (or `/404` as the path)
-    // here because then it will set the wrong Cache-Control header.
-    tempReq.url = '/_notfound'
-    tempReq.path = '/_notfound'
-    tempReq.cookies = {}
-    tempReq.headers = {}
-    // By default, since the lookup for a `src/pages/*.tsx` file will work,
-    // inside the `nextHandleRequest` function, by default it will
-    // think it all worked with a 200 OK.
-    res.status(404)
-    return nextHandleRequest(tempReq, res)
+    return res.status(404).type('html').send(minimumNotFoundHtml)
   }
 
   // Just finish fast without all the details like Content-Length
@@ -133,15 +133,30 @@ export default async function renderPage(req: ExtendedRequest, res: Response) {
     res.setHeader('Last-Modified', new Date(page.effectiveDate).toUTCString())
   }
 
-  // Stop processing if the connection was already dropped
-  if (isConnectionDropped(req, res)) return
+  // Content negotiation: serve markdown when the client prefers it over HTML.
+  // Agents like Claude Code send Accept headers that omit text/html.
+  if (req.accepts(['text/html', 'text/markdown']) === 'text/markdown') {
+    context.markdownRequested = true
+  }
 
   if (!req.context) throw new Error('request not contextualized')
-  req.context.renderedPage = await buildRenderedPage(req)
-  req.context.miniTocItems = await buildMiniTocItems(req)
 
-  // Stop processing if the connection was already dropped
-  if (isConnectionDropped(req, res)) return
+  if (context.markdownRequested) {
+    const transformer = transformerRegistry.findTransformer(page)
+    if (!transformer) throw new Error(`No transformer found for page: ${req.pagePath}`)
+    // Pass context without markdownRequested — transformers set it themselves
+    // when rendering templates. Having it set during prepareTemplateData()
+    // causes renderTitle/renderProp to output markdown instead of HTML,
+    // which breaks the cheerio-based unwrap logic.
+    const transformerContext = { ...context, markdownRequested: false }
+    req.context.renderedPage = normalizeRenderedMarkdown(
+      await transformer.transform(page, path, transformerContext),
+    )
+  } else {
+    req.context.renderedPage = await buildRenderedPage(req)
+    req.context.renderedPageHast = await buildRenderedPageHast(req)
+    req.context.miniTocItems = buildMiniTocItems(req)
+  }
 
   // Create string for <title> tag
   page.fullTitle = page.title
@@ -152,7 +167,7 @@ export default async function renderPage(req: ExtendedRequest, res: Response) {
       req.context.currentVersion === 'free-pro-team@latest' ||
       !allVersions[req.context.currentVersion!]
     ) {
-      page.fullTitle += ' - ' + context.site!.data.ui.header.github_docs
+      page.fullTitle += ` - ${get(context.site!.data.ui, 'header.github_docs')}`
     } else {
       const { versionTitle } = allVersions[req.context.currentVersion!]
       page.fullTitle += ' - '
@@ -162,7 +177,7 @@ export default async function renderPage(req: ExtendedRequest, res: Response) {
       if (!versionTitle.includes('GitHub')) {
         page.fullTitle += 'GitHub '
       }
-      page.fullTitle += versionTitle + ' Docs'
+      page.fullTitle += `${versionTitle} Docs`
     }
   }
 
@@ -190,7 +205,18 @@ export default async function renderPage(req: ExtendedRequest, res: Response) {
     }
   }
 
-  defaultCacheControl(res)
+  if (context.markdownRequested) {
+    if (context.markdownViaUrl) {
+      // .md URL suffix always returns markdown — Vary: accept would be misleading
+      defaultCacheControl(res)
+    } else {
+      // Accept header determines the representation — Vary: accept is correct
+      contentTypeCacheControl(res)
+    }
+    return res.type('text/markdown').send(req.context.renderedPage)
+  }
+
+  contentTypeCacheControl(res)
 
   return nextHandleRequest(req, res)
 }

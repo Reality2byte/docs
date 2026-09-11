@@ -1,22 +1,21 @@
 ---
 title: Managing your payouts from GitHub Sponsors
-intro: 'You can view information about past and future payouts from {% data variables.product.prodname_sponsors %} and edit your bank information.'
+intro: You can view information about past and future payouts from {% data variables.product.prodname_sponsors %} and edit your bank information.
 redirect_from:
   - /articles/managing-your-payouts-from-github-sponsors
   - /github/supporting-the-open-source-community-with-github-sponsors/managing-your-payouts-from-github-sponsors
 versions:
   fpt: '*'
   ghec: '*'
-type: how_to
-topics:
-  - Sponsors payments
-  - Open Source
 shortTitle: Manage payouts
+contentType: how-tos
+category:
+  - Manage your sponsored account
 ---
 
 ## About payouts from {% data variables.product.prodname_sponsors %}
 
-You can view and manage your payouts from {% data variables.product.prodname_sponsors %}. For more information about payouts, see "[AUTOTITLE](/sponsors/receiving-sponsorships-through-github-sponsors/about-github-sponsors-for-open-source-contributors#sponsorship-payouts)."
+You can view and manage your payouts from {% data variables.product.prodname_sponsors %}. For more information about payouts, see [AUTOTITLE](/sponsors/receiving-sponsorships-through-github-sponsors/about-github-sponsors-for-open-source-contributors#sponsorship-payouts).
 
 If you use a fiscal host to receive payouts, you can view your current payout and next estimated payout but you cannot edit your payout information except by contacting support.
 

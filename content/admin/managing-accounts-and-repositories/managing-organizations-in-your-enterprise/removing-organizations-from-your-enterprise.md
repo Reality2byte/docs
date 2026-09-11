@@ -1,18 +1,24 @@
 ---
 title: Removing organizations from your enterprise
-intro: 'Learn how to remove an organization that should no longer be a part of your enterprise.'
+intro: Learn how to remove an organization that should no longer be a part of your enterprise.
 permissions: Enterprise owners can remove any organization from their enterprise.
 versions:
   ghec: '*'
-type: how_to
-topics:
-  - Enterprise
 shortTitle: Remove organizations
 redirect_from:
   - /admin/user-management/managing-organizations-in-your-enterprise/removing-organizations-from-your-enterprise
+contentType: how-tos
+category:
+  - Manage accounts and repositories
 ---
 
 You can remove an organization that is owned by your enterprise account, so the organization stands alone.
+
+## Limitations
+
+If you use {% data variables.product.prodname_emus %} or {% data variables.enterprise.data_residency %}, removing organizations from your enterprise is not possible.
+
+If you use {% data variables.product.prodname_emus %}, you can instead migrate organizations with the {% data variables.product.prodname_importer_proper_name %}. See [AUTOTITLE](/migrations/using-github-enterprise-importer/migrating-between-github-products/about-migrations-between-github-products).
 
 ## What happens when an organization is removed?
 
@@ -22,6 +28,8 @@ When you remove an organization from your enterprise:
 * The organization will be downgraded to the free plan.
 * The organization will be governed by our standard Terms of Service.
 * Any internal repositories within the organization will be converted to private repositories.
+* Depending on your policy settings, people who are not members of any other organization may remain in the enterprise as unaffiliated users. These users retain access to {% data variables.product.prodname_copilot_short %} if they were granted access directly from the enterprise. See [AUTOTITLE](/admin/enforcing-policies/enforcing-policies-for-your-enterprise/control-offboarding).
+* Any IP allow list configured for the organization will be disabled, as IP allow lists are only available on {% data variables.product.prodname_ghe_cloud %}. See [AUTOTITLE](/organizations/keeping-your-organization-secure/managing-security-settings-for-your-organization/managing-allowed-ip-addresses-for-your-organization).
 
 As part of the downgrade to the free plan:
 
@@ -35,13 +43,14 @@ As part of the downgrade to the free plan:
 ## Removing an organization from your enterprise
 
 {% data reusables.enterprise-accounts.access-enterprise %}
-1. In the left sidebar, click  **Organizations**.
+1. In the left sidebar, click **Organizations**.
 1. In the search bar, begin typing the organization's name until the organization appears in the search results.
-1. To the right of the organization's name, select the {% octicon "gear" aria-label="Organization settings" %} dropdown menu and click **Remove organization**.
+1. To the right of the organization's name, select the ... dropdown menu and click **Remove organization**.
 
-   ![Screenshot of a list of organizations in search results. To the right of the organization name, the dropdown menu labeled with a gear icon is expanded, and the "Remove organization" option is highlighted with an orange outline.](/assets/images/help/enterprises/remove-organization.png)
-1. Review the warnings, then click **Remove organization**.
+ ![Expanded dropdown menu labeled with "...", for an organization. The "Remove organization" option outlined.](/assets/images/help/enterprises/remove-organization.png)
+
+1. Review the warnings, decide whether to also remove users who will become unaffiliated, then click **Remove organization**.
 
 ## Further reading
 
-* "[AUTOTITLE](/admin/overview/about-enterprise-accounts)"
+* [AUTOTITLE](/admin/concepts/enterprise-fundamentals/enterprise-accounts)

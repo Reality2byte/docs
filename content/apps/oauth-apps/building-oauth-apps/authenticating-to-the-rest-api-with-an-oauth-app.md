@@ -11,8 +11,8 @@ versions:
   fpt: '*'
   ghes: '*'
   ghec: '*'
-topics:
-  - API
+category:
+  - Build and manage OAuth apps
 ---
 
 
@@ -20,11 +20,8 @@ In this section, we're going to focus on the basics of authentication. Specifica
 we're going to create a Ruby server (using [Sinatra](http://www.sinatrarb.com/)) that implements
 the [web flow](/apps/oauth-apps/building-oauth-apps/authorizing-oauth-apps) of an application in several different ways.
 
-{% tip %}
-
-You can download the complete source code for this project [from the platform-samples repo](https://github.com/github/platform-samples/tree/master/api/).
-
-{% endtip %}
+> [!TIP]
+> You can download the complete source code for this project [from the platform-samples repo](https://github.com/github/platform-samples/tree/master/api/).
 
 ## Registering your app
 
@@ -35,7 +32,7 @@ include the client secret in your native application, however web applications s
 
 You can fill out every other piece of information however you like, except the
 **Authorization callback URL**. This is the most important piece to securely setting
-up your application. It's the callback URL that {% data variables.product.product_name %}
+up your application. It's the callback URL that {% data variables.product.github %}
 returns the user to after successful authentication. Ownership of that URL is what ensures
 that users sign into your app, instead of leaking tokens to an attacker.
 
@@ -78,7 +75,7 @@ Next, in _views/index.erb_, paste this content:
     </p>
     <p>
       We're going to now talk to the GitHub API. Ready?
-      <a href="https://github.com/login/oauth/authorize?scope=user:email&client_id=<%= client_id %>">Click here</a> to begin!
+      <a href="https://github.com/login/oauth/authorize?scope=user:email+offline_access&client_id=<%= client_id %>">Click here</a> to begin!
     </p>
     <p>
       If that link doesn't work, remember to provide your own <a href="/apps/building-oauth-apps/authorizing-oauth-apps/">Client ID</a>!
@@ -87,19 +84,19 @@ Next, in _views/index.erb_, paste this content:
 </html>
 ```
 
-(If you're unfamiliar with how Sinatra works, we recommend [reading the Sinatra guide](https://github.com/sinatra/sinatra-book/blob/master/book/Introduction.markdown#hello-world-application).)
+(If you're unfamiliar with how Sinatra works, we recommend [reading the Sinatra guide](https://github.com/sinatra/sinatra-book/blob/main/book/Introduction.markdown#hello-world-application).)
 
 Also, notice that the URL uses the `scope` query parameter to define the
 [scopes](/apps/oauth-apps/building-oauth-apps/scopes-for-oauth-apps) requested by the application. For our application, we're
-requesting `user:email` scope for reading private email addresses.
+requesting `user:email` scope for reading private email addresses. We'll also request the `offline_access` scope to get expiring tokens, which are better for security.
 
-Navigate your browser to `http://127.0.0.1:4567`. After clicking on the link, you should be taken to {% data variables.product.product_name %}, and presented with an "Authorize application" dialog.
+Navigate your browser to `http://127.0.0.1:4567`. After clicking on the link, you should be taken to {% data variables.product.github %}, and presented with an "Authorize application" dialog.
 
 If you trust yourself, click **Authorize App**. Wuh-oh! Sinatra spits out a
 `404` error. What gives?!
 
 Well, remember when we specified a Callback URL to be `callback`? We didn't provide
-a route for it, so {% data variables.product.product_name %} doesn't know where to drop the user after they authorize
+a route for it, so {% data variables.product.github %} doesn't know where to drop the user after they authorize
 the app. Let's fix that now!
 
 ### Providing a callback
@@ -123,16 +120,16 @@ get '/callback' do
 end
 ```
 
-After a successful app authentication, {% data variables.product.product_name %} provides a temporary `code` value.
-You'll need to `POST` this code back to {% data variables.product.product_name %} with your client secret
+After a successful app authentication, {% data variables.product.github %} provides a temporary `code` value.
+You'll need to `POST` this code back to {% data variables.product.github %} with your client secret
 in exchange for an `access_token`.
 To simplify our GET and POST HTTP requests, we're using the [rest-client](https://github.com/archiloque/rest-client).
 Note that you'll probably never access the API through REST. For a more serious
-application, you should probably use [a library written in the language of your choice](/rest/overview/libraries).
+application, you should probably use [a library written in the language of your choice](/rest/using-the-rest-api/libraries-for-the-rest-api).
 
 ### Checking granted scopes
 
-Users can edit the scopes you requested by directly changing the URL. This can grant your application less access than you originally asked for. Before making any requests with the token, check the scopes that were granted for the token by the user. For more information about requested and granted scopes, see "[AUTOTITLE](/apps/oauth-apps/building-oauth-apps/scopes-for-oauth-apps#requested-scopes-and-granted-scopes)."
+Users can edit the scopes you requested by directly changing the URL. This can grant your application less access than you originally asked for. Before making any requests with the token, check the scopes that were granted for the token by the user. For more information about requested and granted scopes, see [AUTOTITLE](/apps/oauth-apps/building-oauth-apps/scopes-for-oauth-apps#requested-scopes-and-granted-scopes).
 
 The scopes that were granted are returned as a part of the response from
 exchanging a token.
@@ -222,19 +219,27 @@ time they needed to access the web page. For example, try navigating directly to
 
 What if we could circumvent the entire
 "click here" process, and just _remember_ that, as long as the user's logged into
-{% data variables.product.product_name %}, they should be able to access this application? Hold on to your hat,
+{% data variables.product.github %}, they should be able to access this application? Hold on to your hat,
 because _that's exactly what we're going to do_.
 
 Our little server above is rather simple. In order to wedge in some intelligent
 authentication, we're going to switch over to using sessions for storing tokens.
 This will make authentication transparent to the user.
 
-Also, since we're persisting scopes within the session, we'll need to
-handle cases when the user updates the scopes after we checked them, or revokes
-the token. To do that, we'll use a `rescue` block and check that the first API
+Also, since we're persisting tokens within the session, we'll need to
+handle cases when the user updates the scopes after we checked them, revokes
+the token, or the token expires. To do that, we'll use a `rescue` block and check that the first API
 call succeeded, which verifies that the token is still valid. After that, we'll
 check the `X-OAuth-Scopes` response header to verify that the user hasn't revoked
 the `user:email` scope.
+
+Access tokens can also expire if you configure your app to request short-lived tokens.
+When you exchange the temporary `code`, the
+response can include a `refresh_token` alongside the `access_token`. We'll persist
+the refresh token in the session too, and if an API call fails because the access
+token has expired or was revoked, we'll use the refresh token to request a new
+access token and retry the request. Only if the refresh also fails do we start
+the OAuth flow again.
 
 Create a file called _advanced_server.rb_, and paste these lines into it:
 
@@ -263,23 +268,55 @@ def authenticate!
   erb :index, :locals => {:client_id => CLIENT_ID}
 end
 
+def refresh_access_token!
+  # exchange the stored refresh token for a new access token
+  result = RestClient.post('https://github.com/login/oauth/access_token',
+                          {:client_id => CLIENT_ID,
+                           :client_secret => CLIENT_SECRET,
+                           :grant_type => 'refresh_token',
+                           :refresh_token => session[:refresh_token]},
+                           :accept => :json)
+
+  parsed_result = JSON.parse(result)
+  new_access_token = parsed_result['access_token']
+
+  # if we didn't get a new access token back, the refresh failed
+  return false unless new_access_token
+
+  # store the new access token and refresh token in the session
+  session[:access_token] = new_access_token
+  session[:refresh_token] = parsed_result['refresh_token']
+  true
+rescue
+  false
+end
+
 get '/' do
   if !authenticated?
     authenticate!
   else
-    access_token = session[:access_token]
     scopes = []
+    refreshed = false
 
     begin
+      access_token = session[:access_token]
       auth_result = RestClient.get('{% data variables.product.rest_url %}/user',
                                    {:params => {:access_token => access_token},
                                     :accept => :json})
     rescue => e
-      # request didn't succeed because the token was revoked so we
-      # invalidate the token stored in the session and render the
-      # index page so that the user can start the OAuth flow again
+      # the request didn't succeed because the token was revoked or has
+      # expired. If we haven't already tried and we have a refresh token,
+      # get a new access token and retry the request once
+      if !refreshed && session[:refresh_token] && refresh_access_token!
+        refreshed = true
+        retry
+      end
 
+      # we couldn't refresh the token, so we invalidate the tokens stored in
+      # the session and render the index page so that the user can start the
+      # OAuth flow again
       session[:access_token] = nil
+      session[:refresh_token] = nil
       return authenticate!
     end
 
@@ -310,19 +347,31 @@ get '/callback' do
                            :code => session_code},
                            :accept => :json)
 
-  session[:access_token] = JSON.parse(result)['access_token']
+  parsed_result = JSON.parse(result)
+  session[:access_token] = parsed_result['access_token']
+  session[:refresh_token] = parsed_result['refresh_token']
 
   redirect '/'
 end
 ```
 
 Much of the code should look familiar. For example, we're still using `RestClient.get`
-to call out to the {% ifversion fpt or ghec %}{% data variables.product.prodname_dotcom %}{% else %}{% data variables.product.product_name %}{% endif %} API, and we're still passing our results to be rendered
+to call out to the {% data variables.product.github %} API, and we're still passing our results to be rendered
 in an ERB template (this time, it's called `advanced.erb`).
 
 Also, we now have the `authenticated?` method which checks if the user is already
 authenticated. If not, the `authenticate!` method is called, which performs the
 OAuth flow and updates the session with the granted token and scopes.
+
+The `refresh_access_token!` method exchanges the `refresh_token` we saved in the
+session for a fresh `access_token`. When an API call fails in the `rescue` block,
+we call this method and use Ruby's `retry` keyword to run the request again with
+the new token. If the refresh fails because the refresh token has
+also expired or the token was revoked, we clear the session and send the user back
+through the OAuth flow. To prevent an infinite authentication loop, we also remember
+that we've refreshed the token - so if the API fails again, it might be because the user 
+lost access to the resource. If that's the case, no amount of refreshing the token will fix 
+the API call.
 
 Next, create a file in _views_ called _advanced.erb_, and paste this markup into it:
 
@@ -356,8 +405,8 @@ which redirects you to `/callback`. `/callback` then sends us back to `/`,
 and since we've been authenticated, renders _advanced.erb_.
 
 We could completely simplify this roundtrip routing by simply changing our callback
-URL in {% data variables.product.product_name %} to `/`. But, since both _server.rb_ and _advanced.rb_ are relying on
+URL in {% data variables.product.github %} to `/`. But, since both _server.rb_ and _advanced.rb_ are relying on
 the same callback URL, we've got to do a little bit of wonkiness to make it work.
 
-Also, if we had never authorized this application to access our {% data variables.product.product_name %} data,
+Also, if we had never authorized this application to access our {% data variables.product.github %} data,
 we would've seen the same confirmation dialog from earlier pop-up and warn us.

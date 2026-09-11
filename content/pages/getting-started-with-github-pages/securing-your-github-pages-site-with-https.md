@@ -8,16 +8,18 @@ redirect_from:
 versions:
   fpt: '*'
   ghec: '*'
-topics:
-  - Pages
 shortTitle: Secure site with HTTPS
+category:
+  - Set up a GitHub Pages site
 ---
 
 People with admin permissions for a repository can enforce HTTPS for a {% data variables.product.prodname_pages %} site.
 
 ## About HTTPS and {% data variables.product.prodname_pages %}
 
-All {% data variables.product.prodname_pages %} sites, including sites that are correctly configured with a custom domain, support HTTPS and HTTPS enforcement. For more information about custom domains, see "[AUTOTITLE](/pages/configuring-a-custom-domain-for-your-github-pages-site/about-custom-domains-and-github-pages)" and "[AUTOTITLE](/pages/configuring-a-custom-domain-for-your-github-pages-site/troubleshooting-custom-domains-and-github-pages#https-errors)."
+All {% data variables.product.prodname_pages %} sites, including sites that are correctly configured with a custom domain, support HTTPS and HTTPS enforcement. For more information about custom domains, see [AUTOTITLE](/pages/configuring-a-custom-domain-for-your-github-pages-site/about-custom-domains-and-github-pages) and [AUTOTITLE](/pages/configuring-a-custom-domain-for-your-github-pages-site/troubleshooting-custom-domains-and-github-pages#https-errors).
+
+{% data variables.product.prodname_pages %} sites created after June 15, 2016, and using `github.io` domains are served over HTTPS automatically.
 
 {% data reusables.pages.no_sensitive_data_pages %}
 
@@ -46,13 +48,13 @@ If you enable HTTPS for your {% data variables.product.prodname_pages %} site bu
 To remove your site's mixed content, make sure all your assets are served over HTTPS by changing `http://` to `https://` in your site's HTML.
 
 Assets are commonly found in the following locations:
-* If your site uses Jekyll, your HTML files will probably be found in the __layouts_ folder.
+* If your site uses Jekyll, your HTML files will probably be found in the `_layouts` folder.
 * CSS is usually found in the `<head>` section of your HTML file.
 * JavaScript is usually found in the `<head>` section or just before the closing `</body>` tag.
 * Images are often found in the `<body>` section.
 
 > [!TIP]
-> If you can't find your assets in your site's source files, try searching your site's source files for `http` in your text editor or on {% data variables.product.product_name %}.
+> If you can't find your assets in your site's source files, try searching your site's source files for `http://` in your text editor or on {% data variables.product.github %}.
 
 ### Examples of assets referenced in an HTML file
 
@@ -64,9 +66,9 @@ Assets are commonly found in the following locations:
 
 ## Verifying the DNS configuration
 
-In some cases, a HTTPS certificate will not be able to be generated due to the DNS configuration of your custom domain. This can be caused by extra DNS records, or records not pointing to the IP addresses for {% data variables.product.prodname_pages %}.
+In some cases, an HTTPS certificate will not be able to be generated due to the DNS configuration of your custom domain. This can be caused by extra DNS records, or records not pointing to the IP addresses for {% data variables.product.prodname_pages %}.
 
-To ensure a HTTPS certificate generates correctly, we recommend the following configurations. Any additional `A`, `AAAA`, `ALIAS`, `ANAME` records with the `@` host, or `CNAME` records pointing to your `www` subdomain or other custom subdomain that you would like to use with {% data variables.product.prodname_pages %} may prevent the HTTPS certificate from generating.
+To ensure an HTTPS certificate generates correctly, we recommend the following configurations. Any additional `A`, `AAAA`, `ALIAS`, `ANAME` records with the `@` host, or `CNAME` records pointing to your `www` subdomain or other custom subdomain that you would like to use with {% data variables.product.prodname_pages %} may prevent the HTTPS certificate from generating.
 
 | Scenario | DNS record type | DNS record name | DNS record value(s) |
 |---|---|---|---|

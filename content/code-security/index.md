@@ -1,54 +1,48 @@
 ---
-title: Code security documentation
-shortTitle: Code security
-intro: 'Build security into your {% data variables.product.prodname_dotcom %} workflow with features to keep secrets and vulnerabilities out of your codebase, and to maintain your software supply chain.'
+title: Security and code quality documentation
+shortTitle: Security and code quality
+intro: Build security and code quality into your {% data variables.product.github %} workflow with integrated tooling.
 redirect_from:
   - /code-security/guides
+  - /enterprise-onboarding/govern-people-and-repositories/about-enterprise-security
+  - /enterprise-onboarding/feature-enhancements/about-code-security-for-your-enterprise
+  - /enterprise-onboarding/feature-enhancements/about-enterprise-security
 introLinks:
-  overview: /code-security/getting-started/github-security-features
-  try_ghas_for_free: '{% ifversion ghec %}/billing/managing-billing-for-your-products/managing-billing-for-github-advanced-security/setting-up-a-trial-of-github-advanced-security{% endif %}'
-featuredLinks:
-  startHere:
+  overview: '{% ifversion ghes %}/code-security/getting-started/github-security-features{% endif %}'
+  generate_secret_risk_assessment_report_for_free: '{% ifversion secret-risk-assessment %}https://github.com/get_started?with=risk-assessment{% endif %}'
+layout: discovery-landing
+contentType: landing
+includedCategories:
+  - Plan your security strategy
+  - Protect your secrets
+  - Find and fix code vulnerabilities
+  - Customize vulnerability detection with CodeQL
+  - Secure your dependencies
+  - Secure at scale
+  - Report and disclose vulnerabilities
+  - Improve code quality
+  - Troubleshoot security tools
+  - Find CodeQL CLI commands
+carousels:
+  recommended:
     - /code-security/getting-started/quickstart-for-securing-your-repository
-    - '{% ifversion fpt or ghec %}/code-security/security-advisories/working-with-repository-security-advisories/creating-a-repository-security-advisory{% endif %}'
-    - '/code-security/code-scanning/enabling-code-scanning/configuring-default-setup-for-code-scanning'
-  guideCards:
-    - /code-security/dependabot/dependabot-security-updates/configuring-dependabot-security-updates
-    - /code-security/dependabot/dependabot-version-updates/configuring-dependabot-version-updates
-    - '/code-security/code-scanning/enabling-code-scanning/configuring-default-setup-for-code-scanning'
-    - /code-security/supply-chain-security/end-to-end-supply-chain/end-to-end-supply-chain-overview
-  popular:
-    - '{% ifversion ghes %}/admin/release-notes{% endif %}'
-    - /code-security/dependabot/dependabot-alerts/about-dependabot-alerts
-    - /code-security/security-advisories/guidance-on-reporting-and-writing-information-about-vulnerabilities/about-coordinated-disclosure-of-security-vulnerabilities
-    - /code-security/dependabot/working-with-dependabot/keeping-your-actions-up-to-date-with-dependabot
-    - /code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
-    - /code-security/dependabot/working-with-dependabot/configuring-access-to-private-registries-for-dependabot
-    - /code-security/dependabot/working-with-dependabot/troubleshooting-the-detection-of-vulnerable-dependencies
-changelog:
-  label: security-and-compliance
-  versions:
-    fpt: '*'
-    ghec: '*'
-layout: product-landing
+    - /code-security/getting-started/github-security-features
+    - /code-security/tutorials/trialing-github-advanced-security/planning-a-trial-of-ghas
+    - /code-security/concepts/secret-security/secret-scanning
+    - /code-security/concepts/code-scanning/code-scanning
+    - /code-security/tutorials/secure-your-dependencies/dependabot-quickstart
+    - /code-security/tutorials/code-quality-adoption-path
+    - /code-security/tutorials/secure-your-organization/prevent-data-leaks
+    - /code-security/concepts/supply-chain-security/best-practices-for-maintaining-dependencies
 versions:
   fpt: '*'
   ghes: '*'
   ghec: '*'
-topics:
-  - Repositories
-  - Dependencies
-  - Vulnerabilities
 children:
   - /getting-started
-  - /adopting-github-advanced-security-at-scale
-  - /securing-your-organization
-  - /secret-scanning
-  - /code-scanning
-  - /codeql-cli
-  - /codeql-for-vs-code
-  - /security-advisories
-  - /supply-chain-security
-  - /dependabot
-  - /security-overview
+  - /concepts
+  - /how-tos
+  - /reference
+  - /tutorials
+  - /responsible-use
 ---

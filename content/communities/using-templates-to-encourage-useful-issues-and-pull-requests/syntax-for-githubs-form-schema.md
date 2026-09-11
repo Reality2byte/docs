@@ -1,12 +1,14 @@
 ---
 title: Syntax for GitHub's form schema
 intro: 'You can use {% data variables.product.company_short %}''s form schema to configure forms for supported features.'
+redirect_from:
+  - /early-access/github/save-time-with-slash-commands/githubs-form-schema
 versions:
   fpt: '*'
   ghec: '*'
-  ghes: '> 3.8'
-topics:
-  - Community
+  ghes: '*'
+category:
+  - Create issue and pull request templates
 ---
 
 > [!NOTE]
@@ -14,7 +16,7 @@ topics:
 
 ## About {% data variables.product.company_short %}'s form schema
 
-You can use {% data variables.product.company_short %}'s form schema to configure forms for supported features. For more information, see "[AUTOTITLE](/communities/using-templates-to-encourage-useful-issues-and-pull-requests/configuring-issue-templates-for-your-repository#creating-issue-forms)."
+You can use {% data variables.product.company_short %}'s form schema to configure forms for supported features. For more information, see [AUTOTITLE](/communities/using-templates-to-encourage-useful-issues-and-pull-requests/configuring-issue-templates-for-your-repository#creating-issue-forms).
 
 A form is a set of elements for requesting user input. You can configure a form by creating a YAML form definition, which is an array of form elements. Each form element is a set of key-value pairs that determine the type of the element, the properties of the element, and the constraints you want to apply to the element. For some keys, the value is another set of key-value pairs.
 
@@ -36,8 +38,8 @@ For example, the following form definition includes four form elements: a text a
     multiple: false
     options:
       - 1.0.2 (Default)
-      - 1.0.3 (Edge){% ifversion issue-form-dropdown-defaults %}
-    default: 0{% endif %}
+      - 1.0.3 (Edge)
+    default: 0
   validations:
     required: true
 - type: checkboxes
@@ -59,7 +61,7 @@ For each form element, you can set the following keys.
 
 | Key | Description | Required | Type | Default | Valid values |
 | --- | ----------- | -------- | ---- | ------- | ------- |
-| `type` | The type of element that you want to define. | {% octicon "check" aria-label="Required" %} | String | {% octicon "dash" aria-label="Not applicable" %} | <ul><li>`checkboxes`</li><li>`dropdown`</li><li>`input`</li><li>`markdown`</li><li>`textarea`</li></ul> |
+| `type` | The type of element that you want to define. | {% octicon "check" aria-label="Required" %} | String | {% octicon "dash" aria-label="Not applicable" %} | <ul><li>`checkboxes`</li><li>`dropdown`</li><li>`input`</li><li>`markdown`</li><li>`textarea`</li>{% ifversion issue-form-upload %}<li>`upload`</li>{% endif %}</ul> |
 | `id` | The identifier for the element, except when `type` is set to `markdown`. {% data reusables.form-schema.id-must-be-unique %} If provided, the `id` is the canonical identifier for the field in URL query parameter prefills. | {% octicon "x" aria-label="Optional" %}  | String | {% octicon "dash" aria-label="Not applicable" %} | {% octicon "dash" aria-label="Not applicable" %} |
 | `attributes` | A set of key-value pairs that define the properties of the element.  | {% octicon "check" aria-label="Required" %} | Map | {% octicon "dash" aria-label="Not applicable" %} | {% octicon "dash" aria-label="Not applicable" %} |
 | `validations` | A set of key-value pairs that set constraints on the element. | {% octicon "x" aria-label="Optional" %}  | Map | {% octicon "dash" aria-label="Not applicable" %} | {% octicon "dash" aria-label="Not applicable" %} |
@@ -73,6 +75,9 @@ You can choose from the following types of form elements. Each type has unique a
 | [`input`](#input) | A single-line text field. |
 | [`dropdown`](#dropdown) | A dropdown menu. |
 | [`checkboxes`](#checkboxes) | A set of checkboxes. |
+| {% ifversion issue-form-upload %} |
+| [`upload`](#upload) | A file upload field. |
+| {% endif %} |
 
 ### `markdown`
 
@@ -118,7 +123,7 @@ You can use a `textarea` element to add a multi-line text field to your form. Co
 | `description` | A description of the text area to provide context or guidance, which is displayed in the form. | {% octicon "x" aria-label="Optional" %}  | String | Empty String | {% octicon "dash" aria-label="Not applicable" %} |
 | `placeholder` | A semi-opaque placeholder that renders in the text area when empty. | {% octicon "x" aria-label="Optional" %}  | String | Empty String | {% octicon "dash" aria-label="Not applicable" %} |
 | `value` | Text that is pre-filled in the text area. | {% octicon "x" aria-label="Optional" %}  | String | {% octicon "dash" aria-label="Not applicable" %} | {% octicon "dash" aria-label="Not applicable" %} |
-| `render` | If a value is provided, submitted text will be formatted into a codeblock. When this key is provided, the text area will not expand for file attachments or Markdown editing. | {% octicon "x" aria-label="Optional" %}  | String | {% octicon "dash" aria-label="Not applicable" %} | Languages known to {% data variables.product.prodname_dotcom %}. For more information, see [the languages YAML file](https://github.com/github-linguist/linguist/blob/master/lib/linguist/languages.yml). |
+| `render` | If a value is provided, submitted text will be formatted into a codeblock. When this key is provided, the text area will not expand for file attachments or Markdown editing. | {% octicon "x" aria-label="Optional" %}  | String | {% octicon "dash" aria-label="Not applicable" %} | Languages known to {% data variables.product.prodname_dotcom %}. For more information, see [the languages YAML file](https://github.com/github-linguist/linguist/blob/main/lib/linguist/languages.yml). |
 
 #### Validations for `textarea`
 
@@ -220,8 +225,8 @@ body:
       - Built from source
       - Homebrew
       - MacPorts
-      - apt-get{% ifversion issue-form-dropdown-defaults %}
-    default: 0{% endif %}
+      - apt-get
+    default: 0
   validations:
     required: true
 ```
@@ -265,6 +270,58 @@ body:
       - label: Windows
       - label: Linux
 ```
+
+{% ifversion issue-form-upload %}
+
+### `upload`
+
+You can use an `upload` element to add a file upload field to your form. Contributors can drag and drop files or click to browse and select files directly within the form.
+
+#### Supported file types and size limits
+
+The following file types are accepted, subject to the size limits below:
+
+| Category  | Extensions | Size limit |
+|-----------| ---------- | -------- |
+| Archives  | `.zip`, `.gz`, `.tar.gz` | 25 MB |
+| Documents | `.pdf`, `.docx`, `.xlsx`, `.pptx` | 25 MB |
+| Images    | `.png`, `.jpg`, `.jpeg`, `.gif`, `.svg`, `.webp` | 10 MB |
+| Videos    | `.mp4`, `.mov`, `.webm` | 100 MB |
+| Text      | `.json`, `.py`, `.js`, `.ts`, `.log`, `.txt`, `.csv` | 25 MB |
+
+#### Attributes for `upload`
+
+{% data reusables.form-schema.attributes-intro %}
+
+| Key | Description | Required | Type | Default | Valid values |
+| --- | ----------- | -------- | ---- | ------- | ------- |
+| `label` | A brief description of the expected file upload, which is displayed in the form. | {% octicon "check" aria-label="Required" %} | String | {% octicon "dash" aria-label="Not applicable" %} | {% octicon "dash" aria-label="Not applicable" %} |
+| `description` | A description of the file upload field to provide context or guidance, which is displayed in the form. | {% octicon "x" aria-label="Optional" %}  | String | Empty String | {% octicon "dash" aria-label="Not applicable" %} |
+
+#### Validations for `upload`
+
+{% data reusables.form-schema.validations-intro %}
+
+| Key | Description | Required | Type | Default | Valid values |
+| --- | ----------- | -------- | ---- | ------- | ------- |
+{% data reusables.form-schema.required-key %}
+| `accept` | A comma-separated list of file extensions that are accepted. If omitted, all supported file types are accepted. | {% octicon "x" aria-label="Optional" %} | String | {% octicon "dash" aria-label="Not applicable" %} | {% octicon "dash" aria-label="Not applicable" %} |
+
+#### Example of `upload`
+
+```yaml copy
+body:
+- type: upload
+  id: screenshots
+  attributes:
+    label: Upload relevant files
+    description: "Drag and drop any relevant screenshots or log files."
+  validations:
+    required: false
+    accept: ".png,.jpg,.gif,.log,.txt,.zip"
+```
+
+{% endif %}
 
 ## Further reading
 

@@ -8,10 +8,9 @@ versions:
   fpt: '*'
   ghes: '*'
   ghec: '*'
-topics:
-  - Organizations
-  - Teams
 shortTitle: Manage default labels
+category:
+  - Set repository policies
 ---
 
 Organization owners can manage default labels for repositories in the organization.
@@ -52,4 +51,4 @@ Default labels are included in every new repository in your organization, but an
 
 ## Further reading
 
-* "[AUTOTITLE](/issues/using-labels-and-milestones-to-track-work/managing-labels)"
+* [AUTOTITLE](/issues/using-labels-and-milestones-to-track-work/managing-labels)

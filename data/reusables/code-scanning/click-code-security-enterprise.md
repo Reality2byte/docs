@@ -1,1 +1,1 @@
-1. On the left side of the page, in the enterprise account sidebar, click **{% octicon "shield" aria-hidden="true" %} Code Security**.
+1. At the top of the page, click the **{% data variables.product.prodname_security_and_quality_tab %}** tab.

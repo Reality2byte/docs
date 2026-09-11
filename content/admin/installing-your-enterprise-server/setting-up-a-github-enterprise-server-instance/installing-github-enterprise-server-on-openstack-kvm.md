@@ -1,6 +1,6 @@
 ---
 title: Installing GitHub Enterprise Server on OpenStack KVM
-intro: 'To install {% data variables.product.prodname_ghe_server %} on OpenStack KVM, you must have OpenStack access and download the {% data variables.product.prodname_ghe_server %} QCOW2 image.'
+intro: To install {% data variables.product.prodname_ghe_server %} on OpenStack KVM, you must have OpenStack access and download the {% data variables.product.prodname_ghe_server %} QCOW2 image.
 redirect_from:
   - /enterprise/admin/guides/installation/installing-github-enterprise-on-openstack-kvm
   - /enterprise/admin/installation/installing-github-enterprise-server-on-openstack-kvm
@@ -8,13 +8,10 @@ redirect_from:
   - /admin/installation/setting-up-a-github-enterprise-server-instance/installing-github-enterprise-server-on-openstack-kvm
 versions:
   ghes: '*'
-type: tutorial
-topics:
-  - Administrator
-  - Enterprise
-  - Infrastructure
-  - Set up
 shortTitle: Install on OpenStack
+contentType: tutorials
+category:
+  - Install and configure your instance
 ---
 ## Prerequisites
 
@@ -37,7 +34,7 @@ shortTitle: Install on OpenStack
 {% data reusables.enterprise_installation.create-ghe-instance %}
 
 1. In OpenStack Horizon, upload the {% data variables.product.prodname_ghe_server %} image you downloaded. For instructions, see the "Upload an image" section of the OpenStack guide [Upload and manage images](https://docs.openstack.org/horizon/latest/user/manage-images.html).
-{% data reusables.enterprise_installation.create-attached-storage-volume %} For instructions, see the OpenStack guide "[Create and manage volumes](https://docs.openstack.org/horizon/latest/user/manage-volumes.html)."
+{% data reusables.enterprise_installation.create-attached-storage-volume %} For instructions, see the OpenStack guide [Create and manage volumes](https://docs.openstack.org/horizon/latest/user/manage-volumes.html).
 1. Create a security group, and add a new security group rule for each port in the table below. For instructions, see the OpenStack guide [Configure access and security for instances](https://docs.openstack.org/horizon/latest/user/configure-access-and-security-for-instances.html).
 
    {% data reusables.enterprise_installation.necessary_ports %}
@@ -52,11 +49,11 @@ shortTitle: Install on OpenStack
 
 {% data reusables.enterprise_installation.copy-the-vm-public-dns-name %}
 {% data reusables.enterprise_installation.upload-a-license-file %}
-{% data reusables.enterprise_installation.save-settings-in-web-based-mgmt-console %} For more information, see "[AUTOTITLE](/admin/configuration/configuring-your-enterprise)."
+{% data reusables.enterprise_installation.save-settings-in-web-based-mgmt-console %} For more information, see [AUTOTITLE](/admin/configuring-settings).
 {% data reusables.enterprise_installation.instance-will-restart-automatically %}
 {% data reusables.enterprise_installation.visit-your-instance %}
 
 ## Further reading
 
-* "[AUTOTITLE](/admin/overview/system-overview)"{% ifversion ghes %}
-* "[AUTOTITLE](/admin/overview/about-upgrades-to-new-releases)"{% endif %}
+* [AUTOTITLE](/admin/overview/system-overview)
+* [AUTOTITLE](/admin/overview/about-upgrades-to-new-releases)

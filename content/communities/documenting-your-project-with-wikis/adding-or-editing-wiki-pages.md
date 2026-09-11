@@ -1,6 +1,6 @@
 ---
 title: Adding or editing wiki pages
-intro: 'You can add and edit wiki pages directly on {% data variables.product.product_name %} or locally using the command line.'
+intro: 'You can add and edit wiki pages directly on {% data variables.product.github %} or locally using the command line.'
 redirect_from:
   - /articles/adding-wiki-pages-via-the-online-interface
   - /articles/editing-wiki-pages-via-the-online-interface
@@ -13,9 +13,9 @@ versions:
   fpt: '*'
   ghes: '*'
   ghec: '*'
-topics:
-  - Community
 shortTitle: Manage wiki pages
+category:
+  - Document your project with wikis
 ---
 
 ## Adding wiki pages
@@ -37,7 +37,7 @@ shortTitle: Manage wiki pages
 {% data reusables.repositories.sidebar-wiki %}
 1. Using the wiki sidebar on the right, navigate to the page you want to change. In the upper-right corner of the page, click **Edit**.
 1. Use the text editor to edit the page's content.
-1. In the "Edit message" field, type a commit message describing the new file you’re adding.
+1. In the "Edit message" field, type a commit message describing the changes you’re making.
 1. To commit your changes to the wiki, click **Save Page**.
 
 ## Adding or editing wiki pages locally
@@ -47,7 +47,7 @@ Wikis are part of Git repositories, so you can make changes locally and push the
 ### Cloning wikis to your computer
 
 Every wiki provides an easy way to clone its contents down to your computer.
-Once you've created an initial page on {% data variables.product.product_name %}, you can clone the repository to your computer with the provided URL:
+Once you've created an initial page on {% data variables.product.github %}, you can clone the repository to your computer with the provided URL:
 
 ```shell
 $ git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY.wiki.git

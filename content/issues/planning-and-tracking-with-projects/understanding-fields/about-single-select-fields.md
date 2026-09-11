@@ -1,17 +1,19 @@
 ---
 title: About single select fields
 shortTitle: About single select fields
-intro: 'You can create single select fields with multiple options{% ifversion projects-v2-colorful-selects %}, each with a description and a color,{% endif %} that can be selected from a dropdown menu.'
+intro: You can create single select fields with multiple options, each with a description and a color, that can be selected from a dropdown menu.
 versions:
-  feature: projects-v2
-type: tutorial
-topics:
-  - Projects
+  fpt: '*'
+  ghec: '*'
+  ghes: '*'
 redirect_from:
   - /issues/planning-and-tracking-with-projects/understanding-field-types/about-single-select-fields
+contentType: tutorials
+category:
+  - Manage project items and fields
 ---
 
-You can filter by your single select fields by specifying the option, for example: `fieldname:option`. You can filter for multiple values by providing a comma-separated list of options, for example: `fieldname:option,option`. For more information, see "[AUTOTITLE](/issues/planning-and-tracking-with-projects/customizing-views-in-your-project/filtering-projects)."
+You can filter by your single select fields by specifying the option, for example: `fieldname:option`. You can filter for multiple values by providing a comma-separated list of options, for example: `fieldname:option,option`. For more information, see [AUTOTITLE](/issues/planning-and-tracking-with-projects/customizing-views-in-your-project/filtering-projects).
 
 Single select fields can contain up to 50 options.
 
@@ -23,9 +25,18 @@ Single select fields can contain up to 50 options.
    * To add additional options, click **Add option**.
 1. Click **Save**.
 
-## Editing a single select field
+## Setting a default value
 
-{% ifversion projects-v2-colorful-selects %}
+Choose an existing option as the default value for a single select field. New items added to the project are automatically pre-populated with that option.
+
+1. Access your project's settings.
+1. Click the name of the single select field to configure.
+1. In the list of options, select the option to use as the default.
+1. Click **Save**.
+
+To remove a default value, deselect the currently selected default option, then click **Save**. Removing a default value does not affect existing items in the project.
+
+## Editing a single select field
 
 You can set descriptions and colors for each of your single select options.
 
@@ -41,13 +52,3 @@ You can set descriptions and colors for each of your single select options.
 
 1. Optionally, under **Description**, type a description for this option.
 1. Click **Save** to save your changes.
-
-{% else %}
-
-{% data reusables.projects.project-settings %}
-1. Click the name of the single select field you want to adjust.
-1. Edit existing options or click **Add option**.
-1. Optionally, to delete an option, click {% octicon "x" aria-label="Remove option" %}.
-1. Click **Save options**.
-
-{% endif %}

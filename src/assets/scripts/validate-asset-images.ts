@@ -1,12 +1,10 @@
-#!/usr/bin/env node
-
 // [start-readme]
 //
 // Makes sure that all the image assets in `assets/` are safe.
 //
 // Generally writers don't check in bogus/corrupt images but mistakes
 // can happen and it's ideally spotted in other processes such as
-// reviewing PR preview environment.
+// reviewing PR review environment.
 // This script also makes sure that all images really are what they're
 // called. For example, an image might be named `screenshot.png` but
 // it might actually be something mischievous.
@@ -18,8 +16,7 @@ import path from 'path'
 
 import { program } from 'commander'
 import chalk from 'chalk'
-import cheerio from 'cheerio'
-// @ts-ignore see https://github.com/sindresorhus/file-type/issues/652
+import { load } from 'cheerio'
 import { fileTypeFromFile } from 'file-type'
 import walk from 'walk-sync'
 import isSVG from 'is-svg'
@@ -118,8 +115,8 @@ async function checkFile(filePath: string) {
     }
     try {
       checkSVGContent(content)
-    } catch (error: any) {
-      return [CRITICAL, filePath, error.message]
+    } catch (error: unknown) {
+      return [CRITICAL, filePath, error instanceof Error ? error.message : String(error)]
     }
   } else if (EXPECT[ext]) {
     const fileType = await fileTypeFromFile(filePath)
@@ -141,14 +138,16 @@ async function checkFile(filePath: string) {
 }
 
 function checkSVGContent(content: string) {
-  const $ = cheerio.load(content)
+  const $ = load(content)
   const disallowedTagNames = new Set(['script', 'object', 'iframe', 'embed'])
   $('*').each((i, element) => {
-    const { tagName } = $(element).get(0)
+    const el = $(element).get(0)
+    if (!el || !('tagName' in el)) return
+    const { tagName } = el
     if (disallowedTagNames.has(tagName)) {
       throw new Error(`contains a <${tagName}> tag`)
     }
-    for (const key in $(element).get(0).attribs) {
+    for (const key in 'attribs' in el ? el.attribs : {}) {
       // Looks for suspicious event handlers on tags.
       // For example `<path oNload="alert(1)"" d="M28 0l4.59 4.59-9.76`
       // We don't need to do a case-sensitive regex here because cheerio

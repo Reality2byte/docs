@@ -8,9 +8,9 @@ versions:
   fpt: '*'
   ghes: '*'
   ghec: '*'
-topics:
-  - Community
 shortTitle: Track comment changes
+category:
+  - Moderate comments and conversations
 ---
 
 ## Viewing a comment's edit history details
@@ -30,10 +30,17 @@ When you delete sensitive information from the comment's edit history, the perso
 {% data reusables.repositories.edited-comment-list %}
 1. In the top right of the edit history window, click **Options**. Then click **Delete revision from history** to delete the diff that shows the content being added.
 
-   ![Screenshot of the edit history window for a comment. A dropdown menu, labeled "Options," is expanded, and the "Delete revision from history" option is outlined in orange.](/assets/images/help/repository/delete-comment-edit-details.png)
+   ![Screenshot of the edit history of a comment. The "Options" dropdown menu is expanded. The "Delete revision from history" option is outlined in orange.](/assets/images/help/repository/delete-comment-edit-details.png)
 1. To confirm deletion, click **OK**.
 
+{% ifversion user-content-edit-limits %}
+
+## Editing history limits
+
+A 100-edit maximum applies to issues, issue comments, pull requests, pull request review comments, and commit comments. {% data variables.product.github %} retains a maximum of 100 edits per content item. When an item exceeds this limit, the oldest intermediate edits are automatically removed, while the original content and the most recent 99 edits are always preserved.
+
+{% endif %}
 ## Further reading
 
-{% ifversion fpt or ghec %}- "[AUTOTITLE](/communities/maintaining-your-safety-on-github/reporting-abuse-or-spam)"{% endif %}
-* "[AUTOTITLE](/communities/moderating-comments-and-conversations/managing-disruptive-comments)"
+{% ifversion fpt or ghec %}- [AUTOTITLE](/communities/maintaining-your-safety-on-github/reporting-abuse-or-spam){% endif %}
+* [AUTOTITLE](/communities/moderating-comments-and-conversations/managing-disruptive-comments)

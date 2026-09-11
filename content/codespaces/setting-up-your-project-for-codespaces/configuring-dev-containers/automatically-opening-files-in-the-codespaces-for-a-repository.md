@@ -1,17 +1,16 @@
 ---
 title: Automatically opening files in the codespaces for a repository
 shortTitle: Automatically opening files
-intro: 'You can set particular files to be opened automatically whenever someone creates a codespace for your repository and opens the codespace in the {% data variables.product.prodname_vscode %} web client.'
+intro: You can set particular files to be opened automatically whenever someone creates a codespace for your repository and opens the codespace in the {% data variables.product.prodname_vscode %} web client.
 permissions: People with write permissions to a repository can create or edit the codespace configuration.
 versions:
   fpt: '*'
   ghec: '*'
-type: how_to
-topics:
-  - Codespaces
-  - Set up
 redirect_from:
   - /codespaces/setting-up-your-project-for-codespaces/automatically-opening-files-in-the-codespaces-for-a-repository
+contentType: how-tos
+category:
+  - Set up dev containers for a project
 ---
 
 ## Overview
@@ -46,4 +45,4 @@ The file, or files, you specify are only opened the first time a codespace is op
 
 ## Further reading
 
-* "[AUTOTITLE](/codespaces/setting-up-your-project-for-codespaces/adding-a-dev-container-configuration/introduction-to-dev-containers)"
+* [AUTOTITLE](/codespaces/setting-up-your-project-for-codespaces/adding-a-dev-container-configuration/introduction-to-dev-containers)

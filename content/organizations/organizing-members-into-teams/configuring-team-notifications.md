@@ -2,10 +2,11 @@
 title: Configuring team notifications
 intro: 'Team maintainers and organization owners can configure notifications for specific teams.'
 versions:
-  feature: team-mentions-setting
-topics:
-  - Organizations
-  - Teams
+  fpt: '*'
+  ghes: '*'
+  ghec: '*'
+category:
+  - Organize teams
 ---
 
 Team maintainers and organization owners can enable or disable notifications for specific teams. When notifications are enabled, members of the team will receive notifications when the team is mentioned in an issue, pull request, or comment.

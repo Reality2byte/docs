@@ -8,12 +8,9 @@ redirect_from:
   - /admin/user-management/managing-users-in-your-enterprise/auditing-ssh-keys
 versions:
   ghes: '*'
-type: how_to
-topics:
-  - Auditing
-  - Enterprise
-  - Security
-  - SSH
+contentType: how-tos
+category:
+  - Manage accounts and repositories
 ---
 Once initiated, the audit disables all existing SSH keys and forces users to approve or reject them before they're able to clone, pull, or push to any repositories. An audit is useful in situations where an employee or contractor leaves the company and you need to ensure that all keys are verified.
 
@@ -39,11 +36,7 @@ When they follow the link, they're asked to approve the keys on their account. A
 
 ## Adding an SSH key
 
-{% ifversion ghes %}
-
-When a new user adds an SSH key to an account, to confirm the user's access, {% data variables.product.product_name %} will prompt for authentication. For more information, see "[AUTOTITLE](/authentication/keeping-your-account-and-data-secure/sudo-mode)."
-
-{% endif %}
+When a new user adds an SSH key to an account, to confirm the user's access, {% data variables.product.prodname_ghe_server %} will prompt for authentication. For more information, see [AUTOTITLE](/authentication/keeping-your-account-and-data-secure/sudo-mode).
 
 When a user adds a key, they'll receive a notification email that will look something like this:
 

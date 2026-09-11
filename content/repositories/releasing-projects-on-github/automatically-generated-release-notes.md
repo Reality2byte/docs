@@ -6,12 +6,12 @@ versions:
   fpt: '*'
   ghec: '*'
   ghes: '*'
-topics:
-  - Repositories
 shortTitle: Automated release notes
 communityRedirect:
   name: Provide GitHub Feedback
   href: 'https://github.com/orgs/community/discussions/categories/general'
+category:
+  - Release software
 ---
 
 ## About automatically generated release notes
@@ -104,4 +104,4 @@ changelog:
 
 ## Further reading
 
-* "[AUTOTITLE](/issues/using-labels-and-milestones-to-track-work/managing-labels)"
+* [AUTOTITLE](/issues/using-labels-and-milestones-to-track-work/managing-labels)

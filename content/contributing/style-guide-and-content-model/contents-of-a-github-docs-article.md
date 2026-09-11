@@ -3,7 +3,11 @@ title: Contents of a GitHub Docs article
 shortTitle: Contents of an article
 intro: 'Every article includes a few standard elements, and may include conditional or optional elements. We also use a standard order for content within an article.'
 versions:
-  feature: 'contributing'
+  fpt: '*'
+  ghec: '*'
+  ghes: '*'
+category:
+  - Follow the style guide and content model
 ---
 
 ## About the structure of an article
@@ -49,20 +53,15 @@ Titles can be challenging. Use these general guidelines to help create clear, he
 
 ## Intro
 
-The top of every page has an intro that provides context and sets expectations, allowing readers to quickly decide if the page is relevant to them. Intros also are displayed in search results to provide contextual information to help readers choose a result.
+Every page and article has an intro which describes what they’re about. The text we use for intros is also displayed within search results, making them important for SEO.  
 
 ### How to write an intro
 
-* Article intros are one to two sentences long.
-* Map topic and category intros are one sentence long.
-* API reference intros are one sentence long.
-  * The intro for an API page should define the feature so that someone knows whether the feature meets their needs without reading the entire article.
-* Intros contain a high-level summary of the page’s content, developing the idea presented in a title with more detail.
-  * Use approachable synonyms of words in the page’s title to help readers understand the article’s purpose differently. Avoid repeating words from the title when possible.
-* Intros are relatively evergreen and high-level, so they can scale with future changes to the content on the page without needing to be frequently updated.
-* For searchability, include keywords on the page's subject in the intro.
-* When a term in the intro has an acronym we’ll use elsewhere in the article, indicate the acronym.
-* Intros generally don't contain permissions for any tasks contained within the article.
+* Intros should be concise, ideally one sentence long.
+* Intros help people know if they’re in the right place for what they need. Let the user know what value is being provided to them, using words they would use and search for.
+* Intros are also an invitation to continue reading. A good intro reassures the reader that their time is being well spent. 
+* If an important term has a related acronym that is generally used in its place, include the acronym in the intro. (Example: Search engine optimization and SEO.)
+* Finally, review your intro to ensure it is search engine friendly by including relevant keywords and phrases.
 
 ## Permissions statements
 
@@ -77,13 +76,12 @@ Occasionally, it's relevant to mention required permissions in conceptual conten
 * Don't include permissions in an article’s intro.
 * Roles exist at different levels. Refer only to the role at the same level as the action. For example, you need admin access to a repository (repository-level role) to configure protected branches. You can get admin access to a repository by being an organization owner (organization-level role), but the repository-level role is what actually governs your ability to take the action, so that is the only role that should be mentioned in the permissions statement.
 * Language to use in a permissions statement:
+  * People with [ACCOUNT ROLE].
   * [ACCOUNT ROLE] can [ACTION].
   * People with [FEATURE ROLE] access for a [FEATURE] can [ACTION].
   * AVOID: [ACCOUNT ROLE] and people with [FEATURE ROLE] access for a [FEATURE] can [ACTION].
 
-### Examples of permissions statements
-
-* Article with single permissions statement for multiple procedures: [AUTOTITLE](/enterprise-cloud@latest/admin/policies/enforcing-policies-for-your-enterprise/enforcing-repository-management-policies-in-your-enterprise)
+See the [AUTOTITLE](/contributing/style-guide-and-content-model/style-guide#permission-statements-and-product-callouts) for more information on formatting permission statements.
 
 ## Product callout
 
@@ -94,10 +92,10 @@ All product callouts are stored as reusables in [`gated-features`](https://githu
 ### How to write a product callout
 
 * Product callouts follow a strict format, clearly identifying the feature and which products it’s available in.
-* Product callouts also include a link to "GitHub’s products” and occasionally to another relevant article.
+* Product callouts may include links to articles that directly help users understand who can use the feature. These links can be inline links to the specific products or GitHub plans that are required.
 * Examples:
-  * [Feature name] is available in [product(s)]. For more information, see "GitHub’s products.”
-  * [Feature name] is available in public repositories with [free product(s)], and in public and private repositories with [paid products]. For more information, see "GitHub’s products.”
+  * [Feature name] is available in [product(s)].
+  * [Feature name] is available in public repositories with [free product(s)], and in public and private repositories with [paid products].
 
 ### Examples of articles with product callouts
 
@@ -106,19 +104,19 @@ Check the source files and `gated-features` to see how source content is written
 
 ## Tool switcher
 
-Some articles have content that varies depending on what tool someone uses to complete a task, such as the {% data variables.product.prodname_cli %} or {% data variables.product.prodname_desktop %}. For most content, the same conceptual or procedural information will be accurate for multiple tools. However, if the only way to make information clear and accurate is by distinguishing content by tool, use the tool switcher. Do not use the tool switcher just to show examples in different languages. Only use the tool switcher if the tasks or concepts change based on what tool someone uses. For more information, see "[AUTOTITLE](/contributing/writing-for-github-docs/creating-tool-switchers-in-articles)".
+Some articles have content that varies depending on what tool someone uses to complete a task, such as the {% data variables.product.prodname_cli %} or {% data variables.product.prodname_desktop %}. For most content, the same conceptual or procedural information will be accurate for multiple tools. However, if the only way to make information clear and accurate is by distinguishing content by tool, use the tool switcher. Do not use the tool switcher just to show examples in different languages. Only use the tool switcher if the tasks or concepts change based on what tool someone uses. For more information, see [AUTOTITLE](/contributing/writing-for-github-docs/creating-tool-switchers-in-articles).
 
 ## Table of contents
 
-Tables of contents are automatically generated. For more information see "[Autogenerated mini-TOCs](https://github.com/github/docs/tree/main/content#autogenerated-mini-tocs)."
+Tables of contents are automatically generated. For more information see [Autogenerated mini-TOCs](https://github.com/github/docs/tree/main/content#autogenerated-mini-tocs).
 
 ## Conceptual content
 
-Conceptual content helps people understand or learn about a topic. For more information, see "[AUTOTITLE](/contributing/style-guide-and-content-model/conceptual-content-type)" in the content model.
+Conceptual content helps people understand or learn about a topic. For more information, see [AUTOTITLE](/contributing/style-guide-and-content-model/concepts-content-type) in the content model.
 
 ## Referential content
 
-Referential content provides structured information related to actively using a product or feature. For more information, see "[AUTOTITLE](/contributing/style-guide-and-content-model/referential-content-type)" in the content model.
+Referential content provides structured information related to actively using a product or feature. For more information, see [AUTOTITLE](/contributing/style-guide-and-content-model/reference-content-type) in the content model.
 
 ## Prerequisites
 
@@ -139,16 +137,16 @@ Prerequisites are information that people need to know before proceeding with a 
 
 ### Examples of articles with prerequisites sections
 
-* [AUTOTITLE](/enterprise-server@latest/admin/installation/installing-github-enterprise-server-on-aws)
-* [AUTOTITLE](/enterprise-server@latest/admin/configuration/enabling-subdomain-isolation)
+* [AUTOTITLE](/enterprise-server@latest/admin/installing-your-enterprise-server/setting-up-a-github-enterprise-server-instance/installing-github-enterprise-server-on-aws)
+* [AUTOTITLE](/enterprise-server@latest/admin/configuring-settings/hardening-security-for-your-enterprise/enabling-subdomain-isolation)
 
-## Procedural content
+## How-to content
 
-Procedural content helps people complete tasks. For more information, see "[AUTOTITLE](/contributing/style-guide-and-content-model/procedural-content-type)" in the content model.
+How-to content helps people complete tasks. For more information, see [AUTOTITLE](/contributing/style-guide-and-content-model/how-to-content-type) in the content model.
 
 ## Troubleshooting content
 
-Troubleshooting content helps people avoid or work through errors. For more information, see "[AUTOTITLE](/contributing/style-guide-and-content-model/troubleshooting-content-type)" in the content model.
+Troubleshooting content helps people avoid or work through errors. For more information, see [AUTOTITLE](/contributing/style-guide-and-content-model/troubleshooting-content-type) in the content model.
 
 ## Next steps
 
@@ -164,7 +162,7 @@ When an article describes one step in a larger process or has a logical next ste
 - {% data variables.product.company_short %} recommends that you review security considerations for self-hosted runner machines. See "Security hardening for {% data variables.product.prodname_actions %}."
 ```
 
-In this example from "[AUTOTITLE](/enterprise-cloud@latest/admin/github-actions/getting-started-with-github-actions-for-your-enterprise/getting-started-with-self-hosted-runners-for-your-enterprise#next-steps)," the next steps section includes links to procedures that someone will need to do after they start using the feature described in the article.
+In this example from [AUTOTITLE](/enterprise-cloud@latest/admin/managing-github-actions-for-your-enterprise/getting-started-with-github-actions-for-your-enterprise/getting-started-with-self-hosted-runners-for-your-enterprise#next-steps), the next steps section includes links to procedures that someone will need to do after they start using the feature described in the article.
 
 ```markdown
 ## Next steps
@@ -172,7 +170,7 @@ In this example from "[AUTOTITLE](/enterprise-cloud@latest/admin/github-actions/
 After your enterprise account is created, we recommend learning more about how enterprise accounts work and configuring settings and policies. Follow the "Get started with your enterprise account" learning path.
 ```
 
-In this example from "[AUTOTITLE](/enterprise-cloud@latest/admin/managing-your-enterprise-account/creating-an-enterprise-account#next-steps)," the next step links to where most people who just finished creating an enterprise account would want to go next.
+In this example from [AUTOTITLE](/enterprise-cloud@latest/admin/managing-your-enterprise-account/creating-an-enterprise-account#next-steps), the next step links to where most people who just finished creating an enterprise account would want to go next.
 
 ## Further reading
 
@@ -180,12 +178,12 @@ If there are additional articles that help people complete their task or learn t
 
 Only include links that help people with the task or topic at hand. It is better to be focused and provide people with valuable resources than to offer them every possible link.
 
-Format further reading sections using unordered lists. See "[AUTOTITLE](/contributing/style-guide-and-content-model/style-guide#links)" for how to write links.
+Format further reading sections using unordered lists. See [AUTOTITLE](/contributing/style-guide-and-content-model/style-guide#links) for how to write links.
 
 ### Title and format for further reading sections
 
 ```markdown
 ## Further reading
-- "[Article title](article-URL)"
+- [Article title](article-URL)
 - [External resource title](external-resource-URL) in External Resource Name
 ```

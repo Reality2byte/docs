@@ -6,8 +6,12 @@ redirect_from:
   - /desktop/contributing-and-collaborating-using-github-desktop/adding-an-existing-project-to-github-using-github-desktop
   - /desktop/contributing-and-collaborating-using-github-desktop/adding-and-cloning-repositories/adding-an-existing-project-to-github-using-github-desktop
 versions:
-  feature: desktop
+  fpt: '*'
+  ghec: '*'
+  ghes: '*'
 shortTitle: Add an existing project
+category:
+  - Add and clone repositories
 ---
 
 {% data reusables.git.remove-git-remote %}

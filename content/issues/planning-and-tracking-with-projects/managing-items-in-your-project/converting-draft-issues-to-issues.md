@@ -3,10 +3,12 @@ title: Converting draft issues to issues
 shortTitle: Converting draft issues
 intro: Learn how to convert draft issues into issues.
 versions:
-  feature: projects-v2
-type: tutorial
-topics:
-  - Projects
+  fpt: '*'
+  ghec: '*'
+  ghes: '*'
+contentType: tutorials
+category:
+  - Manage project items and fields
 ---
 
 ## Converting draft issues in table layout
@@ -29,4 +31,4 @@ topics:
 
 ## Further reading
 
-* "[AUTOTITLE](/issues/planning-and-tracking-with-projects/managing-items-in-your-project/adding-items-to-your-project#creating-draft-issues)"
+* [AUTOTITLE](/issues/planning-and-tracking-with-projects/managing-items-in-your-project/adding-items-to-your-project#creating-draft-issues)

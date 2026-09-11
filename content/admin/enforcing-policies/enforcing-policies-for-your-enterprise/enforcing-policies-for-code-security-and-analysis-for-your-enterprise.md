@@ -1,19 +1,11 @@
 ---
 title: Enforcing policies for code security and analysis for your enterprise
-intro: 'You can enforce policies to manage the use of {% ifversion security-feature-enablement-policies %}code security and analysis{% else %}{% data variables.product.prodname_GH_advanced_security %}{% endif %} features within your enterprise''s organizations.'
-permissions: 'Enterprise owners can enforce {% ifversion security-feature-enablement-policies %}code security and analysis{% endif %} policies for {% data variables.product.prodname_GH_advanced_security %} in an enterprise.'
-product: '{% data reusables.gated-features.ghas %}'
+intro: You can enforce policies to manage the use of code security and analysis features within your enterprise's organizations.
+permissions: Enterprise owners
+product: '{% data reusables.gated-features.ghas-ghec %}'
 versions:
   ghec: '*'
   ghes: '*'
-type: how_to
-topics:
-  - Advanced Security
-  - Code scanning
-  - Enterprise
-  - Policies
-  - Secret scanning
-  - Security
 redirect_from:
   - /admin/policies/enforcing-policies-for-advanced-security-in-your-enterprise
   - /github/setting-up-and-managing-your-enterprise/enforcing-policies-for-advanced-security-in-your-enterprise-account
@@ -26,37 +18,53 @@ redirect_from:
   - /github/setting-up-and-managing-your-enterprise/enforcing-a-policy-on-dependency-insights-in-your-enterprise-account
   - /github/setting-up-and-managing-your-enterprise/setting-policies-for-organizations-in-your-enterprise-account/enforcing-a-policy-on-dependency-insights-in-your-enterprise-account
   - /admin/policies/enforcing-policies-for-your-enterprise/enforcing-policies-for-code-security-and-analysis-for-your-enterprise
-shortTitle: Code security & analysis
+shortTitle: Security & analysis
+contentType: how-tos
+category:
+  - Secure and govern your enterprise
 ---
-{% ifversion security-feature-enablement-policies %}
 
-## About policies for code security and analysis in your enterprise
+## About policies for using security features in your enterprise
 
-You can enforce policies to manage the use of code security and analysis features within organizations owned by your enterprise. You can allow or disallow people with admin access to a repository to enable or disable the security and analysis features.
+You can enforce policies to manage the use of security features within organizations owned by your enterprise. You can allow or disallow people with admin access to a repository to enable or disable the security and analysis features.
 
-Additionally, you can enforce policies for the use of {% data variables.product.prodname_GH_advanced_security %} in your enterprise's organizations and repositories.
-{% else %}
+Additionally, you can enforce policies for the use of {% data variables.product.prodname_GHAS_cs_or_sp %} in your enterprise's organizations and repositories.
 
-## About policies for {% data variables.product.prodname_GH_advanced_security %} in your enterprise
-
-{% data reusables.advanced-security.ghas-helps-developers %} For more information, see "[AUTOTITLE](/get-started/learning-about-github/about-github-advanced-security)."
-
-{% ifversion ghes %}If you purchase a license for {% data variables.product.prodname_GH_advanced_security %}, any{% else %}Any{% endif %} organization on {% data variables.product.prodname_ghe_server %} can use {% data variables.product.prodname_advanced_security %} features. You can enforce policies to control how members of your enterprise on {% data variables.product.product_name %} use {% data variables.product.prodname_advanced_security %}.
-
+{% ifversion code-quality %}
+Policies for {% data variables.product.prodname_AS %} do not control access to {% data variables.product.prodname_code_quality %}. To manage access, see [AUTOTITLE](/code-security/how-tos/secure-at-scale/configure-enterprise-security/configure-specific-tools/allow-github-code-quality-in-enterprise).
 {% endif %}
+
+## Enforcing a policy for the availability of {% data variables.product.prodname_AS %} in your enterprise's organizations
+
+You are billed for {% data variables.product.prodname_GHAS_cs_and_sp %} products on a per-committer basis. See [AUTOTITLE](/billing/concepts/product-billing/github-advanced-security#managing-committers-and-costs).
+
+You can enforce a policy that controls whether repository administrators are allowed to enable features for {% data variables.product.prodname_AS %} in an organization's repositories. You can configure a policy for all organizations owned by your enterprise account, or for individual organizations that you choose.
+
+Disallowing {% data variables.product.prodname_GHAS_cs_or_sp %} for an organization prevents repository administrators from enabling these features for additional repositories, but does not disable the features for repositories where the features are already enabled.
+
+{% data reusables.enterprise.role-permission-hierarchy %}
+
+{% data reusables.enterprise-accounts.access-enterprise %}
+{% data reusables.enterprise-accounts.policies-tab %}
+{% data reusables.enterprise-accounts.code-security-and-analysis-policies %}
+{% data reusables.enterprise-accounts.advanced-security-organization-policy-drop-down %}
+{% data reusables.enterprise-accounts.advanced-security-individual-organization-policy-drop-down %}
+
+> [!NOTE]
+> If {% data variables.product.prodname_actions %} is not available for an organization, {% data variables.product.prodname_code_scanning %} will be unable to run even if it is made available with this policy.{% ifversion code-quality %} Similarly, {% data variables.product.prodname_code_quality %} will be unable to run even if it is made available with its own policy.{% endif %} See [AUTOTITLE](/admin/enforcing-policies/enforcing-policies-for-your-enterprise/enforcing-policies-for-github-actions-in-your-enterprise#policies).
 
 {% ifversion ghec %}
 
 ## Enforcing a policy for visibility of dependency insights
 
-Dependency insights show all packages that repositories within your enterprise's organizations depend on. Dependency insights include aggregated information about security advisories and licenses. For more information, see "[AUTOTITLE](/organizations/collaborating-with-groups-in-organizations/viewing-insights-for-dependencies-in-your-organization)."
+Dependency insights show all open source projects that repositories within your enterprise's organizations depend on. Dependency insights include aggregated information about security advisories and licenses. For more information, see [AUTOTITLE](/organizations/collaborating-with-groups-in-organizations/viewing-insights-for-dependencies-in-your-organization).
 
-Across all organizations owned by your enterprise, you can control whether organization members can view dependency insights. You can also allow owners to administer the setting on the organization level. For more information, see "[AUTOTITLE](/organizations/managing-organization-settings/changing-the-visibility-of-your-organizations-dependency-insights)."
+Across all organizations owned by your enterprise, you can control whether organization members can view dependency insights. You can also allow owners to administer the setting on the organization level. For more information, see [AUTOTITLE](/organizations/managing-organization-settings/changing-the-visibility-of-your-organizations-dependency-insights).
 
 {% data reusables.enterprise-accounts.access-enterprise %}
 {% data reusables.enterprise-accounts.policies-tab %}
-1. Under "{% octicon "law" aria-hidden="true" %} Policies", click **Code security and analysis**.
-1. Under "Dependency insights", review the information about changing the setting.
+{% data reusables.enterprise-accounts.code-security-and-analysis-policies %}
+1. In the "Policies" section, under "Dependency insights", review the information about changing the setting.
 1. {% data reusables.enterprise-accounts.view-current-policy-config-orgs %}
 1. Under "Dependency insights", select the dropdown menu and click a policy.
 
@@ -73,58 +81,63 @@ Across all organizations owned by your enterprise, you can allow members with ad
 {% data reusables.enterprise-accounts.access-enterprise %}
 {% data reusables.enterprise-accounts.policies-tab %}
 {% data reusables.enterprise-accounts.code-security-and-analysis-policies %}
-1. Under "Enable or disable {% data variables.product.prodname_dependabot_alerts %} by repository admins", use the dropdown menu to choose a policy.
+1. In the "Policies" section, under "Enable or disable {% data variables.product.prodname_dependabot_alerts %} by repository admins", use the dropdown menu to choose a policy.
 
 {% endif %}
 
-## Enforcing a policy for the use of {% data variables.product.prodname_GH_advanced_security %} in your enterprise's organizations
+## Enforcing a policy to manage the use of {% data variables.product.prodname_AS %} features in your enterprise's repositories
 
-{% data reusables.advanced-security.about-ghas-organization-policy %}
-
-{% data reusables.enterprise.role-permission-hierarchy %}
-
-{% data reusables.enterprise-accounts.access-enterprise %}
-{% data reusables.enterprise-accounts.policies-tab %}{% ifversion security-feature-enablement-policies %}
-{% data reusables.enterprise-accounts.code-security-and-analysis-policies %}{% else %}
-{% data reusables.enterprise-accounts.advanced-security-policies %}{% endif %}{% ifversion security-feature-enablement-policies %}
-1. In the "{% data variables.product.prodname_GH_advanced_security %} policies" section, under "{% data variables.product.prodname_GH_advanced_security %} availability", select the dropdown menu and click a policy for the organizations owned by your enterprise.
-
-{% data reusables.enterprise-accounts.advanced-security-organization-policy-drop-down %}{% endif %}
-{% data reusables.enterprise-accounts.advanced-security-individual-organization-policy-drop-down %}
-
-{% ifversion security-feature-enablement-policies %}
-
-## Enforcing a policy to manage the use of {% data variables.product.prodname_GH_advanced_security %} features in your enterprise's repositories
-
-Across all of your enterprise's organizations, you can allow or disallow people with admin access to repositories to manage the use of {% data variables.product.prodname_GH_advanced_security %} features in the repositories. {% data reusables.advanced-security.ghas-must-be-enabled %}
+Across all of your enterprise's organizations, you can allow or disallow people with admin access to repositories to manage the use of {% data variables.product.prodname_AS %} features in the repositories.
 
 {% data reusables.enterprise-accounts.access-enterprise %}
 {% data reusables.enterprise-accounts.policies-tab %}
 {% data reusables.enterprise-accounts.code-security-and-analysis-policies %}
-1. In the "{% data variables.product.prodname_GH_advanced_security %} policies" section, under "Enable or disable {% data variables.product.prodname_GH_advanced_security %} by repository admins", select the dropdown menu and click a policy.
+1. In the "Policies" section, under "Repository administrators can enable or disable `PRODUCT`", use the dropdown menu to define whether repository administrators can change the enablement of {% data variables.product.prodname_GHAS_cs_or_sp %}.
 
-## Enforcing a policy to manage the use of {% data variables.product.prodname_secret_scanning %} in your enterprise's repositories
-
-Across all of your enterprise's organizations, you can allow or disallow people with admin access to repositories to manage and configure {% data variables.product.prodname_secret_scanning %} for the repositories. {% data reusables.advanced-security.ghas-must-be-enabled %}
-
-{% data reusables.enterprise.role-permission-hierarchy %}
-
-{% data reusables.enterprise-accounts.access-enterprise %}
-{% data reusables.enterprise-accounts.policies-tab %}
-{% data reusables.enterprise-accounts.code-security-and-analysis-policies %}
-1. In the "{% data variables.product.prodname_GH_advanced_security %} policies" section, under "Enable or disable {% data variables.product.prodname_secret_scanning %} by repository admins", select the dropdown menu and click a policy.
-
-{% endif %}
+<!--This option is included automatically by the "Repository Admins can Enable or Disable Secret Protection" option, which is why this section is omitted for `ghas-products` versions.-->
 
 {% ifversion secret-scanning-ai-generic-secret-detection %}
 
-## Enforcing a policy to manage the use of {% data variables.secret-scanning.generic-secret-detection %} for {% data variables.product.prodname_secret_scanning %} in your enterprise's repositories
+## Enforcing a policy to manage the use of AI detection for {% data variables.product.prodname_secret_scanning %} in your enterprise's repositories
 
-Across all of your enterprise's organizations, you can allow or disallow people with admin access to repositories to manage and configure AI detection in {% data variables.product.prodname_secret_scanning %} for the repositories. {% data reusables.advanced-security.ghas-must-be-enabled %}
+Across all of your enterprise's organizations, you can allow or disallow people with admin access to repositories to manage and configure AI detection in {% data variables.product.prodname_secret_scanning %} for the repositories. This policy only takes effect if repository administrators are also allowed to change enablement of {% data variables.product.prodname_secret_protection %} (controlled by the "Repository administrators can enable or disable Secret Protection" policy).
 
 {% data reusables.enterprise-accounts.access-enterprise %}
 {% data reusables.enterprise-accounts.policies-tab %}
 {% data reusables.enterprise-accounts.code-security-and-analysis-policies %}
-1. In the "{% data variables.product.prodname_GH_advanced_security %} policies" section, under "AI detection in {% data variables.product.prodname_secret_scanning %}", select the dropdown menu and click a policy.
+1. In the "Policies" section, under "AI detection in {% data variables.product.prodname_secret_scanning %}", select the dropdown menu and click a policy.
+
+{% endif %}
+
+{% ifversion code-scanning-autofix %}
+
+## Enforcing a policy to manage the use of {% data variables.copilot.copilot_autofix_short %} in your enterprise's repositories
+
+Across all of your enterprise's organizations, you can allow or disallow people with admin access to repositories to manage where {% data variables.copilot.copilot_autofix_short %} is enabled for {% data variables.product.prodname_code_security %} results. {% data variables.product.prodname_GH_code_security %} must be enabled for the organization for this policy to take effect.
+
+{% data reusables.enterprise-accounts.access-enterprise %}
+{% data reusables.enterprise-accounts.policies-tab %}
+{% data reusables.enterprise-accounts.code-security-and-analysis-policies %}
+1. In the "Policies" section, under "{% data variables.copilot.copilot_autofix_short %}", select the dropdown menu and click a policy.
+
+> [!NOTE]
+> This policy controls the use of {% data variables.copilot.copilot_autofix_short %} on results found by {% data variables.product.prodname_code_scanning %} security queries only. {% data variables.copilot.copilot_autofix_short %} is an integral part of {% data variables.product.prodname_code_quality %} and cannot be disabled for that feature.
+
+{% endif %}
+
+{% ifversion ai-powered-security-detections %}
+
+## Enforcing a policy to manage the use of AI-powered security detections in your enterprise's repositories
+
+As an enterprise owner, you can control whether organization and repository administrators can enable AI-powered security detections for their organizations and repositories. This policy is set to "Not allowed" by default.
+
+Allowing AI-powered security detections at the enterprise level does not enable the feature. Organization administrators must still explicitly enable AI-powered security detections. Repository administrators can opt-out of the feature.
+
+This policy only takes effect if {% data variables.product.prodname_codeql %} default setup is enabled.
+
+{% data reusables.enterprise-accounts.access-enterprise %}
+{% data reusables.enterprise-accounts.policies-tab %}
+{% data reusables.enterprise-accounts.code-security-and-analysis-policies %}
+1. Under "AI Findings", select the dropdown menu and click a policy.
 
 {% endif %}

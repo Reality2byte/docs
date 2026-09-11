@@ -5,12 +5,12 @@ shortTitle: Customer experience best practice
 versions:
   fpt: '*'
   ghec: '*'
-topics:
-  - Marketplace
 redirect_from:
   - /developers/github-marketplace/customer-experience-best-practices-for-apps
   - /developers/github-marketplace/creating-apps-for-github-marketplace/customer-experience-best-practices-for-apps
   - /apps/publishing-apps-to-github-marketplace/creating-apps-for-github-marketplace/customer-experience-best-practices-for-apps
+category:
+  - List your app on GitHub Marketplace
 ---
 
 {% data reusables.marketplace.marketplace-apps-not-actions %}
@@ -31,6 +31,6 @@ If you follow these best practices it will help you to provide a good customer e
 
 ## Further reading
 
-* "[AUTOTITLE](/apps/creating-github-apps/about-creating-github-apps/best-practices-for-creating-a-github-app)"
-* "[AUTOTITLE](/apps/oauth-apps/building-oauth-apps/best-practices-for-creating-an-oauth-app)"
-* "[AUTOTITLE](/apps/github-marketplace/creating-apps-for-github-marketplace/security-best-practices-for-apps-on-github-marketplace)"
+* [AUTOTITLE](/apps/creating-github-apps/about-creating-github-apps/best-practices-for-creating-a-github-app)
+* [AUTOTITLE](/apps/oauth-apps/building-oauth-apps/best-practices-for-creating-an-oauth-app)
+* [AUTOTITLE](/apps/github-marketplace/creating-apps-for-github-marketplace/security-best-practices-for-apps-on-github-marketplace)

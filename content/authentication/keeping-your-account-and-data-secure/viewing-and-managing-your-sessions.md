@@ -2,11 +2,13 @@
 title: Viewing and managing your sessions
 intro: You can view and revoke your active sessions in your settings.
 versions:
-  feature: device-and-settings-management-page
-type: how_to
-topics:
-  - SSO
+  fpt: '*'
+  ghec: '*'
+  ghes: '*'
 shortTitle: Viewing and managing sessions
+category:
+  - Manage access credentials
+contentType: how-tos
 ---
 
 You can view a list of devices that have logged into your account, and revoke any sessions that you don't recognize.
@@ -29,4 +31,4 @@ You can view a list of devices that have logged into your account, and revoke an
 
 ## Further information
 
-* "[AUTOTITLE](/authentication/keeping-your-account-and-data-secure/about-authentication-to-github#session-cookies)"
+* [AUTOTITLE](/authentication/keeping-your-account-and-data-secure/about-authentication-to-github#session-cookies)

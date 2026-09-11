@@ -8,8 +8,8 @@ versions:
   fpt: '*'
   ghec: '*'
   ghes: '*'
-topics:
-  - API
+category:
+  - Get started and make API calls
 ---
 
 ## GraphQL terminology
@@ -18,7 +18,7 @@ The GitHub GraphQL API represents an architectural and conceptual shift from the
 
 ## Schema
 
-A schema defines a GraphQL API's type system. It describes the complete set of possible data (objects, fields, relationships, everything) that a client can access. Calls from the client are [validated](https://graphql.org/learn/validation/) and [executed](https://graphql.org/learn/execution/) against the schema. A client can find information about the schema via [introspection](#discovering-the-graphql-api). A schema resides on the GraphQL API server. For more information, see "[Discovering the GraphQL API](#discovering-the-graphql-api)."
+A schema defines a GraphQL API's type system. It describes the complete set of possible data (objects, fields, relationships, everything) that a client can access. Calls from the client are [validated](https://graphql.org/learn/validation/) and [executed](https://graphql.org/learn/execution/) against the schema. A client can find information about the schema via [introspection](#discovering-the-graphql-api). A schema resides on the GraphQL API server. For more information, see [Discovering the GraphQL API](#discovering-the-graphql-api).
 
 ## Field
 
@@ -37,7 +37,7 @@ An argument is a set of key-value pairs attached to a specific field. Some field
 
 ## Implementation
 
-A GraphQL schema may use the term _implements_ to define how an object inherits from an [interface](/graphql/reference/interfaces).
+A GraphQL schema may use the term _implements_ to define how an object inherits from an interface.
 
 Here's a contrived example of a schema that defines interface `X` and object `Y`:
 
@@ -58,23 +58,23 @@ This means object `Y` requires the same fields/arguments/return types that inter
 
 In the reference docs, you'll find that:
 
-* Each [object](/graphql/reference/objects) lists the interface(s) _from which it inherits_ under **Implements**.
+* Each object lists the interface(s) _from which it inherits_ under **Implements**.
 
-* Each [interface](/graphql/reference/interfaces) lists the objects _that inherit from it_ under **Implementations**.
+* Each interface lists the objects _that inherit from it_ under **Implementations**.
 
 ## Connection
 
-Connections let you query related objects as part of the same call. With connections, you can use a single GraphQL call where you would have to use multiple calls to a REST API. For more information, see "[AUTOTITLE](/graphql/guides/migrating-from-rest-to-graphql)."
+Connections let you query related objects as part of the same call. With connections, you can use a single GraphQL call where you would have to use multiple calls to a REST API. For more information, see [AUTOTITLE](/graphql/guides/migrating-from-rest-to-graphql).
 
 It's helpful to picture a graph: dots connected by lines. The dots are nodes, the lines are edges. A connection defines a relationship between nodes.
 
 ## Edge
 
-Edges represent connections between nodes. When you query a connection, you traverse its edges to get to its nodes. Every `edges` field has a `node` field and a `cursor` field. Cursors are used for pagination. For more information, see "[AUTOTITLE](/graphql/guides/using-pagination-in-the-graphql-api)."
+Edges represent connections between nodes. When you query a connection, you traverse its edges to get to its nodes. Every `edges` field has a `node` field and a `cursor` field. Cursors are used for pagination. For more information, see [AUTOTITLE](/graphql/guides/using-pagination-in-the-graphql-api).
 
 ## Node
 
-_Node_ is a generic term for an object. You can look up a node directly, or you can access related nodes via a connection. If you specify a `node` that does not return a [scalar](/graphql/reference/scalars), you must include subfields until all fields return scalars. For information on accessing node IDs via the REST API and using them in GraphQL queries, see "[AUTOTITLE](/graphql/guides/using-global-node-ids)."
+_Node_ is a generic term for an object. You can look up a node directly, or you can access related nodes via a connection. If you specify a `node` that does not return a scalar, you must include subfields until all fields return scalars. For information on accessing node IDs via the REST API and using them in GraphQL queries, see [AUTOTITLE](/graphql/guides/using-global-node-ids).
 
 ## Discovering the GraphQL API
 
@@ -133,4 +133,4 @@ GraphQL is [introspective](https://graphql.org/learn/introspection/). This means
   > [!NOTE]
   > The introspection query is probably the only `GET` request you'll run in GraphQL. If you're passing a body, the GraphQL request method is `POST`, whether it's a query or a mutation.
 
-  For more information about performing queries, see "[AUTOTITLE](/graphql/guides/forming-calls-with-graphql)."
+  For more information about performing queries, see [AUTOTITLE](/graphql/guides/forming-calls-with-graphql).

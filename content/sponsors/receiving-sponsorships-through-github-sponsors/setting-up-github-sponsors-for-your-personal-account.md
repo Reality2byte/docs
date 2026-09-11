@@ -1,6 +1,6 @@
 ---
 title: Setting up GitHub Sponsors for your personal account
-intro: 'You can become a sponsored developer by joining {% data variables.product.prodname_sponsors %}, completing your sponsored developer profile, creating sponsorship tiers, submitting your bank and tax information, and enabling two-factor authentication for your account on {% data variables.product.prodname_dotcom %}.'
+intro: You can become a sponsored developer by joining {% data variables.product.prodname_sponsors %}, completing your sponsored developer profile, creating sponsorship tiers, submitting your bank and tax information, and enabling two-factor authentication for your account on {% data variables.product.prodname_dotcom %}.
 redirect_from:
   - /articles/becoming-a-sponsored-developer
   - /github/supporting-the-open-source-community-with-github-sponsors/becoming-a-sponsored-developer
@@ -9,18 +9,17 @@ redirect_from:
 versions:
   fpt: '*'
   ghec: '*'
-type: how_to
-topics:
-  - User account
-  - Sponsors profile
 shortTitle: Set up for personal account
+contentType: how-tos
+category:
+  - Set up to receive sponsorships
 ---
 
 ## Joining {% data variables.product.prodname_sponsors %}
 
 {% data reusables.sponsors.you-can-be-a-sponsored-developer %} {% data reusables.sponsors.stripe-supported-regions %}
 
-To join {% data variables.product.prodname_sponsors %} as an organization, see "[AUTOTITLE](/sponsors/receiving-sponsorships-through-github-sponsors/setting-up-github-sponsors-for-your-organization)."
+To join {% data variables.product.prodname_sponsors %} as an organization, see [AUTOTITLE](/sponsors/receiving-sponsorships-through-github-sponsors/setting-up-github-sponsors-for-your-organization).
 
 {% data reusables.sponsors.navigate-to-github-sponsors %}
 1. If you are an organization owner, you have more than one eligible account. Click **Get sponsored**, then in the list of accounts, find your personal account.
@@ -60,7 +59,7 @@ After {% data variables.product.prodname_dotcom %} reviews your application, you
 
 As a sponsored user, you will receive payouts to a bank account in a supported region or via a fiscal host.
 
-{% data reusables.sponsors.bank-info-fiscal-host-reminder %} For more information about setting up and using fiscal hosts, see "[AUTOTITLE](/sponsors/receiving-sponsorships-through-github-sponsors/using-a-fiscal-host-to-receive-github-sponsors-payouts)."
+{% data reusables.sponsors.bank-info-fiscal-host-reminder %} For more information about setting up and using fiscal hosts, see [AUTOTITLE](/sponsors/receiving-sponsorships-through-github-sponsors/using-a-fiscal-host-to-receive-github-sponsors-payouts).
 
 If you choose to receive payouts to a bank account, your region of residence and the region of your bank account must match. {% data reusables.sponsors.stripe-supported-regions %}
 
@@ -79,7 +78,7 @@ If you choose to receive payouts to a bank account, your region of residence and
 
 ## Enabling two-factor authentication (2FA) on your {% data variables.product.prodname_dotcom %} account
 
-Before you can become a sponsored developer, you must enable 2FA for your account on {% data variables.product.prodname_dotcom %}. For more information, see "[AUTOTITLE](/authentication/securing-your-account-with-two-factor-authentication-2fa/configuring-two-factor-authentication)."
+Before you can become a sponsored developer, you must enable 2FA for your account on {% data variables.product.prodname_dotcom %}. For more information, see [AUTOTITLE](/authentication/securing-your-account-with-two-factor-authentication-2fa/configuring-two-factor-authentication).
 
 ## Submitting your application to {% data variables.product.prodname_dotcom %} for approval
 

@@ -8,8 +8,6 @@ versions:
   fpt: '*'
   ghes: '*'
   ghec: '*'
-topics:
-  - API
 children:
   - /scripting-with-the-rest-api-and-javascript
   - /scripting-with-the-rest-api-and-ruby
@@ -23,6 +21,6 @@ children:
   - /encrypting-secrets-for-the-rest-api
 ---
 This section of the documentation is intended to get you up-and-running with
-real-world {% ifversion fpt or ghec %}{% data variables.product.prodname_dotcom %}{% else %}{% data variables.product.product_name %}{% endif %} API applications. We'll go over everything you need to know, from authentication to results manipulation to integrating results with other apps.
+real-world {% data variables.product.github %} API applications. We'll go over everything you need to know, from authentication to results manipulation to integrating results with other apps.
 Every tutorial will include a project, and each project will be saved and documented in our public
 [platform-samples](https://github.com/github/platform-samples) repository.

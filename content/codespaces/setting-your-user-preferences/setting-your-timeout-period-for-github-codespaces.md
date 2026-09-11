@@ -1,24 +1,24 @@
 ---
 title: Setting your timeout period for GitHub Codespaces
 shortTitle: Set the timeout
-intro: 'You can set your default timeout for {% data variables.product.prodname_github_codespaces %} in your personal settings page.'
+intro: You can set your default timeout for {% data variables.product.prodname_github_codespaces %} in your personal settings page.
 redirect_from:
   - /codespaces/customizing-your-codespace/setting-your-timeout-period-for-codespaces
   - /codespaces/customizing-your-codespace/setting-your-timeout-period-for-github-codespaces
 versions:
   fpt: '*'
   ghec: '*'
-topics:
-  - Codespaces
-type: how_to
+contentType: how-tos
+category:
+  - Customize your codespace
 ---
 
 ## About the idle timeout
 
-A codespace will stop running after a period of inactivity. By default this period is 30 minutes, but you can specify a longer or shorter default timeout period in your personal settings on {% data variables.product.prodname_dotcom %}. The updated setting will apply to any new codespaces you create, or to existing codespaces the next time you start them. You can also specify a timeout when you use {% data variables.product.prodname_cli %} to create a codespace.
+A codespace will stop running after a period of inactivity. By default this period is 30 minutes, but you can specify a longer or shorter default timeout period in your personal settings on {% data variables.product.prodname_dotcom %}. The updated setting will apply to any new codespaces you create. You can also specify a timeout when you use {% data variables.product.prodname_cli %} to create a codespace.
 
 > [!WARNING]
-> Codespaces compute usage is billed for the duration for which a codespace is active. If you're not using a codespace but it remains running, and hasn't yet timed out, you are billed for the total time that the codespace was active, irrespective of whether you were using it. For more information, see "[AUTOTITLE](/billing/managing-billing-for-your-products/managing-billing-for-github-codespaces/about-billing-for-github-codespaces#codespaces-pricing)."
+> Codespaces compute usage is billed for the duration for which a codespace is active. If you're not using a codespace but it remains running, and hasn't yet timed out, you are billed for the total time that the codespace was active, irrespective of whether you were using it. For more information, see [AUTOTITLE](/billing/concepts/product-billing/github-codespaces#pricing).
 
 ### Inactivity defined
 
@@ -26,7 +26,7 @@ A codespace will stop running after a period of inactivity. By default this peri
 
 ### Timeout periods for organization-owned repositories
 
-Organizations can set a maximum idle timeout policy for codespaces created from some or all of their repositories. If an organization policy sets a maximum timeout which is less than the default timeout you have set, the organization's timeout will be used instead of your setting. You will be notified of this after the codespace is created. For more information, see "[AUTOTITLE](/codespaces/managing-codespaces-for-your-organization/restricting-the-idle-timeout-period)."
+Organizations can set a maximum idle timeout policy for codespaces created from some or all of their repositories. If an organization policy sets a maximum timeout which is less than the default timeout you have set, the organization's timeout will be used instead of your setting. You will be notified of this after the codespace is created. For more information, see [AUTOTITLE](/codespaces/managing-codespaces-for-your-organization/restricting-the-idle-timeout-period).
 
 {% webui %}
 
@@ -66,5 +66,5 @@ You can set your default timeout period in your web browser, on {% data variable
 
 ## Further reading
 
-* "[AUTOTITLE](/codespaces/customizing-your-codespace)"
-* "[AUTOTITLE](/codespaces/managing-your-codespaces)"
+* [AUTOTITLE](/codespaces/customizing-your-codespace)
+* [AUTOTITLE](/codespaces/managing-your-codespaces)

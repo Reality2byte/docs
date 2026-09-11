@@ -11,6 +11,8 @@ redirect_from:
   - /early-access/enterprise-importer/migrating-organizations-with-github-enterprise-importer/migrating-organizations-from-githubcom-to-github-enterprise-cloud
   - /migrations/using-github-enterprise-importer/migrating-organizations-with-github-enterprise-importer/migrating-organizations-from-githubcom-to-github-enterprise-cloud
   - /migrations/using-github-enterprise-importer/migrating-organizations-with-github-enterprise-importer
+category:
+  - Run an enterprise migration
 ---
 
 ## About organization migrations with {% data variables.product.prodname_importer_proper_name %}
@@ -26,13 +28,18 @@ Migrations to {% data variables.product.prodname_ghe_cloud %} include migrations
 {% data reusables.enterprise-migration-tool.gei-tool-switcher-cli %}
 {% endapi %}
 
+{% ifversion repo-rules-enterprise %}
+{% data reusables.enterprise-migration-tool.repository-migrations-bypass %}
+{% endif %}
+
 ## Prerequisites
 
 * {% data reusables.enterprise-migration-tool.github-trial-prerequisite %}
-* {% data reusables.enterprise-migration-tool.link-to-support-limitations %} For more information, see "[AUTOTITLE](/migrations/using-github-enterprise-importer/migrating-between-github-products/about-migrations-between-github-products)."
+* {% data reusables.enterprise-migration-tool.link-to-support-limitations %} For more information, see [AUTOTITLE](/migrations/using-github-enterprise-importer/migrating-between-github-products/about-migrations-between-github-products).
 * {% data reusables.enterprise-migration-tool.delta-migrations-not-supported %}
-* For the source organization, you must be an organization owner or have the migrator role. For more information, see "[AUTOTITLE](/migrations/using-github-enterprise-importer/migrating-between-github-products/managing-access-for-a-migration-between-github-products#about-the-migrator-role)."
+* For the source organization, you must be an organization owner or have the migrator role. For more information, see [AUTOTITLE](/migrations/using-github-enterprise-importer/migrating-between-github-products/managing-access-for-a-migration-between-github-products#about-the-migrator-role).
 * For the destination enterprise account, you must be an enterprise owner.
+* Organization migrations can migrate organizations with up to 5,000 repositories. If an organization contains more than 5,000 repositories, follow the instructions for [AUTOTITLE](/migrations/using-github-enterprise-importer/migrating-between-github-products/migrating-repositories-from-githubcom-to-github-enterprise-cloud).
 
 {% api %}
 
@@ -89,7 +96,7 @@ mutation startOrganizationMigration (
 `sourceOrgUrl` | The URL of the source organization, such as `https://github.com/octo-org`.
 `targetOrgName` | The name you want the new organization to have. Cannot be shared by another organization on your destination platform.
 `targetEnterpriseId` | The ID of the enterprise that you want to create the new organization in, returned by step 2.
-`sourceAccessToken` | Your {% data variables.product.pat_v1 %} for the source organization. For requirements, see "[AUTOTITLE](/migrations/using-github-enterprise-importer/migrating-between-github-products/managing-access-for-a-migration-between-github-products#required-scopes-for-personal-access-tokens)."
+`sourceAccessToken` | Your {% data variables.product.pat_v1 %} for the source organization. For requirements, see [AUTOTITLE](/migrations/using-github-enterprise-importer/migrating-between-github-products/managing-access-for-a-migration-between-github-products#required-scopes-for-personal-access-tokens).
 `targetAccessToken` | Your {% data variables.product.pat_v1 %} for the destination enterprise.
 
 In the next step, you'll use the migration ID returned from the `startOrganizationMigration` mutation to check the migration status.
@@ -143,7 +150,7 @@ query (
 
 Before you can use the {% data variables.product.prodname_gei_cli_short %} to migrate to {% data variables.product.prodname_ghe_cloud %}, you must create {% data variables.product.pat_v1_plural %} that can access the source organization and destination enterprise, then set the {% data variables.product.pat_v1_plural %} as environment variables.
 
-1. Create and record a {% data variables.product.pat_generic %} that meets all the requirements to authenticate for the source organization for organization migrations. For more information, see "[AUTOTITLE](/migrations/using-github-enterprise-importer/migrating-between-github-products/managing-access-for-a-migration-between-github-products#creating-a-personal-access-token-for-github-enterprise-importer)."
+1. Create and record a {% data variables.product.pat_generic %} that meets all the requirements to authenticate for the source organization for organization migrations. For more information, see [AUTOTITLE](/migrations/using-github-enterprise-importer/migrating-between-github-products/managing-access-for-a-migration-between-github-products#creating-a-personal-access-token-for-github-enterprise-importer).
 1. Create and record a {% data variables.product.pat_v1 %} that meets all the requirements to authenticate for the destination enterprise for organization migrations.
 1. Set environment variables for the {% data variables.product.pat_v1_plural %}, replacing TOKEN in the commands below with the {% data variables.product.pat_v1_plural %} you recorded above. Use `GH_PAT` for the destination enterprise and `GH_SOURCE_PAT` for the source organization.
 
@@ -187,6 +194,6 @@ ENTERPRISE | The slug for your destination enterprise, which you can identify by
 
 {% endapi %}
 
-After your migration has finished, we recommend that you check the migration log repository. For more information, see "[AUTOTITLE](/migrations/using-github-enterprise-importer/completing-your-migration-with-github-enterprise-importer/accessing-your-migration-logs-for-github-enterprise-importer#accessing-an-organization-migration-log)."
+After your migration has finished, we recommend that you check the migration log repository. For more information, see [AUTOTITLE](/migrations/using-github-enterprise-importer/completing-your-migration-with-github-enterprise-importer/accessing-your-migration-logs-for-github-enterprise-importer#accessing-an-organization-migration-log).
 
 Finally, we recommend you perform a soundness check of your organization and migrated repositories.

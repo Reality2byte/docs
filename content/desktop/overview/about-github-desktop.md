@@ -1,17 +1,21 @@
 ---
 title: About GitHub Desktop
-shortTitle: 'About'
+shortTitle: About
 intro: '{% data variables.product.prodname_desktop %} helps you work with projects hosted on {% data variables.product.prodname_dotcom %}.'
 versions:
-  feature: desktop
+  fpt: '*'
+  ghec: '*'
+  ghes: '*'
 redirect_from:
   - /desktop/installing-and-configuring-github-desktop/overview/about-github-desktop
   - /github/getting-started-with-github/github-desktop
   - /github/getting-started-with-github/using-github/github-desktop
   - /get-started/using-github/github-desktop
+category:
+  - Set up GitHub Desktop
 ---
 
-<a href="https://desktop.github.com?ref_cta=download+desktop&ref_loc=about+github+desktop&ref_page=docs" target="_blank" class="btn btn-primary mt-3 mr-3 no-underline"><span>Download {% data variables.product.prodname_desktop %}</span> {% octicon "link-external" height:16 %}</a>
+<a href="https://desktop.github.com?ref_product=desktop&ref_type=engagement&ref_style=button" target="_blank" class="btn btn-primary mt-3 mr-3 no-underline"><span>Download {% data variables.product.prodname_desktop %}</span> {% octicon "link-external" height:16 aria-label="link-external" %}</a>
 
 ## About {% data variables.product.prodname_desktop %}
 
@@ -36,10 +40,10 @@ You can use {% data variables.product.prodname_desktop %} alongside any tools yo
 
 ## Getting started
 
-{% data variables.product.prodname_desktop %} is available for Windows and macOS. For information about installing and getting started with {% data variables.product.prodname_desktop %}, see "[AUTOTITLE](/desktop/overview/getting-started-with-github-desktop)."
+{% data variables.product.prodname_desktop %} is available for Windows and macOS. For information about installing and getting started with {% data variables.product.prodname_desktop %}, see [AUTOTITLE](/desktop/overview/getting-started-with-github-desktop).
 
 If you're interested in the open source {% data variables.product.prodname_desktop %} project, you can see the roadmap, contribute to the project, or open an issue to provide feedback in the [`desktop/desktop`](https://github.com/desktop/desktop) repository.
 
 ## Further reading
 
-* "[AUTOTITLE](/get-started/using-git/about-git)"
+* [AUTOTITLE](/get-started/using-git/about-git)

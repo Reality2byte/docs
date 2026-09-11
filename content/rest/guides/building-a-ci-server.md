@@ -8,15 +8,15 @@ versions:
   fpt: '*'
   ghes: '*'
   ghec: '*'
-topics:
-  - API
+category:
+  - Build apps and integrations
 ---
 
 
 
 You can use the REST API to tie together commits with
 a testing service, so that every push you make can be tested and represented
-in a {% data variables.product.product_name %} pull request. For more information about the relevant endpoints, see "[AUTOTITLE](/rest/commits/statuses)."
+in a {% data variables.product.github %} pull request. For more information about the relevant endpoints, see [AUTOTITLE](/rest/commits/statuses).
 
 This guide will use that API to demonstrate a setup that you can use.
 In our scenario, we will:
@@ -29,13 +29,13 @@ Travis, Jenkins, or something else entirely. The crux of this guide will be sett
 and configuring the server managing the communication.
 
 If you haven't already, [download `ngrok`](https://ngrok.com/), and learn how
-to [use it](/webhooks-and-events/webhooks/configuring-your-server-to-receive-payloads#using-ngrok). We find it to be a very useful tool for exposing local
+to [use it](https://ngrok.com/docs/getting-started/). We find it to be a very useful tool for exposing local
 applications to the internet.
 
 {% ifversion cli-webhook-forwarding %}
 
 > [!NOTE]
-> Alternatively, you can use webhook forwarding to set up your local environment to receive webhooks. For more information, see "[AUTOTITLE](/webhooks-and-events/webhooks/receiving-webhooks-with-the-github-cli)."
+> Alternatively, you can use webhook forwarding to set up your local environment to receive webhooks. For more information, see [AUTOTITLE](/webhooks/testing-and-troubleshooting-webhooks/using-the-github-cli-to-forward-webhooks-for-testing).
 
 {% endif %}
 
@@ -74,7 +74,7 @@ Great! Click on **Let me select individual events**, and select the following:
 * Status
 * Pull Request
 
-These are the events {% data variables.product.product_name %} will send to our server whenever the relevant action
+These are the events {% data variables.product.github %} will send to our server whenever the relevant action
 occurs. Let's update our server to _just_ handle the Pull Request scenario right now:
 
 ``` ruby
@@ -96,7 +96,7 @@ helpers do
 end
 ```
 
-What's going on? Every event that {% data variables.product.product_name %} sends out attached a `X-GitHub-Event`
+What's going on? Every event that {% data variables.product.github %} sends out attached a `X-GitHub-Event`
 HTTP header. We'll only care about the PR events for now. From there, we'll
 take the payload of information, and return the title field. In an ideal scenario,
 our server would be concerned with every time a pull request is updated, not just
@@ -113,9 +113,9 @@ setting (and updating) CI statuses. Note that at any time you update your server
 you can click **Redeliver** to send the same payload. There's no need to make a
 new pull request every time you make a change!
 
-Since we're interacting with the {% ifversion fpt or ghec %}{% data variables.product.prodname_dotcom %}{% else %}{% data variables.product.product_name %}{% endif %} API, we'll use [Octokit.rb](https://github.com/octokit/octokit.rb)
+Since we're interacting with the {% data variables.product.github %} API, we'll use [Octokit.rb](https://github.com/octokit/octokit.rb)
 to manage our interactions. We'll configure that client with
-[a {% data variables.product.pat_generic %}](/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token):
+[a {% data variables.product.pat_generic %}](/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens):
 
 ``` ruby
 # !!! DO NOT EVER USE HARD-CODED VALUES IN A REAL APP !!!
@@ -127,7 +127,7 @@ before do
 end
 ```
 
-After that, we'll just need to update the pull request on {% data variables.product.product_name %} to make clear
+After that, we'll just need to update the pull request on {% data variables.product.github %} to make clear
 that we're processing on the CI:
 
 ``` ruby
@@ -139,9 +139,9 @@ end
 
 We're doing three very basic things here:
 
-* we're looking up the full name of the repository
-* we're looking up the last SHA of the pull request
-* we're setting the status to "pending"
+* We're looking up the full name of the repository
+* We're looking up the last SHA of the pull request
+* We're setting the status to "pending"
 
 That's it! From here, you can run whatever process you need to in order to execute
 your test suite. Maybe you're going to pass off your code to Jenkins, or call

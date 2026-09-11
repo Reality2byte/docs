@@ -1,16 +1,18 @@
 ---
 title: Searching gists
-intro: 'You can search for gists on {% data variables.product.product_name %} and narrow the results using search qualifiers.'
+intro: 'You can search for gists on {% data variables.product.github %} and narrow the results using search qualifiers.'
 permissions: '{% data reusables.enterprise-accounts.emu-permission-gist %}'
 versions:
   fpt: '*'
   ghes: '*'
   ghec: '*'
+category:
+  - Search for work and community content
 ---
 
 ## Search gists
 
-You can search for gists globally across all of {% data variables.product.product_name %}.
+You can search for gists globally across {% data variables.location.product_location %}.
 
 | Qualifier | Example |
 | :- | :- |

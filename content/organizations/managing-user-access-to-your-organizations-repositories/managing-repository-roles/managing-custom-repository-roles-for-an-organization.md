@@ -3,21 +3,21 @@ title: Managing custom repository roles for an organization
 intro: 'Learn how to create, edit, or delete custom repository roles for your organization.'
 permissions: Organization owners.
 versions:
-  feature: custom-repository-roles
-topics:
-  - Organizations
-  - Teams
+  ghes: '*'
+  ghec: '*'
 shortTitle: Manage custom roles
 redirect_from:
   - /early-access/github/articles/managing-custom-repository-roles-for-an-organization
   - /organizations/managing-peoples-access-to-your-organization-with-roles/managing-custom-repository-roles-for-an-organization
+category:
+  - Control repository access
 ---
 
 {% data reusables.organizations.custom-repo-roles-ghec-only %}
 
 ## About custom repository roles
 
-{% data reusables.organizations.about-custom-repo-roles %} For more information, see "[AUTOTITLE](/organizations/managing-user-access-to-your-organizations-repositories/managing-repository-roles/about-custom-repository-roles)."
+{% data reusables.organizations.about-custom-repo-roles %} For more information, see [AUTOTITLE](/organizations/managing-user-access-to-your-organizations-repositories/managing-repository-roles/about-custom-repository-roles).
 
 ## Creating a repository role
 

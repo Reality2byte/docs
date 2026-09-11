@@ -8,9 +8,9 @@ redirect_from:
 versions:
   fpt: '*'
   ghec: '*'
-topics:
-  - Community
 shortTitle: Access community profiles
+category:
+  - Set up your project for contributions
 ---
 
 {% data reusables.repositories.navigate-to-repo %}
@@ -19,4 +19,4 @@ shortTitle: Access community profiles
 
 ## Further reading
 
-* "[AUTOTITLE](/communities/setting-up-your-project-for-healthy-contributions/about-community-profiles-for-public-repositories)"
+* [AUTOTITLE](/communities/setting-up-your-project-for-healthy-contributions/about-community-profiles-for-public-repositories)

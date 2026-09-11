@@ -8,7 +8,11 @@ redirect_from:
   - /desktop/contributing-and-collaborating-using-github-desktop/managing-commits/reverting-a-commit
   - /desktop/contributing-and-collaborating-using-github-desktop/managing-commits/reverting-a-commit-in-github-desktop
 versions:
-  feature: desktop
+  fpt: '*'
+  ghec: '*'
+  ghes: '*'
+category:
+  - Manage commits
 ---
 When you revert to a previous commit, the revert is also a commit. The original commit also remains in the repository's history.
 
@@ -20,4 +24,4 @@ When you revert to a previous commit, the revert is also a commit. The original 
 
 ## Further reading
 
-* "[AUTOTITLE](/desktop/managing-commits/options-for-managing-commits-in-github-desktop)"
+* [AUTOTITLE](/desktop/managing-commits/options-for-managing-commits-in-github-desktop)

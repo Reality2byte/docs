@@ -5,19 +5,19 @@ intro: "You can download reports with information about the users, organizations
 permissions: Enterprise owners can download reports for a {% data variables.product.prodname_ghe_server %} instance.
 versions:
   ghes: '*'
-topics:
-  - Enterprise
+category:
+  - Monitor and audit your enterprise
 ---
 
-## About reports for {% data variables.product.product_name %}
+## About reports for {% data variables.product.prodname_ghe_server %}
 
-If you need to get information about the users, organizations, and repositories on {% data variables.location.product_location %}, you can fetch data using the REST API. For more information, see "[AUTOTITLE](/rest/about-the-rest-api/about-the-rest-api)."
+If you need to get information about the users, organizations, and repositories on {% data variables.location.product_location %}, you can fetch data using the REST API. For more information, see [AUTOTITLE](/rest/about-the-rest-api/about-the-rest-api).
 
 The REST API might not provide all of the data that you want, and requires some technical expertise to use. Alternatively, you can reports containing overviews of users, organizations, and repositories on your instance.
 
 ## Downloading reports using the web UI
-  
-1. From an administrative account on {% data variables.product.product_name %}, in the upper-right corner of any page, click {% octicon "rocket" aria-label="Site admin" %}.
+
+1. From an administrative account on {% data variables.product.prodname_ghe_server %}, in the upper-right corner of any page, click {% octicon "rocket" aria-label="Site admin" %}.
 1. In the left sidebar, click **Reports**.
 1. Next to the report you want to download, click **Download**.
 
@@ -25,14 +25,14 @@ You can download CSV files that report the following information:
 
 * All users
 * All active users
-* All [dormant users](/admin/user-management/managing-users-in-your-enterprise/managing-dormant-users)
+* All [dormant users](/admin/managing-accounts-and-repositories/managing-users-in-your-enterprise/managing-dormant-users)
 * All users who have been suspended
 * All organizations
 * All repositories
 
 ## Downloading reports programmatically
 
-You can also access reports programmatically via standard HTTP authentication and a {% data variables.product.pat_v1 %}. You must use a {% data variables.product.pat_v1 %} with the `site_admin` scope. For more information, see "[AUTOTITLE](/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)."
+You can also access reports programmatically via standard HTTP authentication and a {% data variables.product.pat_v1 %}. You must use a {% data variables.product.pat_v1 %} with the `site_admin` scope. For more information, see [AUTOTITLE](/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens).
 
 For example, you can download the "all users" report using curl:
 

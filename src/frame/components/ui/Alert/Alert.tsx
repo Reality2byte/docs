@@ -2,7 +2,8 @@ import { createElement, ReactNode } from 'react'
 import cx from 'classnames'
 import styles from './Alert.module.scss'
 import { InfoIcon, ReportIcon, AlertIcon, LightBulbIcon, StopIcon } from '@primer/octicons-react'
-import { useTranslation } from 'src/languages/components/useTranslation'
+import { useTranslation } from '@/languages/components/useTranslation'
+import { RenderedHTML } from '@/frame/components/ui/RenderedHTML'
 
 const alertTypes = {
   NOTE: { icon: InfoIcon, color: 'accent' },
@@ -25,13 +26,14 @@ export function Alert({ className, html, children, type = 'IMPORTANT' }: AlertPr
   return (
     <div
       data-testid="alert"
+      data-container="alert"
       className={cx(className, styles.container, `ghd-alert ghd-alert-${alertTypes[type].color}`)}
     >
       <p className="ghd-alert-title">
         {createElement(alertTypes[type].icon, { size: 16, className: 'mr-2' })}
         {t(type)}
       </p>
-      {html ? <div dangerouslySetInnerHTML={{ __html: html }} /> : children}
+      {html ? <RenderedHTML as="div" html={html} /> : children}
     </div>
   )
 }

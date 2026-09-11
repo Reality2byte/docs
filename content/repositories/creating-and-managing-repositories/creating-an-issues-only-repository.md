@@ -1,6 +1,6 @@
 ---
 title: Creating an issues-only repository
-intro: '{% data variables.product.product_name %} does not provide issues-only access permissions, but you can accomplish this using a second repository which contains only the issues.'
+intro: '{% data variables.product.github %} does not provide issues-only access permissions, but you can accomplish this using a second repository which contains only the issues.'
 redirect_from:
   - /articles/issues-only-access-permissions
   - /articles/is-there-issues-only-access-to-organization-repositories
@@ -11,9 +11,9 @@ versions:
   fpt: '*'
   ghes: '*'
   ghec: '*'
-topics:
-  - Repositories
 shortTitle: Issues-only repository
+category:
+  - Create and set up a repository
 ---
 1. Create a **private** repository to host the source code from your project.
 1. Create a second repository with the permissions you desire to host the issue tracker.

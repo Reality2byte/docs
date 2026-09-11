@@ -9,6 +9,8 @@ versions:
   fpt: '*'
   ghes: '*'
   ghec: '*'
+category:
+  - Share and reuse content
 ---
 {% data reusables.repositories.navigate-to-repo %}
 {% data reusables.repositories.sidebar-issue-pr %}
@@ -19,11 +21,11 @@ versions:
 1. Select **Comment** to add your comment.
 
 > [!TIP]
-> * You can use a keyboard shortcut to autofill the comment with a saved reply. For more information, see "[AUTOTITLE](/get-started/accessibility/keyboard-shortcuts#comments)."
+> * You can use a keyboard shortcut to autofill the comment with a saved reply. For more information, see [AUTOTITLE](/get-started/accessibility/keyboard-shortcuts#comments).
 > * You can filter the list by typing the title of the saved reply.
 
 ## Further reading
 
-* "[AUTOTITLE](/get-started/writing-on-github/working-with-saved-replies/creating-a-saved-reply)"
-* "[AUTOTITLE](/get-started/writing-on-github/working-with-saved-replies/editing-a-saved-reply)"
-* "[AUTOTITLE](/get-started/writing-on-github/working-with-saved-replies/deleting-a-saved-reply)"
+* [AUTOTITLE](/get-started/writing-on-github/working-with-saved-replies/creating-a-saved-reply)
+* [AUTOTITLE](/get-started/writing-on-github/working-with-saved-replies/editing-a-saved-reply)
+* [AUTOTITLE](/get-started/writing-on-github/working-with-saved-replies/deleting-a-saved-reply)

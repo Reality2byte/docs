@@ -1,112 +1,63 @@
-import { Label, LabelGroup, Link } from '@primer/react'
-import {
-  BugIcon,
-  LightBulbIcon,
-  CodeIcon,
-  GearIcon,
-  RocketIcon,
-  BeakerIcon,
-  CopilotIcon,
-  HubotIcon,
-  LogIcon,
-  TerminalIcon,
-  BookIcon,
-} from '@primer/octicons-react'
+import { Label } from '@primer/react-brand'
+import { Link } from '@primer/react'
+import { ValidOcticon, getOcticonComponent } from '../lib/octicons'
 
-const Icons = {
-  bug: BugIcon,
-  lightbulb: LightBulbIcon,
-  code: CodeIcon,
-  gear: GearIcon,
-  rocket: RocketIcon,
-  beaker: BeakerIcon,
-  copilot: CopilotIcon,
-  hubot: HubotIcon,
-  log: LogIcon,
-  terminal: TerminalIcon,
-  book: BookIcon,
-}
+import styles from './CookBookArticleCard.module.scss'
 
-type IconType = keyof typeof Icons
+type IconType = ValidOcticon
 
 type Props = {
-  title?: string
+  title: string
   icon?: IconType
-  url?: string
-  description?: string
-  tags?: string[]
+  url: string
+  description: string
+  tags: string[]
   spotlight?: boolean
   image?: string
   complexity?: string
+  surface?: string
 }
 
-const defaultProps = {
-  title: 'Article Name',
-  description:
-    'Man bun letterpress put a bird on it la croix offal, meh grailed hot chicken kombucha gochujang messenger bag fit before they sold out lyft.',
-  tags: ['Tag Example', 'Tag Example'],
-  icon: 'book',
-}
-
-function setImage(image: string) {
-  return (
-    // <div className="d-flex flex-column flex-align-center">
-    image ? (
-      <div
-        style={{
-          width: 'max-width',
-          height: 200,
-          backgroundColor: 'gray',
-          marginBottom: 20,
-          borderRadius: 5,
-        }}
-      ></div>
-    ) : null
-    // </div>
-  )
+function setImage(image: string, alt: string) {
+  return image ? <img src={image} alt={alt} className={styles.spotlightImage} /> : null
 }
 const spotlightClasses = 'd-flex flex-column align-items-center'
 export const CookBookArticleCard = ({
-  title = defaultProps.title,
-  icon = defaultProps.icon as IconType,
-  tags = defaultProps.tags,
-  description = defaultProps.description,
+  title,
+  icon,
+  tags,
+  description,
   image = '',
   url,
   spotlight = false,
 }: Props) => {
-  const setIcon = (icon: keyof typeof Icons) => {
-    return Icons[icon] || CopilotIcon
-  }
-
-  const IconComponent = setIcon(icon as keyof typeof Icons)
+  const IconComponent = getOcticonComponent(icon)
   return (
     <div className="m-2">
       <div
-        style={{ minHeight: 200 }}
-        className={spotlight ? spotlightClasses : 'd-flex pb-3 border-bottom'}
+        className={`${styles.cardContainer} ${spotlight ? spotlightClasses : 'd-flex flex-wrap pb-3 border-bottom'}`}
       >
-        {spotlight ? setImage(image) : null}
+        {spotlight ? setImage(image, title) : null}
         {spotlight
           ? null
           : IconComponent && (
               <IconComponent
                 size={48}
-                className="mr-4 bgColor-accent-muted p-3 circle fgColor-accent"
+                className="mr-4 bgColor-accent-muted p-3 circle fgColor-accent flex-shrink-0"
               />
             )}
-        <div>
-          <h3 className="h4">
+        <div className="min-width-0 flex-1">
+          <h3 className="h4 fgColor-accent">
             <Link href={url}>{title}</Link>
           </h3>
           <div className="fgColor-muted mb-3 mt-2">{description}</div>
-          <LabelGroup>
+          <div className={styles.labelGroup}>
             {tags.map((tag, index) => (
-              <Label key={index} variant="accent" sx={{ mr: 1 }} size="small">
+              <Label key={index} color="blue" className={styles.label} size="small">
                 {tag}
-              </Label> //fix this to have unique keys
+              </Label>
             ))}
-          </LabelGroup>
+          </div>
         </div>
       </div>
     </div>

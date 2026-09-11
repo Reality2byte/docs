@@ -10,11 +10,10 @@ versions:
   fpt: '*'
   ghes: '*'
   ghec: '*'
-topics:
-  - Organizations
-  - Teams
 shortTitle: View people with access
 permissions: Organization owners can view people with access to a repository.
+category:
+  - Control repository access
 ---
 
 ## About the list of people with access to your repository
@@ -27,7 +26,7 @@ Organizations that use {% data variables.product.prodname_ghe_cloud %} can also 
 
 ## Viewing people with access to your repository
 
-You can see a combined overview of teams and people with access to your repository in your repository settings. For more information, see "[AUTOTITLE](/repositories/managing-your-repositorys-settings-and-features/managing-repository-settings/managing-teams-and-people-with-access-to-your-repository#about-access-management-for-repositories)."
+You can see a combined overview of teams and people with access to your repository in your repository settings. For more information, see [AUTOTITLE](/repositories/managing-your-repositorys-settings-and-features/managing-repository-settings/managing-teams-and-people-with-access-to-your-repository#about-access-management-for-repositories).
 
 {% ifversion ghec or ghes %}
 

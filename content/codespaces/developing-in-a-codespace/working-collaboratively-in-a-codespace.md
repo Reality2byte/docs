@@ -1,23 +1,22 @@
 ---
 title: Working collaboratively in a codespace
 shortTitle: Work collaboratively
-intro: 'You can work collaboratively with other people in a codespace by using {% data variables.product.prodname_vs %} Live Share.'
+intro: You can work collaboratively with other people in a codespace by using {% data variables.product.prodname_vs %} Live Share.
 versions:
   fpt: '*'
   ghec: '*'
-type: how_to
-topics:
-  - Codespaces
-  - Developer
 redirect_from:
   - /codespaces/developing-in-codespaces/working-collaboratively-in-a-codespace
+contentType: how-tos
+category:
+  - Write code in a codespace
 ---
 
 {% data variables.product.prodname_vs %} Live Share lets you collaboratively edit and debug with others in real time, within a codespace. You can securely share your current codespace, or access a codespace created by someone else.
 
 You can start a Live Share session either within the {% data variables.product.prodname_vscode_shortname %} web client in your browser, or within the {% data variables.product.prodname_vscode_shortname %} desktop application.
 
-For more information about Live Share, see "[What is {% data variables.product.prodname_vs %} Live Share?](https://learn.microsoft.com/en-us/visualstudio/liveshare/)" in the {% data variables.product.prodname_vs %} documentation.
+For more information about Live Share, see [What is {% data variables.product.prodname_vs %} Live Share?](https://learn.microsoft.com/en-us/visualstudio/liveshare/) in the {% data variables.product.prodname_vs %} documentation.
 
 ## Sharing your codespace with someone else
 
@@ -44,7 +43,7 @@ For more information about Live Share, see "[What is {% data variables.product.p
 1. Send the link in your clipboard to anyone you want to join you in your Live Share session.
 
    > [!IMPORTANT]
-   > Given the level of access Live Share sessions can provide to guests, you should only share with people you trust, and you should think through the implications of what you are sharing. For more information, see "[Security features of Live Share](https://learn.microsoft.com/en-us/visualstudio/liveshare/reference/security)" in the {% data variables.product.prodname_vs %} documentation.
+   > Given the level of access Live Share sessions can provide to guests, you should only share with people you trust, and you should think through the implications of what you are sharing. For more information, see [Security features of Live Share](https://learn.microsoft.com/en-us/visualstudio/liveshare/reference/security) in the {% data variables.product.prodname_vs %} documentation.
 
 ## Stopping a Live Share session
 
@@ -54,7 +53,7 @@ To stop sharing your codespace, click the stop icon in the Live Share panel.
 
 If you, as the person who started the Live Share session, close the codespace the sharing session ends, even if the codespace remains active on the remote host.
 
-The idle timeout, which automatically stops a codespace after a period of inactivity, only applies to the person who started the codespace. It does not apply to people who are working on the codespace via Live Share. The codespace may therefore time out while collaborators are using the codespace if the person who started the codespace remains inactive for the configured period of time. For more information, see "[AUTOTITLE](/codespaces/setting-your-user-preferences/setting-your-timeout-period-for-github-codespaces)."
+The idle timeout, which automatically stops a codespace after a period of inactivity, only applies to the person who started the codespace. It does not apply to people who are working on the codespace via Live Share. The codespace may therefore time out while collaborators are using the codespace if the person who started the codespace remains inactive for the configured period of time. For more information, see [AUTOTITLE](/codespaces/setting-your-user-preferences/setting-your-timeout-period-for-github-codespaces).
 
 ## Working collaboratively in someone else's codespace
 

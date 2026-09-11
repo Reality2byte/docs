@@ -7,15 +7,14 @@ versions:
   fpt: '*'
   ghec: '*'
 permissions: Organization owners can manage updates from accounts the organization sponsors.
-topics:
-  - Organizations
-  - Teams
 shortTitle: Manage sponsorship updates
+category:
+  - Set up your organization
 ---
 
 The developers and organizations that your organization sponsors can send you updates about their work. You can manage the email address that receives these updates.
 
-You can also disable updates from accounts your organization sponsors. For more information, see "[AUTOTITLE](/sponsors/sponsoring-open-source-contributors/managing-your-sponsorship#managing-email-updates-for-your-sponsorship)."
+You can also disable updates from accounts your organization sponsors. For more information, see [AUTOTITLE](/sponsors/sponsoring-open-source-contributors/managing-your-sponsorship#managing-email-updates-for-your-sponsorship).
 
 {% data reusables.profile.access_org %}
 {% data reusables.profile.org_settings %}
@@ -24,4 +23,4 @@ You can also disable updates from accounts your organization sponsors. For more 
 
 ## Further reading
 
-* "[AUTOTITLE](/sponsors)"
+* [AUTOTITLE](/sponsors)

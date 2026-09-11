@@ -1,18 +1,23 @@
 ---
 title: Best practices for GitHub Docs
 shortTitle: Best practices for GitHub Docs
-intro: "Follow these best practices to create documentation that's user-friendly and easy to understand."
+intro: Follow these best practices to create documentation that's user-friendly and easy to understand.
 versions:
-  feature: 'contributing'
+  fpt: '*'
+  ghec: '*'
+  ghes: '*'
+category:
+  - Understand the GitHub approach to docs
 ---
 
 ## About {% data variables.product.prodname_dotcom %} documentation
 
 At {% data variables.product.prodname_dotcom %}, we strive to create documentation that is accurate, valuable, inclusive, accessible, and easy to use.
 
-Before contributing to {% data variables.product.prodname_docs %}, please take a moment to familiarize yourself with {% data variables.product.prodname_dotcom %}'s documentation philosophy and content design principles:
+Before contributing to {% data variables.product.prodname_docs %}, please take a moment to familiarize yourself with {% data variables.product.prodname_dotcom %}'s documentation philosophy, fundamentals, and content design principles:
 
 * [AUTOTITLE](/contributing/writing-for-github-docs/about-githubs-documentation-philosophy)
+* [AUTOTITLE](/contributing/writing-for-github-docs/about-githubs-documentation-fundamentals)
 * [AUTOTITLE](/contributing/writing-for-github-docs/content-design-principles)
 
 ## Best practices for writing {% data variables.product.prodname_dotcom %} documentation
@@ -42,12 +47,12 @@ Before you begin, it’s important to understand who you’re writing for, what 
 
 Determine which type of content you will write, based on the intended audience and the core purpose of the content. {% data variables.product.prodname_docs %} use the following content types:
 
-* [Conceptual content](/contributing/style-guide-and-content-model/conceptual-content-type)
-* [Referential content](/contributing/style-guide-and-content-model/referential-content-type)
-* [Procedural content](/contributing/style-guide-and-content-model/procedural-content-type)
-* [Troubleshooting content](/contributing/style-guide-and-content-model/troubleshooting-content-type)
-* [Quickstart](/contributing/style-guide-and-content-model/quickstart-content-type)
-* [Tutorial](/contributing/style-guide-and-content-model/tutorial-content-type)
+* [AUTOTITLE](/contributing/style-guide-and-content-model/concepts-content-type)
+* [AUTOTITLE](/contributing/style-guide-and-content-model/reference-content-type)
+* [AUTOTITLE](/contributing/style-guide-and-content-model/how-to-content-type)
+* [AUTOTITLE](/contributing/style-guide-and-content-model/troubleshooting-content-type)
+* [AUTOTITLE](/contributing/style-guide-and-content-model/quickstart-content-type)
+* [AUTOTITLE](/contributing/style-guide-and-content-model/tutorial-content-type)
 
 For example, use the conceptual content type to help readers understand the basics of a feature or topic and how it can help them accomplish their goals. Use the procedural content type to help people complete a specific task from start to finish.
 
@@ -100,8 +105,8 @@ Once the article has a clearly defined purpose and structure, you can apply the 
 
 ## Further reading
 
-* "[AUTOTITLE](/contributing/style-guide-and-content-model/style-guide)"
-* "[AUTOTITLE](/contributing/style-guide-and-content-model/about-the-content-model)"
-* "[AUTOTITLE](/contributing/style-guide-and-content-model/contents-of-a-github-docs-article)"
-* "[Readability Guidelines](https://readabilityguidelines.co.uk/)," Content Design London
-* "[Rewriting Digital Content for Brevity](https://www.nngroup.com/articles/rewriting-content-brevity/)," Nielsen Norman Group
+* [AUTOTITLE](/contributing/style-guide-and-content-model/style-guide)
+* [AUTOTITLE](/contributing/style-guide-and-content-model/about-the-content-model)
+* [AUTOTITLE](/contributing/style-guide-and-content-model/contents-of-a-github-docs-article)
+* [Readability Guidelines](https://readabilityguidelines.co.uk/), Content Design London
+* [Rewriting Digital Content for Brevity](https://www.nngroup.com/articles/rewriting-content-brevity/), Nielsen Norman Group

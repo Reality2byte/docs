@@ -6,15 +6,15 @@ versions:
   ghec: '*'
 redirect_from:
   - /github/building-a-strong-community/managing-reported-content-in-your-organizations-repository
-topics:
-  - Community
 shortTitle: Manage reported content
 permissions: Anyone with admin permissions to a repository can view and manage reported content for the repository.
+category:
+  - Moderate comments and conversations
 ---
 
 ## About management of reported content
 
-Before you can view or manage reported content, you must enable reported content for the repository. For more information, see "[AUTOTITLE](/communities/moderating-comments-and-conversations/managing-how-contributors-report-abuse-in-your-organizations-repository)."
+Before you can view or manage reported content, you must enable reported content for the repository. For more information, see [AUTOTITLE](/communities/moderating-comments-and-conversations/managing-how-contributors-report-abuse-in-your-organizations-repository).
 
 You can track, triage, and respond to reports of disruptive content. In the "Abuse reports" list, you can view all reports and navigate directly to each reported comment on {% data variables.product.prodname_dotcom %}.
 
@@ -52,4 +52,4 @@ After you finish moderating disruptive content, you can mark the report as resol
 
 ## Further reading
 
-* "[AUTOTITLE](/communities/setting-up-your-project-for-healthy-contributions/about-community-management-and-moderation)"
+* [AUTOTITLE](/communities/setting-up-your-project-for-healthy-contributions/about-community-management-and-moderation)

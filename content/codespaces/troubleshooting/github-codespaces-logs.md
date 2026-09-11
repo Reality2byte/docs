@@ -1,23 +1,16 @@
 ---
 title: GitHub Codespaces logs
-intro: 'Overview of the logs used by {% data variables.product.prodname_github_codespaces %}.'
+intro: Overview of the logs used by {% data variables.product.prodname_github_codespaces %}.
 versions:
   fpt: '*'
   ghec: '*'
-type: reference
-topics:
-  - Codespaces
-  - Logging
 shortTitle: Codespaces logs
 redirect_from:
   - /codespaces/troubleshooting/codespaces-logs
+contentType: reference
+category:
+  - Troubleshoot codespaces
 ---
-
-{% jetbrains_beta %}
-
-{% data reusables.codespaces.codespaces-jetbrains-beta-note %}
-
-{% endjetbrains_beta %}
 
 Information on {% data variables.product.prodname_github_codespaces %} is output to various logs:
 
@@ -49,14 +42,6 @@ Browser logs are available if you are using {% data variables.product.prodname_g
 Other logs are available if you are using {% data variables.product.prodname_github_codespaces %} in {% data variables.product.prodname_vscode_shortname %} or in your web browser. Click the tabs above for details.
 
 {% endcli %}
-
-{% jetbrains_beta %}
-
-* Creation logs
-
-Other logs are available if you are using {% data variables.product.prodname_github_codespaces %} in {% data variables.product.prodname_vscode_shortname %} or in your web browser. Click the tabs above for details.
-
-{% endjetbrains_beta %}
 
 {% webui %}
 
@@ -151,7 +136,7 @@ The following instructions are for Chrome. The steps for other browsers are simi
 
 1. In the browser window for the codespace you want to debug, open the developer tools window.
 1. Click the **Console** tab.
-1. Show the console sidebar, if it is not already displayed. For more information, see "[Console features reference](https://developer.chrome.com/docs/devtools/console/reference#sidebar)" in the Chrome for Developers documentation.
+1. Show the console sidebar, if it is not already displayed. For more information, see [Console features reference](https://developer.chrome.com/docs/devtools/console/reference#sidebar) in the Chrome for Developers documentation.
 1. In the sidebar, click **NUMBER errors** to show only the errors.
 1. In the log area on the right, right-click and select **Save as** to save a copy of the errors to your local machine.
 
@@ -159,20 +144,7 @@ The following instructions are for Chrome. The steps for other browsers are simi
 
 {% endwebui %}
 
-{% jetbrains_beta %}
-
-{% data reusables.codespaces.jetbrains-open-codespace-plugin %}
-1. In the {% data variables.product.prodname_github_codespaces %} tool window, click the log icon.
-
-   ![Screenshot of the log button (a book symbol).](/assets/images/help/codespaces/jetbrains-plugin-icon-log.png)
-
-## JetBrains logs
-
-You can download logs for the remote JetBrains IDE and the local client application by going to the **Help** menu in the JetBrains client application and clicking **Collect Host and Client Logs**.
-
-{% endjetbrains_beta %}
-
 ## Further reading
 
-* "[AUTOTITLE](/codespaces/managing-codespaces-for-your-organization/reviewing-your-organizations-audit-logs-for-github-codespaces)"
-* "[AUTOTITLE](/codespaces/managing-your-codespaces/reviewing-your-security-logs-for-github-codespaces)"
+* [AUTOTITLE](/codespaces/managing-codespaces-for-your-organization/reviewing-your-organizations-audit-logs-for-github-codespaces)
+* [AUTOTITLE](/codespaces/managing-your-codespaces/reviewing-your-security-logs-for-github-codespaces)

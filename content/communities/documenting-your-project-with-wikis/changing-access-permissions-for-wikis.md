@@ -9,9 +9,9 @@ versions:
   fpt: '*'
   ghes: '*'
   ghec: '*'
-topics:
-  - Community
 shortTitle: Change access permissions
+category:
+  - Document your project with wikis
 ---
 
 {% data reusables.repositories.navigate-to-repo %}
@@ -20,4 +20,4 @@ shortTitle: Change access permissions
 
 ## Further reading
 
-* "[AUTOTITLE](/communities/documenting-your-project-with-wikis/disabling-wikis)"
+* [AUTOTITLE](/communities/documenting-your-project-with-wikis/disabling-wikis)

@@ -1,6 +1,6 @@
 ---
 title: Identity and access management
-intro: 'You can configure how people access {% ifversion ghec %}your enterprise on {% data variables.product.product_name %}{% elsif ghes %}{% data variables.location.product_location %}{% endif %}.'
+intro: 'Configure how people access your enterprise.'
 redirect_from:
   - /enterprise/admin/authentication
   - /admin/authentication
@@ -8,11 +8,6 @@ redirect_from:
 versions:
   ghec: '*'
   ghes: '*'
-topics:
-  - Accounts
-  - Authentication
-  - Enterprise
-  - SSO
 children:
   - /understanding-iam-for-enterprises
   - /iam-configuration-reference
@@ -24,5 +19,6 @@ children:
   - /provisioning-user-accounts-with-scim
   - /reconfiguring-iam-for-enterprise-managed-users
   - /managing-recovery-codes-for-your-enterprise
+  - /respond-to-incidents
 ---
 

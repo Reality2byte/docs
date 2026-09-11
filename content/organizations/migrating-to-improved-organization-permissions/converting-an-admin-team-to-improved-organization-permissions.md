@@ -9,15 +9,14 @@ versions:
   fpt: '*'
   ghes: '*'
   ghec: '*'
-topics:
-  - Organizations
-  - Teams
 shortTitle: Convert admin team
+category:
+  - Assign roles and permissions
 ---
 
 You can remove the ability for members of legacy admin teams to create repositories by creating a new team for these members, ensuring that the team has necessary access to the organization's repositories, then deleting the legacy admin team.
 
-For more information, see "[AUTOTITLE](/organizations/managing-user-access-to-your-organizations-repositories/managing-repository-roles/repository-roles-for-an-organization)."
+For more information, see [AUTOTITLE](/organizations/managing-user-access-to-your-organizations-repositories/managing-repository-roles/repository-roles-for-an-organization).
 
 > [!WARNING]
 > * If there are members of your legacy Admin team who are not members of other teams, deleting the team will remove those members from the organization. Before deleting the team, ensure members are already direct members of the organization, or have collaborator access to necessary repositories.
